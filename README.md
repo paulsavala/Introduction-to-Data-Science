@@ -8,7 +8,7 @@ These are materials for an introductory course in data science using Python, Pan
 
 ## Textbook
 
-The [textbook](https://paulsavala.github.io/Introduction-to-Data-Science/ch_01.html) is written entirely in Jupyter notebooks. This allows students to download the notebook and work with everything interactively. The textbook has the following chapters:
+The [textbook](https://github.com/paulsavala/Introduction-to-Data-Science/tree/main/textbook) is written entirely in Jupyter notebooks. This allows students to download the notebook and work with everything interactively. The textbook has the following chapters:
 1. First steps with Pandas and Jupyter notebooks
 2. Plotting and grouping data
 3. Correlation
@@ -22,6 +22,10 @@ The [textbook](https://paulsavala.github.io/Introduction-to-Data-Science/ch_01.h
 11. Working with large datasets
 
 The textbook is open source and you are free to modify it as needed. If you find errors or have suggestions or changes or improvements, please contact me at psavala@stedwards.edu.
+
+### Building the textbook
+
+If you would like to build the textbook so that it is viewable in a browser (such as [here](https://paulsavala.github.io/Introduction-to-Data-Science/ch_01.html)) you can do so using the Python package [Jupyter Book](https://jupyterbook.org/intro.html). To do so, first clone this repository. Then install Jupyter book using `pip install jupyter-book`. Next, navigate to where you cloned from this repository to (likely a folder named `Introduction-to-Data-Science` and type `jupyter-book build textbook/`. Then, follow the instructions shown by Jupyter Book.
 
 ## Projects
 
