@@ -1,0 +1,1520 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classification &#8212; Introduction to Data Science</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Nearest neighbors" href="ch_07.html" />
+    <link rel="prev" title="Training models" href="ch_05.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_01.html">
+   First steps with Pandas and Jupyter notebooks
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_02.html">
+   Plotting and grouping data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_03.html">
+   Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_04.html">
+   Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_05.html">
+   Training models
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_07.html">
+   Nearest neighbors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_08.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_09.html">
+   Improving your model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_10.html">
+   Ensemble tree models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_11.html">
+   Working with large datasets
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/ch_06.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/ch_06.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-loading">
+   Data loading
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-cleaning">
+   Data cleaning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logistic-regression-a-id-logistic-regression-a">
+   Logistic regression
+   <a id="logistic_regression">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loss-functions-for-classification-a-id-loss-classification-a">
+   Loss functions for classification
+   <a id="loss_classification">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classification-metrics-a-id-classification-metrics-a">
+   Classification metrics
+   <a id="classification_metrics">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weighted-accuracy-a-id-weighted-accuracy-a">
+     Weighted accuracy
+     <a id="weighted_accuracy">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#precision-and-recall-a-id-precision-recall-a">
+     Precision and Recall
+     <a id="precision_recall">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f1-score-a-id-f1-score-a">
+     F1-score
+     <a id="f1_score">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imbalanced-data-a-id-imbalanced-data-a">
+   Imbalanced data
+   <a id="imbalanced_data">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#undersampling-a-id-undersampling-a">
+     Undersampling
+     <a id="undersampling">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#oversampling-a-id-oversampling-a">
+     Oversampling
+     <a id="oversampling">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="classification">
+<h1>Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h1>
+<p>Last week we learned about linear regression. It is clear that “linear” refers to a line, but what is “regression”? <strong>Regression</strong> is simply the process of predicting a continuous value. However, sometimes we want to predict a <em>categorical</em> value, such as dog vs cat vs mouse, or pass vs fail. Predicting a categorical value is refered to as <strong>classification</strong>.</p>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-loading">
+<h2>Data loading<a class="headerlink" href="#data-loading" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook we will work with data from an Internet Service Provider (ISP). It includes roughly 7000 (anonymized) customers. Below is a summary of the columns which may not be clear:</p>
+<ul class="simple">
+<li><p><strong>customerID:</strong> A unique ID for each customer</p></li>
+<li><p><strong>Partner:</strong> Whether or not the customer has a partner (spouse/significant other)</p></li>
+<li><p><strong>tenure:</strong> How many months the person has been a customer</p></li>
+<li><p><strong>MonthlyCharges:</strong> How much (in dollars) the customer is charged every month</p></li>
+<li><p><strong>TotalCharges:</strong> How much the customer has been charged over their lifetime with the ISP</p></li>
+<li><p><strong>Churn:</strong> Whether or not a customer leaves the ISP (i.e. cancels their service)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/isp_customers.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customerID</th>
+      <th>gender</th>
+      <th>SeniorCitizen</th>
+      <th>Partner</th>
+      <th>Dependents</th>
+      <th>tenure</th>
+      <th>PhoneService</th>
+      <th>MultipleLines</th>
+      <th>InternetService</th>
+      <th>OnlineSecurity</th>
+      <th>OnlineBackup</th>
+      <th>DeviceProtection</th>
+      <th>TechSupport</th>
+      <th>StreamingTV</th>
+      <th>StreamingMovies</th>
+      <th>Contract</th>
+      <th>PaperlessBilling</th>
+      <th>PaymentMethod</th>
+      <th>MonthlyCharges</th>
+      <th>TotalCharges</th>
+      <th>Churn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7590-VHVEG</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>1</td>
+      <td>No</td>
+      <td>No phone service</td>
+      <td>DSL</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Electronic check</td>
+      <td>29.85</td>
+      <td>29.85</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5575-GNVDE</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>34</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>No</td>
+      <td>Mailed check</td>
+      <td>56.95</td>
+      <td>1889.5</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3668-QPYBK</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Mailed check</td>
+      <td>53.85</td>
+      <td>108.15</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7795-CFOCW</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>45</td>
+      <td>No</td>
+      <td>No phone service</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>No</td>
+      <td>Bank transfer (automatic)</td>
+      <td>42.30</td>
+      <td>1840.75</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9237-HQITU</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Fiber optic</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Electronic check</td>
+      <td>70.70</td>
+      <td>151.65</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="data-cleaning">
+<h2>Data cleaning<a class="headerlink" href="#data-cleaning" title="Permalink to this headline">¶</a></h2>
+<p>Let’s start by looking for missing or unrealistic values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nothing missing</span>
+<span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>customerID          0
+gender              0
+SeniorCitizen       0
+Partner             0
+Dependents          0
+tenure              0
+PhoneService        0
+MultipleLines       0
+InternetService     0
+OnlineSecurity      0
+OnlineBackup        0
+DeviceProtection    0
+TechSupport         0
+StreamingTV         0
+StreamingMovies     0
+Contract            0
+PaperlessBilling    0
+PaymentMethod       0
+MonthlyCharges      0
+TotalCharges        0
+Churn               0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>customerID           object
+gender               object
+SeniorCitizen         int64
+Partner              object
+Dependents           object
+tenure                int64
+PhoneService         object
+MultipleLines        object
+InternetService      object
+OnlineSecurity       object
+OnlineBackup         object
+DeviceProtection     object
+TechSupport          object
+StreamingTV          object
+StreamingMovies      object
+Contract             object
+PaperlessBilling     object
+PaymentMethod        object
+MonthlyCharges      float64
+TotalCharges         object
+Churn                object
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looking through the data types, we see that <code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code> (money they’ve been charge in total) is an <code class="docutils literal notranslate"><span class="pre">object</span></code> (i.e. a string). That’s bad, because we can’t add, take averages, etc.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This doesn&#39;t work, a big error is coming...</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">/usr/local/lib/python3.6/dist-packages/pandas/core/nanops.py</span> in <span class="ni">_ensure_numeric</span><span class="nt">(x)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1426</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1427</span>             <span class="n">x</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1428</span>         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+
+<span class="ne">ValueError</span>: could not convert string to float: &#39;29.851889.5108.151840.75151.65820.51949.4301.93046.053487.95587.45326.85681.15036.32686.057895.151022.957382.25528.351862.939.65202.2520.153505.12970.31530.64749.1530.26369.451093.16766.95181.651874.4520.245.257251.7316.93548.33549.251105.4475.74872.35418.254861.45981.453906.797144.154217.84254.13838.751426.41752.65633.34456.351752.556311.27076.35894.37853.74707.15450.72962957.1857.25244.13650.352497.2930.9887.3549.051090.6570991424.6177.46139.52688.85482.252111.31216.679.35565.35496.94327.5973.35918.752215.451057927.11009.252570.274.75714.2571077459.05927.354748.7113.851107.22514.520.219.453605.63027.257611.85100.27303.05927.653921.31363.255238.93042.253954.12868.153423.5248.41126.351064.65835.152151.65515.45112.75229.55350.3562.93027.652135.51723.9519.753985.351215.651502.653260.135.4581.251188.21778.51277.751170.5570.456425.65563.655971.255289.051756.26416.761.3545.651929.951071.4564.35655.57930.555215.25113.51152.81821.95419.91024251.6764.551592.35135.23958.25233.91363.452736254.452651.2321.43539.25242.81181.755000.2654.55780.21145.7503.61559.25125229.9545.3662.652453.31111.6524.81023.8582.15244.82379.13173.355311375.48129.31192.71901.65587.46519.758041.6520.752681.151112.37405.51033.952958.952684.854179.279.91934.456654.184.525.251124.2540.051975.853437.453139.83789.25324.5624.6268.351836.920.2179.35219.351288.752545.7555.22723.154107.255760.654747.584.61566.9702114.1299.051305.951120.3284.356350.57878.33187.6...
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">/usr/local/lib/python3.6/dist-packages/pandas/core/nanops.py</span> in <span class="ni">_ensure_numeric</span><span class="nt">(x)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1430</span>             <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1431</span>                 <span class="n">x</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1432</span>             <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+
+<span class="ne">ValueError</span>: complex() arg is a malformed string
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-6-d336f838a284&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># This doesn&#39;t work, a big error is coming...</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="nn">/usr/local/lib/python3.6/dist-packages/pandas/core/generic.py</span> in <span class="ni">stat_func</span><span class="nt">(self, axis, skipna, level, numeric_only, **kwargs)</span>
+<span class="g g-Whitespace">  </span><span class="mi">11464</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_agg_by_level</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">skipna</span><span class="o">=</span><span class="n">skipna</span><span class="p">)</span>
+<span class="g g-Whitespace">  </span><span class="mi">11465</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reduce</span><span class="p">(</span>
+<span class="ne">&gt; </span><span class="mi">11466</span>             <span class="n">func</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">skipna</span><span class="o">=</span><span class="n">skipna</span><span class="p">,</span> <span class="n">numeric_only</span><span class="o">=</span><span class="n">numeric_only</span>
+<span class="g g-Whitespace">  </span><span class="mi">11467</span>         <span class="p">)</span>
+<span class="g g-Whitespace">  </span><span class="mi">11468</span> 
+
+<span class="nn">/usr/local/lib/python3.6/dist-packages/pandas/core/series.py</span> in <span class="ni">_reduce</span><span class="nt">(self, op, name, axis, skipna, numeric_only, filter_type, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4234</span>                 <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4235</span>             <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="nb">all</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">4236</span>                 <span class="k">return</span> <span class="n">op</span><span class="p">(</span><span class="n">delegate</span><span class="p">,</span> <span class="n">skipna</span><span class="o">=</span><span class="n">skipna</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4237</span> 
+<span class="g g-Whitespace">   </span><span class="mi">4238</span>     <span class="k">def</span> <span class="nf">_reindex_indexer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_index</span><span class="p">,</span> <span class="n">indexer</span><span class="p">,</span> <span class="n">copy</span><span class="p">):</span>
+
+<span class="nn">/usr/local/lib/python3.6/dist-packages/pandas/core/nanops.py</span> in <span class="ni">_f</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span>             <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span>                 <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">invalid</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">71</span>                     <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span>             <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">73</span>                 <span class="c1"># we want to transform an object array</span>
+
+<span class="nn">/usr/local/lib/python3.6/dist-packages/pandas/core/nanops.py</span> in <span class="ni">f</span><span class="nt">(values, axis, skipna, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">127</span>                     <span class="n">result</span> <span class="o">=</span> <span class="n">alt</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">skipna</span><span class="o">=</span><span class="n">skipna</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">128</span>             <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">129</span>                 <span class="n">result</span> <span class="o">=</span> <span class="n">alt</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">skipna</span><span class="o">=</span><span class="n">skipna</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span> 
+<span class="g g-Whitespace">    </span><span class="mi">131</span>             <span class="k">return</span> <span class="n">result</span>
+
+<span class="nn">/usr/local/lib/python3.6/dist-packages/pandas/core/nanops.py</span> in <span class="ni">nanmean</span><span class="nt">(values, axis, skipna, mask)</span>
+<span class="g g-Whitespace">    </span><span class="mi">561</span>         <span class="n">dtype_count</span> <span class="o">=</span> <span class="n">dtype</span>
+<span class="g g-Whitespace">    </span><span class="mi">562</span>     <span class="n">count</span> <span class="o">=</span> <span class="n">_get_counts</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype_count</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">563</span>     <span class="n">the_sum</span> <span class="o">=</span> <span class="n">_ensure_numeric</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype_sum</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">564</span> 
+<span class="g g-Whitespace">    </span><span class="mi">565</span>     <span class="k">if</span> <span class="n">axis</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">the_sum</span><span class="p">,</span> <span class="s2">&quot;ndim&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+
+<span class="nn">/usr/local/lib/python3.6/dist-packages/pandas/core/nanops.py</span> in <span class="ni">_ensure_numeric</span><span class="nt">(x)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1432</span>             <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1433</span>                 <span class="c1"># e.g. &quot;foo&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1434</span>                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not convert </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> to numeric&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
+<span class="g g-Whitespace">   </span><span class="mi">1435</span>     <span class="k">return</span> <span class="n">x</span>
+<span class="g g-Whitespace">   </span><span class="mi">1436</span> 
+
+<span class="ne">TypeError</span>: Could not convert 29.851889.5108.151840.75151.65820.51949.4301.93046.053487.95587.45326.85681.15036.32686.057895.151022.957382.25528.351862.939.65202.2520.153505.12970.31530.64749.1530.26369.451093.16766.95181.651874.4520.245.257251.7316.93548.33549.251105.4475.74872.35418.254861.45981.453906.797144.154217.84254.13838.751426.41752.65633.34456.351752.556311.27076.35894.37853.74707.15450.72962957.1857.25244.13650.352497.2930.9887.3549.051090.6570991424.6177.46139.52688.85482.252111.31216.679.35565.35496.94327.5973.35918.752215.451057927.11009.252570.274.75714.2571077459.05927.354748.7113.851107.22514.520.219.453605.63027.257611.85100.27303.05927.653921.31363.255238.93042.253954.12868.153423.5248.41126.351064.65835.152151.65515.45112.75229.55350.3562.93027.652135.51723.9519.753985.351215.651502.653260.135.4581.251188.21778.51277.751170.5570.456425.65563.655971.255289.051756.26416.761.3545.651929.951071.4564.35655.57930.555215.25113.51152.81821.95419.91024251.6764.551592.35135.23958.25233.91363.452736254.452651.2321.43539.25242.81181.755000.2654.55780.21145.7503.61559.25125229.9545.3662.652453.31111.6524.81023.8582.15244.82379.13173.355311375.48129.31192.71901.65587.46519.758041.6520.752681.151112.37405.51033.952958.952684.854179.279.91934.456654.184.525.251124.2540.051975.853437.453139.83789.25324.5624.6268.351836.920.2179.35219.351288.752545.7555.22723.154107.255760.654747.584.61566.9702114.1299.051305.951120.3284.356350.57878.33187.656126.15731.3273.42...
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can try to convert it to a <code class="docutils literal notranslate"><span class="pre">float</span></code> using <code class="docutils literal notranslate"><span class="pre">.astype(float</span></code>), however…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># An error is coming...</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you look at the error you’ll see that there is a blank string <code class="docutils literal notranslate"><span class="pre">''</span></code> which Python doesn’t know how to convert to a float. Pandas has a helper function <code class="docutils literal notranslate"><span class="pre">.to_numeric()</span></code> which can convert strings to numbers, and if you tell is <code class="docutils literal notranslate"><span class="pre">errors='coerce'</span></code> it will take values that it could not convert (like <code class="docutils literal notranslate"><span class="pre">''</span></code>, say, or <code class="docutils literal notranslate"><span class="pre">'apple'</span></code>) and make them into a <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>customerID           object
+gender               object
+SeniorCitizen         int64
+Partner              object
+Dependents           object
+tenure                int64
+PhoneService         object
+MultipleLines        object
+InternetService      object
+OnlineSecurity       object
+OnlineBackup         object
+DeviceProtection     object
+TechSupport          object
+StreamingTV          object
+StreamingMovies      object
+Contract             object
+PaperlessBilling     object
+PaymentMethod        object
+MonthlyCharges      float64
+TotalCharges        float64
+Churn                object
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>customerID           0
+gender               0
+SeniorCitizen        0
+Partner              0
+Dependents           0
+tenure               0
+PhoneService         0
+MultipleLines        0
+InternetService      0
+OnlineSecurity       0
+OnlineBackup         0
+DeviceProtection     0
+TechSupport          0
+StreamingTV          0
+StreamingMovies      0
+Contract             0
+PaperlessBilling     0
+PaymentMethod        0
+MonthlyCharges       0
+TotalCharges        11
+Churn                0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>So there were 11 rows with bad values. Let’s just drop those.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we see that lots of columns have values of <code class="docutils literal notranslate"><span class="pre">Yes</span></code> and <code class="docutils literal notranslate"><span class="pre">No</span></code>. It’s good to check that these are consistent. For example, sometimes a <code class="docutils literal notranslate"><span class="pre">yes</span></code> (notice the lowercase) will sneak in, or <code class="docutils literal notranslate"> <span class="pre">Yes</span></code> (notice the extra space). We’ll do a quick check. We can use the Pandas helper function <code class="docutils literal notranslate"><span class="pre">.select_dtypes()</span></code> to only select columns of a certain data type.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="c1"># Just grab those columns with not too many different values</span>
+    <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gender: [&#39;Female&#39; &#39;Male&#39;]
+Partner: [&#39;Yes&#39; &#39;No&#39;]
+Dependents: [&#39;No&#39; &#39;Yes&#39;]
+PhoneService: [&#39;No&#39; &#39;Yes&#39;]
+MultipleLines: [&#39;No phone service&#39; &#39;No&#39; &#39;Yes&#39;]
+InternetService: [&#39;DSL&#39; &#39;Fiber optic&#39; &#39;No&#39;]
+OnlineSecurity: [&#39;No&#39; &#39;Yes&#39; &#39;No internet service&#39;]
+OnlineBackup: [&#39;Yes&#39; &#39;No&#39; &#39;No internet service&#39;]
+DeviceProtection: [&#39;No&#39; &#39;Yes&#39; &#39;No internet service&#39;]
+TechSupport: [&#39;No&#39; &#39;Yes&#39; &#39;No internet service&#39;]
+StreamingTV: [&#39;No&#39; &#39;Yes&#39; &#39;No internet service&#39;]
+StreamingMovies: [&#39;No&#39; &#39;Yes&#39; &#39;No internet service&#39;]
+Contract: [&#39;Month-to-month&#39; &#39;One year&#39; &#39;Two year&#39;]
+PaperlessBilling: [&#39;Yes&#39; &#39;No&#39;]
+PaymentMethod: [&#39;Electronic check&#39; &#39;Mailed check&#39; &#39;Bank transfer (automatic)&#39;
+ &#39;Credit card (automatic)&#39;]
+Churn: [&#39;No&#39; &#39;Yes&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Everythign seems fine here, no weird casing, spaces, etc. Let’s move on.</p>
+</div>
+<div class="section" id="logistic-regression-a-id-logistic-regression-a">
+<h2>Logistic regression <a id="logistic_regression"></a><a class="headerlink" href="#logistic-regression-a-id-logistic-regression-a" title="Permalink to this headline">¶</a></h2>
+<p>As discussed above, <strong>regression</strong> is the process of predicting a continuous value, while <strong>classification</strong> is the process of predicting a categorical value. Last week we worked with linear <em>regression</em>. This week we will start working with the analog on the classification side, namely, logistic regression.</p>
+<p>Now you may have noticed, we just said we are doing <em>classification</em> with logistic <em>regression</em>. This may be confusing. However, logistic regression actually <em>is</em> a <em>regression</em> model, we just use it for the purposes of classification. Let’s dive in.</p>
+<p>Suppose we want to predict whether or not a customer will “churn” (cancel their service). This is a very common business question, and a common task for data analysts/scientists are companies. Note that we <em>cannot</em> directly use linear regression, because we’re only predicting “Yes” or “No” for churn. Even if we were to do something like change “Yes” to 1 and “No” to 2, what if our linear regression model predicted a 3? Or 0.57? How should we interpret this? Rather than trying to force linear regression to work for our problem, let’s instead change our approach.</p>
+<p>Let’s suppose we’re trying to determine if a customer will churn (i.e. <code class="docutils literal notranslate"><span class="pre">Churn='Yes'</span></code>). While we <em>could</em> come up with a way to simply predict “Yes” or “No”, this could be problematic. After all, what if the model was 99% sure that one customer would churn, and 51% sure that another would. It would have no way to communicate this to us if all it did was return “Yes” for both customers. Instead, what we want our model to do is return the <em>probability</em> of a customer churning. By doing so we can see exactly how confident our model’s predictions are.</p>
+<p>In order to do this, we first need a function which only returns values between 0 and 1. One such function which does this is called the <strong>sigmoid function</strong>, given by <span class="math notranslate nohighlight">\(\sigma(x) = \displaystyle\frac{1}{1+e^{-x}}\)</span>. Below is a plot of the sigmoid function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print out x in a new cell to see what linspace does...</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sigmoid function&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_06_25_0.png" src="_images/ch_06_25_0.png" />
+</div>
+</div>
+<p>As you can see, this function always takes values between 0 and 1. You can see that by noting that <span class="math notranslate nohighlight">\(e^{-x} = \displaystyle\frac{1}{e^x}\)</span> is always positive and takes values between 0 and infinity, and so the denominator takes values between 1 and infinity. Thus <span class="math notranslate nohighlight">\(\displaystyle\frac{1}{1 + e^{-x}}\)</span> takes values between 0 and 1.</p>
+<p>One thing to note is that we can change exactly how the sigmoid function looks based on what we feed into it. For example, what if we plotted <span class="math notranslate nohighlight">\(\sigma(2x)\)</span>, or <span class="math notranslate nohighlight">\(\sigma(-3x+1)\)</span>? Below are plots showing the results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">(</span><span class="mi">0</span><span class="o">*</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;a=0&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;a=0.5&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;a=1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;a=2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;a=5&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sigmoid function with various values of a&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_06_27_0.png" src="_images/ch_06_27_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">0</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;b=0&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;b=0.5&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;b=1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;b=2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">5</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;b=5&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sigmoid function with various values of b&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_06_28_0.png" src="_images/ch_06_28_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;a=-1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;a=-2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sigmoid</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;a=-5&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sigmoid function with negative values of a&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_06_29_0.png" src="_images/ch_06_29_0.png" />
+</div>
+</div>
+<p>So making <span class="math notranslate nohighlight">\(a\)</span> larger makes the graph “sharper” in the middle (i.e. a faster transition from 0 to 1), and making it closer to zero smooths it out. Making <span class="math notranslate nohighlight">\(a\)</span> negative flips the graph. Making <span class="math notranslate nohighlight">\(b\)</span> larger moves the graph to the left, and making it negative moves it to the right (this should all sound like manipulating any function <span class="math notranslate nohighlight">\(f(x)\)</span>).</p>
+<p>The question then is, what values of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> will make the sigmoid best predict probabilities for churn? In fact, just like with linear regression, there is no reason we need only a single slope and y-intercept. We could have the logistic regression function with many variables:</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma(m_1 x_1 + m_2 x_2 + \cdots + m_n x_n + b) = \displaystyle\frac{1}{1+e^{-m_1 x_1 - m_2 x_2 - \cdots - m_n x_n - b}}
+\]</div>
+<p>This is a completely valid function that makes its predictions based on a number of different variables. We could fit this model using gradient descent, exactly like linear regression did. <strong>This is logistic regression</strong>. Logistic regression is simply linear regression, but plugged into the sigmoid function to force the output to be between 0 and 1. Rather than coding it by hand, we will use sklearn’s implementation of logistic regression. All of the steps should look very similar to how we did linear regression using sklearn. In the background, what sklearn is doing is predicting the probability of “Yes” vs “No”. It then finds which has a higher probability, and returns that as the prediction. So while it <em>looks like</em> a classification model (in that it’s predicting a categorical value of Yes/No), in actuality what is going on is regression (it is predicting a probability, a continuous value between 0 and 1). Let’s take a look.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="c1"># It is common to use the variable name &quot;clf&quot; for &quot;classifier&quot;. We discourage you from using &quot;lr&quot; for &quot;logistic regression&quot;, as &quot;lr&quot; typically refers to &quot;linear regression&quot;</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since we need continuous values of <span class="math notranslate nohighlight">\(x_i\)</span> for the above formula to make sense, we can only use continuous features to predict churn. We will use <code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code> and <code class="docutils literal notranslate"><span class="pre">MonthlyCharges</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">feat_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">,</span> <span class="s1">&#39;MonthlyCharges&#39;</span><span class="p">]</span>
+<span class="n">target_col</span> <span class="o">=</span> <span class="s1">&#39;Churn&#39;</span>
+
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">feat_cols</span><span class="p">]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span>
+
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="n">feat_cols</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span>
+
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class=&#39;auto&#39;, n_jobs=None, penalty=&#39;l2&#39;,
+                   random_state=None, solver=&#39;lbfgs&#39;, tol=0.0001, verbose=0,
+                   warm_start=False)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="c1"># We use [i] for test_pred because it&#39;s a list (actually a numpy array, basically the same thing)</span>
+    <span class="c1"># We use .iloc[i] for y_test because it&#39;s a Pandas Series/DataFrame</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Predicted = </span><span class="si">{</span><span class="n">test_pred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">, Actual = </span><span class="si">{</span><span class="n">y_test</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Predicted = No, Actual = Yes
+Predicted = No, Actual = No
+Predicted = No, Actual = Yes
+Predicted = No, Actual = No
+Predicted = No, Actual = No
+Predicted = No, Actual = No
+Predicted = Yes, Actual = Yes
+Predicted = No, Actual = No
+Predicted = No, Actual = No
+Predicted = No, Actual = Yes
+</pre></div>
+</div>
+</div>
+</div>
+<p>We said above that sklearn is actually predicting probabilities. If you’d like to see what those probabilities are, you can use the <code class="docutils literal notranslate"><span class="pre">.predict_proba()</span></code> function. This returns a list, where the first number is the probability of the first class, and the second is the probability of the second class.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_pred_proba</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="c1"># We use [i] for test_pred because it&#39;s a list (actually a numpy array, basically the same thing)</span>
+    <span class="c1"># We use .iloc[i] for y_test because it&#39;s a Pandas Series/DataFrame</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Predicted: P(&quot;No&quot;) = </span><span class="si">{</span><span class="n">test_pred_proba</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, P(&quot;Yes&quot;) = </span><span class="si">{</span><span class="n">test_pred_proba</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, Actual = </span><span class="si">{</span><span class="n">y_test</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Predicted: P(&quot;No&quot;) = 0.715, P(&quot;Yes&quot;) = 0.285, Actual = Yes
+Predicted: P(&quot;No&quot;) = 0.791, P(&quot;Yes&quot;) = 0.209, Actual = No
+Predicted: P(&quot;No&quot;) = 0.851, P(&quot;Yes&quot;) = 0.149, Actual = Yes
+Predicted: P(&quot;No&quot;) = 0.859, P(&quot;Yes&quot;) = 0.141, Actual = No
+Predicted: P(&quot;No&quot;) = 0.643, P(&quot;Yes&quot;) = 0.357, Actual = No
+Predicted: P(&quot;No&quot;) = 0.641, P(&quot;Yes&quot;) = 0.359, Actual = No
+Predicted: P(&quot;No&quot;) = 0.404, P(&quot;Yes&quot;) = 0.596, Actual = Yes
+Predicted: P(&quot;No&quot;) = 0.941, P(&quot;Yes&quot;) = 0.059, Actual = No
+Predicted: P(&quot;No&quot;) = 0.530, P(&quot;Yes&quot;) = 0.470, Actual = No
+Predicted: P(&quot;No&quot;) = 0.866, P(&quot;Yes&quot;) = 0.134, Actual = Yes
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looking at the probabilities can be interesting, as you can see which rows it is highly confident in, and which it is unsure of. If you wanted to, you could write your own function which would not use 0.5 (50%) as the cutoff, but some other value.</p>
+<p>We can see that overall our predictions mostly match the correct values. However, one interesting thing to note is that all of the predictions shown are “No”. So did our model <em>ever</em> predict “Yes”? The easiest way to check this is to turn our predictions into a Pandas Series, and then use <code class="docutils literal notranslate"><span class="pre">value_counts()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">test_pred</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No     1750
+Yes     360
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>So sure enough, it did. Let’s go through all the predictions and count up what percentage are correct.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="n">test_pred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">y_test</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+        <span class="n">correct</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Correct </span><span class="si">{</span><span class="n">correct</span><span class="si">}</span><span class="s1"> times (</span><span class="si">{</span><span class="mi">100</span> <span class="o">*</span> <span class="n">correct</span> <span class="o">/</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Correct 1645 times (77.96%)
+</pre></div>
+</div>
+</div>
+</div>
+<p>So it predicted correctly about 78% of the time, not bad!</p>
+<p>Except that’s really not that great. You may think “why is 78% bad? If I were guessing randomly I could only guess correctly 50% of the time!” Of course this is true. However, let’s look at the customer churn in the training set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;Churn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No     0.733442
+Yes    0.266558
+Name: Churn, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>So about 73% of customers did not churn. So if I had a “model” which simply always predicted “No”, it looks like (at least on the training set) I would be correct about 73% of the time. Let’s see how that would work on the test set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="s1">&#39;No&#39;</span> <span class="o">==</span> <span class="n">y_test</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+        <span class="n">correct</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Correct </span><span class="si">{</span><span class="n">correct</span><span class="si">}</span><span class="s1"> times (</span><span class="si">{</span><span class="mi">100</span> <span class="o">*</span> <span class="n">correct</span> <span class="o">/</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Correct 1553 times (73.60%)
+</pre></div>
+</div>
+</div>
+</div>
+<p>So our logistic model only moved us from 73.6% to 78%. So while a almost 6% increase (compute percentages the correct way: (new - old) / old = (77.96 - 73.6) / 73.6 = 5.92% improvement) is nothing to sneeze at, it’s not nearly as good as it may seem at first glance.</p>
+</div>
+<div class="section" id="loss-functions-for-classification-a-id-loss-classification-a">
+<h2>Loss functions for classification <a id="loss_classification"></a><a class="headerlink" href="#loss-functions-for-classification-a-id-loss-classification-a" title="Permalink to this headline">¶</a></h2>
+<p>Earlier this semester we talked about that the way models are trained is by using gradient descent. More specifically, we pick a loss function which measures how good or bad our predictions are, and then keep adjusting our models parameters until that loss is as small as possible. For the case of regression, this loss function is generally mean squared error (MSE), which had the equation</p>
+<div class="math notranslate nohighlight">
+\[
+MSE = \displaystyle\sum_{i=1}^n (y_i - \hat{y_i})^2 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(y_i\)</span> is the ground truth (correct value) and <span class="math notranslate nohighlight">\(\hat{y_i)\)</span> is the predicted value. But what about for classification? Since we are taking the gradient of the loss function, we need it to be continuous and differentiable. Classification works with categories (either as text, such as “Yes” and “No”) and integers (1, 2, 3, etc.). This makes it hard to make things differentiable. Therefore, we primarily work with the <em>probabilities</em> predicted. Most classification models don’t just produce a prediction, they also predict the probability of an occurence. The loss function we will primarily use is called cross entropy. If there are just two classes we are predicting (Yes/No, 0/1, etc.) then this is called binary cross entropy, and has the following form:</p>
+<div class="math notranslate nohighlight">
+\[
+BCE = -\frac{1}{n}\displaystyle\sum_{i=1}^n (y_i \log(\hat{y_i}) + (1-y_i)\log(1-\hat{y_i}))
+\]</div>
+<p>It’s beyond the scope of this course to dive into the mathematics of this, but the primary idea is that binary cross entropy measures how similar <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(\hat{y}\)</span> are. In cases where there are more than two classes, we instead use the loss function cross entropy (note that it is no longer “binary”), which has the form</p>
+<div class="math notranslate nohighlight">
+\[
+CE = -\frac{1}{n}\displaystyle\sum_{i=1}^n \displaystyle\sum_{c=1}^C c_i \log(\hat{c_i})
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(C\)</span> is the number of classes and <span class="math notranslate nohighlight">\(c_i\)</span> is the probability of the <span class="math notranslate nohighlight">\(i\)</span>’th sample being in class <span class="math notranslate nohighlight">\(c\)</span>.</p>
+</div>
+<div class="section" id="classification-metrics-a-id-classification-metrics-a">
+<h2>Classification metrics <a id="classification_metrics"></a><a class="headerlink" href="#classification-metrics-a-id-classification-metrics-a" title="Permalink to this headline">¶</a></h2>
+<p>As the previous section hinted at, “accuracy” is not always the best metric. For example, consider the following problem: You work for a biomedical company and want to develop a test to predict whether or not a patient has a certain disease. You look through the data and see that roughly 0.04% of the population has this disease. Therefore, by creating a “test” which says “No, you don’t have the disease”, you would be right (i.e. accurate) 99.96% of the time!</p>
+<p>Our goal then is to come up with other metrics besides accuracy which help us determine how good our model is. Below are several such metrics.</p>
+<div class="section" id="weighted-accuracy-a-id-weighted-accuracy-a">
+<h3>Weighted accuracy <a id="weighted_accuracy"></a><a class="headerlink" href="#weighted-accuracy-a-id-weighted-accuracy-a" title="Permalink to this headline">¶</a></h3>
+<p>The simplest improvement we can make is to “weight” our classes differently. For example, since we see that 70%+ of the ISP customers do not churn, the ISP is probably more interested in being correct on customers who <em>will</em> churn. For example, suppose the company looks for customers predicted to churn, and reaches out to them to say “thank you for being a customer, here is a $5 gift card”. If the model was correct and the customer really was ready to leave (churn), then maybe this intervention will make them stay. And if the model was wrong and the customer was not planning to churn, then the company is only out $5, and the customer is very happy! So being correct on the churning customers is more important than on the non-churning customers. Therefore, we could consider the following change: Give predictions a value of (say) 0.2 if the prediction is that they won’t churn, and a value of 0.7 if the prediction is that they will churn. That way, correct predictions for churn are given more “weight”, and incorrect predictions for churn are penalized more heavily as well.</p>
+<p>Let’s do this now.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">weighted_accuracy</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
+    <span class="n">correct_weighted</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">correct_weighted</span> <span class="o">+=</span> <span class="n">weights</span><span class="p">[</span><span class="n">y_pred</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Weighted accuracy: </span><span class="si">{</span><span class="mi">100</span> <span class="o">*</span> <span class="n">correct_weighted</span> <span class="o">/</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Yes&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;No&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">}</span>
+<span class="n">weighted_accuracy</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">test_pred</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Weighted accuracy: 49.22%
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Giving both a weight of 1 is just accuracy, and so we get the exact same value</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Yes&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;No&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="n">weighted_accuracy</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">test_pred</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Weighted accuracy: 77.96%
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus our weighted accuracy is much lower. Note that weighted accuracy requires you to (essentially randomly) choose the weights for each category. This is problematic, because your results depend heavily on these values.</p>
+</div>
+<div class="section" id="precision-and-recall-a-id-precision-recall-a">
+<h3>Precision and Recall <a id="precision_recall"></a><a class="headerlink" href="#precision-and-recall-a-id-precision-recall-a" title="Permalink to this headline">¶</a></h3>
+<p>In accuracy, predicting “Yes” or “No” both received the same “weight”. We could fix this in weighted accuracy by assigning weights, but those weights were essentially arbitrary. Really what we want is to focus on the customers who actually will churn (i.e. the ground truth for <code class="docutils literal notranslate"><span class="pre">Churn</span></code> is “Yes”). What we can do is compute the following: Out of the customers who we <em>predicted</em> will churn, what percentage of those <em>actually did</em> churn? In other words, what is the <strong>precision</strong> of our model. Written as an equation, this becomes:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Precision} = \frac{\text{predicted positive}}{\text{true positive} + \text{false positive}}
+\]</div>
+<p>where <strong>true positive</strong> means a positive prediction (Churn = “Yes” in our case) which is correct (the customer actually did churn), and <strong>false positive</strong> means a positive prediction (Churn = “Yes”) which was wrong (the customer <em>did not</em> churn).</p>
+<p>Note that what precision is doing is focusing on the <em>model predictions</em> and see what percentage of positive predictions were correct. What if we did this the other way? That is, what if we instead focused on the <em>ground truth</em> and saw how our <em>model</em> did? In other words, what if we computed the following: Out of the customers who <em>actually did</em> churn, what percentage did we <em>predict</em> will churn? Notice that this is exactly the reverse of precision. The name for this metric is <strong>recall</strong>, also called the <strong>true positive rate</strong>. In equation form this becomes:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Recall} = \frac{\text{predicted positive}}{\text{true positive}}
+\]</div>
+<p>Thankfully, we do not need to compute all of these metrics by hand. Sklearn has helper functions built in for these. In particular, there is one especially helpful function called the classification report, illustrated below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+
+<span class="c1"># Classification_report wants the correct labels first, followed by the predictions.</span>
+<span class="c1"># You should always use print to display it, otherwise it will look bad</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">test_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+          No       0.81      0.91      0.86      1553
+         Yes       0.63      0.41      0.49       557
+
+    accuracy                           0.78      2110
+   macro avg       0.72      0.66      0.68      2110
+weighted avg       0.76      0.78      0.76      2110
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s step through this. We don’t know all of the components yet, but we can get a good start.</p>
+<p>First the classification report is broken by what Churn: “Yes” vs “No”. We said the ISP probably cares more about “Yes” churns, so we’ll look at that row.
+<strong>Precision:</strong>
+We see that the precision is 63%, meaning that out of the customers we <em>predicted</em> will churn, 63% of them actually did. To see the same thing for customers who didn’t churn you can look at the “No” row. There the precision is 81%, so of customers that we predicted will <em>not</em> churn, 81% indeed did not.</p>
+<p><strong>Recall:</strong>
+We see that for “Yes” churns, the recall is 41%, meaning that out of the customers who <em>actually did</em> churn, only 41% of them did we <em>predict</em> would churn. Similarly, for the “No” churn, see that out of the customers who <em>actually did not</em> churn, our model predicted 91% of them correctly.</p>
+<p><strong>Support:</strong>
+Support is simply how many samples fit into each group. So for instance, 1,553 samples (rows) had customers who didn’t churn, and 557 had customers who did churn.</p>
+<p><strong>Accuracy:</strong>
+In the third row we see an overall accuracy on 78%, which is the same result we got above when we computed accuracy by hand.</p>
+</div>
+<div class="section" id="f1-score-a-id-f1-score-a">
+<h3>F1-score <a id="f1_score"></a><a class="headerlink" href="#f1-score-a-id-f1-score-a" title="Permalink to this headline">¶</a></h3>
+<p>Finally, we will discuss f1-score. Notice that precision considers actual positives (customers who really did churn, say) and finds what percentage our model could correctly predict. So precision rewards our model for being correct on the positive samples, even if it makes mistakes on the negative samples. Recall, on the other hand, looks at model positive predictions and finds what percentage of them are correct. So recall rewards our model for finding as many of the positive samples as possible. Ideally we want both of these to be true. We want our model to be strong on the positive samples, and we also want it to find as many positive samples as possible. In other to measure both of these at once, we can take a sort of average. In fact, we take the harmonic mean rather than the normal mean that you’re used to. For an interesting article on various types of means, check out <a class="reference external" href="https://towardsdatascience.com/on-average-youre-using-the-wrong-average-geometric-harmonic-means-in-data-analysis-2a703e21ea0">this article</a>.</p>
+<p>Regardless of the details, f1-score can be thought of as a type of average of precision and recall. It takes values between 0 and 1 (like precision, recall and accuracy), but it does not have a simple one sentence explanation like these others do. Regardless, if one model has a higher f1-score then another model, then it is likely that that model is “better” (in some sense) than the model with a lower f1-score.</p>
+<p>We see that our model has an f1-score of 86% for the non-churning customers, and 49% for the churning customers.</p>
+</div>
+</div>
+<div class="section" id="imbalanced-data-a-id-imbalanced-data-a">
+<h2>Imbalanced data <a id="imbalanced_data"></a><a class="headerlink" href="#imbalanced-data-a-id-imbalanced-data-a" title="Permalink to this headline">¶</a></h2>
+<p>The underlying reason that we need to do all these fancy metrics is to deal with unbalanced data. By <strong>unbalanced data</strong> we just mean data where the label we are predicting (so classification) is not evenly distributed, meaning there are more of one label than another. This is extremely common, and in fact more common than balanced data. We gave the medical researcher example above, but unbalanced data appears everywhere. Most customers <em>don’t</em> cancel their internet, so most don’t churn, so that data is unbalanced. Suppose you were working at a company developing a model for predicting if your company’s advertising will lead customers to make a purchase. Most people who see an ad don’t go out and make a purchase for that product. Therefore that data is also unbalanced.</p>
+<div class="section" id="undersampling-a-id-undersampling-a">
+<h3>Undersampling <a id="undersampling"></a><a class="headerlink" href="#undersampling-a-id-undersampling-a" title="Permalink to this headline">¶</a></h3>
+<p>Note that the metrics above still don’t address the underlying problem: our model is trained on unbalanced data, and so it learns that one class is far more likely to occur than the other. That means the model will “prefer” to predict the dominant class, even when there is evidence suggesting it should predict the other class. There is no one single method to fix this. However, two very common and powerful techniques are to undersample or oversample your data. By <strong>undersampling</strong> we mean picking your data so that the number of samples in both classes are the same. For instance, let’s look at the training data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;Churn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No     3613
+Yes    1309
+Name: Churn, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see there are 3613 non-churning customers, and 1309 who churned. We want both classes to have the same number of samples from each class. Since we can’t magically make more churning customers, instead what we’ll do is pick only 1309 non-churning customers (out of the 3613 available) and use just those. We can do this most easily using the Pandas <code class="docutils literal notranslate"><span class="pre">.sample()</span></code> function. If you give it an integer it will select that many rows from your data (you can also give it a number between 0 and 1 to select that <em>percentage</em> of your data).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get only the customers who did not churn</span>
+<span class="n">train_no_df</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;Churn&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;No&#39;</span><span class="p">]</span>
+<span class="c1"># Then select 1309 of them to match the 1309 &quot;Yes&quot; churn customers</span>
+<span class="n">train_no_df</span> <span class="o">=</span> <span class="n">train_no_df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1309</span><span class="p">)</span>
+
+<span class="c1"># Also grab the churning customers</span>
+<span class="n">train_yes_df</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;Churn&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Yes&#39;</span><span class="p">]</span>
+
+<span class="c1"># And now stick both DataFrames together to make a new undersampled training set</span>
+<span class="n">train_under_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train_no_df</span><span class="p">,</span> <span class="n">train_yes_df</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we now compare the number of churn vs non-churn customers in the training set, we should see that they are equal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_under_df</span><span class="p">[</span><span class="s1">&#39;Churn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Yes    1309
+No     1309
+Name: Churn, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now use this new undersampled training data to train our model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copied the same columns that we used earlier</span>
+<span class="n">feat_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">,</span> <span class="s1">&#39;MonthlyCharges&#39;</span><span class="p">]</span>
+<span class="n">target_col</span> <span class="o">=</span> <span class="s1">&#39;Churn&#39;</span>
+
+<span class="n">X_train_under</span> <span class="o">=</span> <span class="n">train_under_df</span><span class="p">[</span><span class="n">feat_cols</span><span class="p">]</span>
+<span class="n">y_train_under</span> <span class="o">=</span> <span class="n">train_under_df</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span>
+
+<span class="n">clf_under</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">clf_under</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_under</span><span class="p">,</span> <span class="n">y_train_under</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class=&#39;auto&#39;, n_jobs=None, penalty=&#39;l2&#39;,
+                   random_state=None, solver=&#39;lbfgs&#39;, tol=0.0001, verbose=0,
+                   warm_start=False)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Even though we undersampled our training data, <strong>you should always test your model on the original unaltered data.</strong> This is because the (imbalanced) data is the real data that you want your model to perform well on. If we were to also undersample our test set, we would be evaluating our model on data that looks totally different from the (imbalanced) problem we are trying to solve. So long story short, keep your test data untouched.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_pred_under</span> <span class="o">=</span> <span class="n">clf_under</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">test_pred_under</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+          No       0.88      0.72      0.79      1543
+         Yes       0.49      0.73      0.58       567
+
+    accuracy                           0.72      2110
+   macro avg       0.68      0.72      0.69      2110
+weighted avg       0.77      0.72      0.74      2110
+</pre></div>
+</div>
+</div>
+</div>
+<p>For easy comparison, I’ve put the classification report for the original (<em>not</em> undersampled) data below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+
+<span class="c1"># Classification_report wants the correct labels first, followed by the predictions.</span>
+<span class="c1"># You should always use print to display it, otherwise it will look bad</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">test_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+          No       0.82      0.90      0.86      1543
+         Yes       0.64      0.46      0.53       567
+
+    accuracy                           0.78      2110
+   macro avg       0.73      0.68      0.70      2110
+weighted avg       0.77      0.78      0.77      2110
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are some interesting results. First, our overall accuracy dropped from 78% to 72%. However, as we discussed earlier, when dealing with imbalanced data accuracy is a flawed metric. Our precision is higher for the “No” churns, and lower for the “Yes” churns compared to the model trained on the original data. In the model trained on the original data, the recall was wildly different (90% vs 46%) on the “Yes” vs “No” churns. In our new model that was smoothed out, and now both are very similar. Similarly, the f1-score’s got closer together (one up, one down) on our model trained on undersampled data.</p>
+<p>Is this new model better? The answer is, “it depends”. When developing a model, you always need to consider the use-case. Companies don’t simply get bored and say “go build a model and make sure it’s good”. They have a <em>reason</em> for using the model. They want to stop customers from churning. They want to identify customers who may churn. They want to understand what makes one customer churn and one not. Each of these use cases might be better served by a different model. For example, the undersampled model having recall which is close together means that if we select a random customer, we can be more confident that our model will predict something useful about their churning. In the original model, 90% of customers who did not churn would be predicted correctly by our model, but only 46% of customers who will churn. That’s a problem, because if you look at a random customer, you have no idea if they will churn or not. So even though the undersampled model has a lower recall for “No”, the tradeoff is likely worth it. On the other hand, the precision in our original model was very good. Recall that a precision of 64% for “No” means that if you take all customers our model predicted will not churn, then 64% of those indeed will not churn. This is compared to only 49% for our undersampled model. Finally, since f1-score is a sort of average of precision and recall, we see that the undersampled model also strikes a (slightly) better balance in its performance in both the “No” and “Yes” class, as opposed to the original model, which performed stronger on the “No” class but worse on the “Yes” class.</p>
+</div>
+<div class="section" id="oversampling-a-id-oversampling-a">
+<h3>Oversampling <a id="oversampling"></a><a class="headerlink" href="#oversampling-a-id-oversampling-a" title="Permalink to this headline">¶</a></h3>
+<p>If undersampling is choosing rows so that both classes have the same number of samples as the minority class, then <strong>oversampling</strong> is choosing rows so that both classes have the same number of samples as the majority class. This may seem confusing, since by definition the minority class has less samples than the majority class. So how is it possible to then “choose more of them”? The answer is you choose them <em>with replacement</em>. Therefore, samples from the minority class will show up several times. This is in essence “duplicating the customers” in the minority class. You can sample with replacement using <code class="docutils literal notranslate"><span class="pre">.sample(replace=True)</span></code>. We’ll follow the same process as with undersampling.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;Churn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No     3620
+Yes    1302
+Name: Churn, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get only the customers who did not churn</span>
+<span class="n">train_yes_df</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;Churn&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Yes&#39;</span><span class="p">]</span>
+<span class="c1"># Then select 3620 of them to match the 3620 &quot;No&quot; churn customers</span>
+<span class="n">train_yes_df</span> <span class="o">=</span> <span class="n">train_yes_df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">3620</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Also grab the churning customers</span>
+<span class="n">train_no_df</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;Churn&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;No&#39;</span><span class="p">]</span>
+
+<span class="c1"># And now stick both DataFrames together to make a new undersampled training set</span>
+<span class="n">train_over_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train_no_df</span><span class="p">,</span> <span class="n">train_yes_df</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once again, we now see that the number of samples in each class are the same.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_over_df</span><span class="p">[</span><span class="s1">&#39;Churn&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No     3620
+Yes    3620
+Name: Churn, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now train a logistic regression model with this oversampled data and compare our results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copied the same columns that we used earlier</span>
+<span class="n">feat_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">,</span> <span class="s1">&#39;MonthlyCharges&#39;</span><span class="p">]</span>
+<span class="n">target_col</span> <span class="o">=</span> <span class="s1">&#39;Churn&#39;</span>
+
+<span class="n">X_train_over</span> <span class="o">=</span> <span class="n">train_over_df</span><span class="p">[</span><span class="n">feat_cols</span><span class="p">]</span>
+<span class="n">y_train_over</span> <span class="o">=</span> <span class="n">train_over_df</span><span class="p">[</span><span class="n">target_col</span><span class="p">]</span>
+
+<span class="n">clf_over</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">clf_over</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_over</span><span class="p">,</span> <span class="n">y_train_over</span><span class="p">)</span>
+
+<span class="n">test_pred_over</span> <span class="o">=</span> <span class="n">clf_over</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now put all three classification reports together:</p>
+<p><strong>Original data</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">test_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+          No       0.82      0.90      0.86      1543
+         Yes       0.64      0.46      0.53       567
+
+    accuracy                           0.78      2110
+   macro avg       0.73      0.68      0.70      2110
+weighted avg       0.77      0.78      0.77      2110
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Undersampled</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">test_pred_under</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+          No       0.88      0.72      0.79      1543
+         Yes       0.49      0.73      0.58       567
+
+    accuracy                           0.72      2110
+   macro avg       0.68      0.72      0.69      2110
+weighted avg       0.77      0.72      0.74      2110
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Oversampled</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">test_pred_over</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+          No       0.88      0.72      0.79      1543
+         Yes       0.49      0.73      0.59       567
+
+    accuracy                           0.72      2110
+   macro avg       0.68      0.73      0.69      2110
+weighted avg       0.77      0.72      0.74      2110
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s once more go through what we see from each metric:</p>
+<p><strong>Accuracy:</strong> Nothing. Don’t rely on accuracy for imbalanced data.
+<strong>Precision:</strong> Precision is identical between the under and oversampled models. As discussed earlier, precision is showing what percentage of our predicted Yes/No actually were Yes/No. So the under and oversampled models did poorly with “Yes” predictions, but better with “No” predictions. That is, if we took a customer who our under/oversampled model predicted would churn (so a “Yes”), then only 49% of the time would they actually churn (that’s bad). However, our “No” predictions are much better.
+<strong>Recall:</strong> Again, recall is identical between the under and oversampled models. Recall tells us what percentage of the <em>actual</em> Yes/No churn customers our model predicted correctly. So our under/oversampled models were more balanced in their ability to find churning/non-churning customers, at the expense of losing some recall in the “No” class.
+<strong>F1-Score:</strong> While there is a very slight difference in F1-score between the under and oversampled models, they are essentially the same. We see the same pattern of the under/oversampled models striking a better balance between the Yes/No classes than the model trained on the original data.</p>
+</div>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Pick a different categorical column (besides <code class="docutils literal notranslate"><span class="pre">Churn</span></code>) and predict it using logitistic regression</p></li>
+<li><p>In this notebook we discuss how the sigmoid function is used to give values between 0 and 1. Another similar function is <span class="math notranslate nohighlight">\(\tanh(x)\)</span>, which gives values between -1 and 1. How could you change the <span class="math notranslate nohighlight">\(\tanh\)</span> function to instead give values between 0 and 1?</p></li>
+<li><p>Pick one of our previous datasets and use logistic regression to model a categorical variable. Go through the same discussion about which models are best/worst.</p></li>
+</ol>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="ch_05.html" title="previous page">Training models</a>
+    <a class='right-next' id="next-link" href="ch_07.html" title="next page">Nearest neighbors</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,2372 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Decision Trees &#8212; Introduction to Data Science</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Improving your model" href="ch_09.html" />
+    <link rel="prev" title="Nearest neighbors" href="ch_07.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_01.html">
+   First steps with Pandas and Jupyter notebooks
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_02.html">
+   Plotting and grouping data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_03.html">
+   Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_04.html">
+   Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_05.html">
+   Training models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_06.html">
+   Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_07.html">
+   Nearest neighbors
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_09.html">
+   Improving your model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_10.html">
+   Ensemble tree models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_11.html">
+   Working with large datasets
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/ch_08.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/ch_08.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loading-data">
+   Loading data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-preparation">
+   Data preparation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-trees-a-id-intro-dt-a">
+   Decision trees
+   <a id="intro_dt">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overfitting-and-hyperparameters-a-id-overfitting-hyperparams-a">
+   Overfitting and hyperparameters
+   <a id="overfitting_hyperparams">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-mathematics-of-decision-trees-a-id-math-dt-a">
+   The mathematics of decision trees
+   <a id="math_dt">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="decision-trees">
+<h1>Decision Trees<a class="headerlink" href="#decision-trees" title="Permalink to this headline">¶</a></h1>
+<p>After linear regression, decision trees are probably the second most commonly known model used for regression. Decision trees are completely different from linear regression, in that they are not represented by an equation. They <em>are</em> still functions (mathematically-speaking), because a function is just a rule which assigns an output given an input. But the function looks completely different from what you’re used to.</p>
+<p>Below is an example of a decision tree being used to determine whether or not a passenger on the Titanic would survive:</p>
+<p><img alt="Titanic Decision Tree" src="https://drive.google.com/uc?id=1HFsNCP3879ncIIUb-2Ho7IveJiBHZeH8" /></p>
+<p>We refer to each “question” in the tree (e.g. “Is age &gt; 9.5?”) as a “leaf” or “node”. A question you may be wondering is, how do we know what questions we should be asking at each leaf? Also, what should the cutoff be for each question? Why are we asking about age being greater than 9.5 instead of 10, 11, or something else altogether? The answer is, <strong>decision trees automatically learn what questions to ask in order to generate the best possible predictions</strong>. Let’s jump in and start exploring.</p>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="loading-data">
+<h2>Loading data<a class="headerlink" href="#loading-data" title="Permalink to this headline">¶</a></h2>
+<p>For this project we’ll be working with the finishing times for male runners in the LA Marathon. We’ll be training on model on 2016, and testing it on 2017. I scraped the data from <a class="reference external" href="https://www.trackshackresults.com/lamarathon/results/2016/">the official results site</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/2016_la_marathon.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>div_place</th>
+      <th>name</th>
+      <th>bib</th>
+      <th>age</th>
+      <th>place</th>
+      <th>gender_place</th>
+      <th>5k_split</th>
+      <th>10k_split</th>
+      <th>15k_split</th>
+      <th>20k_split</th>
+      <th>25k_split</th>
+      <th>30k_split</th>
+      <th>35k_split</th>
+      <th>40k_split</th>
+      <th>clock_time</th>
+      <th>net_time</th>
+      <th>hometown</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>SAUL VISCARRA</td>
+      <td>40402</td>
+      <td>15</td>
+      <td>382</td>
+      <td>352</td>
+      <td>22:28</td>
+      <td>44:00</td>
+      <td>1:04:56</td>
+      <td>1:26:24</td>
+      <td>1:48:24</td>
+      <td>2:11:32</td>
+      <td>2:37:42</td>
+      <td>3:01:56</td>
+      <td>3:22:41</td>
+      <td>3:11:51</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>FERNANDO GOMEZ</td>
+      <td>40504</td>
+      <td>15</td>
+      <td>560</td>
+      <td>504</td>
+      <td>22:37</td>
+      <td>45:17</td>
+      <td>1:07:50</td>
+      <td>1:31:42</td>
+      <td>1:55:46</td>
+      <td>2:19:58</td>
+      <td>2:44:35</td>
+      <td>3:09:32</td>
+      <td>3:23:09</td>
+      <td>3:18:54</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>MARCOS GONZALEZ</td>
+      <td>40882</td>
+      <td>15</td>
+      <td>1042</td>
+      <td>881</td>
+      <td>24:08</td>
+      <td>47:44</td>
+      <td>1:10:34</td>
+      <td>1:34:10</td>
+      <td>1:58:40</td>
+      <td>2:23:37</td>
+      <td>2:54:01</td>
+      <td>3:23:20</td>
+      <td>3:43:35</td>
+      <td>3:31:59</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>LUIS MORALES</td>
+      <td>42286</td>
+      <td>13</td>
+      <td>1294</td>
+      <td>1076</td>
+      <td>22:50</td>
+      <td>46:21</td>
+      <td>1:11:07</td>
+      <td>1:34:42</td>
+      <td>1:58:49</td>
+      <td>2:24:17</td>
+      <td>2:54:27</td>
+      <td>3:26:22</td>
+      <td>3:41:55</td>
+      <td>3:37:24</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>PETER CASTANO</td>
+      <td>20099</td>
+      <td>15</td>
+      <td>1413</td>
+      <td>1166</td>
+      <td>26:13</td>
+      <td>53:12</td>
+      <td>1:19:36</td>
+      <td>1:45:47</td>
+      <td>2:11:53</td>
+      <td>2:38:18</td>
+      <td>3:03:38</td>
+      <td>3:29:46</td>
+      <td>3:45:48</td>
+      <td>3:39:31</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="data-preparation">
+<h2>Data preparation<a class="headerlink" href="#data-preparation" title="Permalink to this headline">¶</a></h2>
+<p>Let’s start with our usual check of <code class="docutils literal notranslate"><span class="pre">NaN</span></code>/<code class="docutils literal notranslate"><span class="pre">None</span></code> values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">missing_value_count</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">missing_value_count</span><span class="si">}</span><span class="s1"> missing&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>div_place: 0 missing
+name: 0 missing
+bib: 0 missing
+age: 0 missing
+place: 0 missing
+gender_place: 0 missing
+5k_split: 821 missing
+10k_split: 158 missing
+15k_split: 101 missing
+20k_split: 91 missing
+25k_split: 73 missing
+30k_split: 140 missing
+35k_split: 95 missing
+40k_split: 161 missing
+clock_time: 0 missing
+net_time: 0 missing
+hometown: 11499 missing
+</pre></div>
+</div>
+</div>
+</div>
+<p>It looks like a number of them are missing. This could be from people dropping out of the race, never showing up, etc. Since we’re trying to predict finishing time, let’s drop any rows which having a missing split.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">split_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;5k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;10k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;15k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;20k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;25k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;30k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;35k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;40k_split&#39;</span><span class="p">]</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="n">split_columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We want to predict the runners placing based on their how fast they run, along with potentially some other information. Currently, their splits (times) at each 5 kilometers is written in the form <code class="docutils literal notranslate"><span class="pre">hours:minutes:seconds</span></code>. That’s not really what we want, we need numbers to work with. So we’ll start by converting those values to minutes. To do so we’ll use the Pandas <code class="docutils literal notranslate"><span class="pre">.apply()</span></code> function, which takes in a function, and applies it to each row individually.</p>
+<p>Let’s write our function to look for the ‘:’ character, and then split at it. Note that depending on how fast/slow the runner was, there could be more than one colon in their time (for <code class="docutils literal notranslate"><span class="pre">hours:minutes:seconds</span></code> versus just <code class="docutils literal notranslate"><span class="pre">minutes:seconds</span></code>). So we’ll need to check the length of our list and process each part individually. To convert seconds into minutes we’ll divide by 60, and to convert hours into minutes we’ll multiply by 60. Finally, since we’re starting with a string, when we split it, we will again receive strings. Let’s do a simple test case first to make sure we have the idea.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">speed_split</span> <span class="o">=</span> <span class="s1">&#39;23:45&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The value </span><span class="si">{</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> is a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The value </span><span class="si">{</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> is a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The value 23 is a &lt;class &#39;str&#39;&gt;
+The value 45 is a &lt;class &#39;str&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>This works, but if we’re going to do math, we need integers, not strings. So we’ll convert each to an integer as well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">speed_split</span> <span class="o">=</span> <span class="s1">&#39;23:45&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The value </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s1"> is a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The value </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s1"> is a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The value 23 is a &lt;class &#39;int&#39;&gt;
+The value 45 is a &lt;class &#39;int&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now write our function to take in an arbitrary speed (written as a string), split it up, convert it to minutes, and return it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">split_to_minutes</span><span class="p">(</span><span class="n">speed</span><span class="p">):</span>
+    <span class="n">speed_split</span> <span class="o">=</span> <span class="n">speed</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+    <span class="c1"># If there&#39;s only one colon, so minutes:seconds</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">speed_split</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">minutes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">60</span>
+    <span class="c1"># If there&#39;s two colon, so hours:minutes:seconds</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">speed_split</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">minutes</span> <span class="o">=</span> <span class="mi">60</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="mi">60</span>
+    <span class="k">return</span> <span class="n">minutes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s test it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">split_to_minutes</span><span class="p">(</span><span class="s1">&#39;10:35&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.583333333333334
+</pre></div>
+</div>
+</div>
+</div>
+<p>With that, we can now <code class="docutils literal notranslate"><span class="pre">apply</span></code> our function to our dataframe. It’s good practice to not overwrite a column in a dataframe, because maybe you’ll need it later. So we’ll create a new column for each 5 kilometers, titled <code class="docutils literal notranslate"><span class="pre">5k_split_min</span></code>, <code class="docutils literal notranslate"><span class="pre">10k_split_min</span></code>, etc., as well as any other columns with times in them. We <em>could</em> go through and do this one at a time, but by using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop we can save ourselves time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># An error is coming...</span>
+<span class="n">time_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;5k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;10k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;15k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;20k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;25k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;30k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;35k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;40k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;clock_time&#39;</span><span class="p">,</span> <span class="s1">&#39;net_time&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">time_columns</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">_min&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">split_to_minutes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">23</span><span class="n">ed3fc323d1</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">time_columns</span><span class="p">:</span>
+<span class="ne">----&gt; </span><span class="mi">5</span>     <span class="n">df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">_min&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">split_to_minutes</span><span class="p">)</span>
+
+<span class="nn">~/anaconda3/envs/math_3439/lib/python3.8/site-packages/pandas/core/series.py</span> in <span class="ni">apply</span><span class="nt">(self, func, convert_dtype, args, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3846</span>             <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3847</span>                 <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="ne">-&gt; </span><span class="mi">3848</span>                 <span class="n">mapped</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">map_infer</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">convert</span><span class="o">=</span><span class="n">convert_dtype</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3849</span> 
+<span class="g g-Whitespace">   </span><span class="mi">3850</span>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mapped</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mapped</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Series</span><span class="p">):</span>
+
+<span class="nn">pandas/_libs/lib.pyx</span> in <span class="ni">pandas._libs.lib.map_infer</span><span class="nt">()</span>
+
+<span class="nn">&lt;ipython-input-9-0f784b837919&gt;</span> in <span class="ni">split_to_minutes</span><span class="nt">(speed)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="c1"># If there&#39;s only one colon, so minutes:seconds</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">speed_split</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+<span class="ne">----&gt; </span><span class="mi">5</span>         <span class="n">minutes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">60</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="c1"># If there&#39;s two colon, so hours:minutes:seconds</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">speed_split</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+
+<span class="ne">ValueError</span>: invalid literal for int() with base 10: &#39;0-33&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Oh no! Reading the error, it looks like someone has a time of ‘0-33’ which is causing issues when we try to convert it to an integer. So perhaps we should modify our function to first check for a valid value, and if it’s not valid, to just fill in a <code class="docutils literal notranslate"><span class="pre">None</span></code>. Then we can drop rows with <code class="docutils literal notranslate"><span class="pre">None</span></code> afterward. To do so, we’ll use the Python pattern <code class="docutils literal notranslate"><span class="pre">try</span></code>…<code class="docutils literal notranslate"><span class="pre">except</span></code>…. What this does is to <code class="docutils literal notranslate"><span class="pre">try</span></code> and do what you ask, but if an error occurs, rather than just crashing and throwing the error, it enters the <code class="docutils literal notranslate"><span class="pre">except</span></code> block. You can then make something else happen in there, like filling in a <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">split_to_minutes</span><span class="p">(</span><span class="n">speed</span><span class="p">):</span>
+    <span class="n">speed_split</span> <span class="o">=</span> <span class="n">speed</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">speed_split</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Check if it can be converted to an integer. If it can&#39;t, this will fail and Python will proceed to the &quot;except&quot; part</span>
+            <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+    <span class="c1"># This part below is just the function we wrote above</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">speed_split</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">minutes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">60</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">speed_split</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">minutes</span> <span class="o">=</span> <span class="mi">60</span><span class="o">*</span><span class="nb">int</span><span class="p">(</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">speed_split</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="mi">60</span>
+    <span class="k">return</span> <span class="n">minutes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">split_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;5k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;10k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;15k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;20k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;25k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;30k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;35k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;40k_split&#39;</span><span class="p">]</span>
+<span class="n">time_columns</span> <span class="o">=</span> <span class="n">split_columns</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;clock_time&#39;</span><span class="p">,</span> <span class="s1">&#39;net_time&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">time_columns</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">_min&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">split_to_minutes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>div_place</th>
+      <th>name</th>
+      <th>bib</th>
+      <th>age</th>
+      <th>place</th>
+      <th>gender_place</th>
+      <th>5k_split</th>
+      <th>10k_split</th>
+      <th>15k_split</th>
+      <th>20k_split</th>
+      <th>...</th>
+      <th>5k_split_min</th>
+      <th>10k_split_min</th>
+      <th>15k_split_min</th>
+      <th>20k_split_min</th>
+      <th>25k_split_min</th>
+      <th>30k_split_min</th>
+      <th>35k_split_min</th>
+      <th>40k_split_min</th>
+      <th>clock_time_min</th>
+      <th>net_time_min</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>SAUL VISCARRA</td>
+      <td>40402</td>
+      <td>15</td>
+      <td>382</td>
+      <td>352</td>
+      <td>22:28</td>
+      <td>44:00</td>
+      <td>1:04:56</td>
+      <td>1:26:24</td>
+      <td>...</td>
+      <td>22.466667</td>
+      <td>44.000000</td>
+      <td>64.933333</td>
+      <td>86.400000</td>
+      <td>108.400000</td>
+      <td>131.533333</td>
+      <td>157.700000</td>
+      <td>181.933333</td>
+      <td>202.683333</td>
+      <td>191.850000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>FERNANDO GOMEZ</td>
+      <td>40504</td>
+      <td>15</td>
+      <td>560</td>
+      <td>504</td>
+      <td>22:37</td>
+      <td>45:17</td>
+      <td>1:07:50</td>
+      <td>1:31:42</td>
+      <td>...</td>
+      <td>22.616667</td>
+      <td>45.283333</td>
+      <td>67.833333</td>
+      <td>91.700000</td>
+      <td>115.766667</td>
+      <td>139.966667</td>
+      <td>164.583333</td>
+      <td>189.533333</td>
+      <td>203.150000</td>
+      <td>198.900000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>MARCOS GONZALEZ</td>
+      <td>40882</td>
+      <td>15</td>
+      <td>1042</td>
+      <td>881</td>
+      <td>24:08</td>
+      <td>47:44</td>
+      <td>1:10:34</td>
+      <td>1:34:10</td>
+      <td>...</td>
+      <td>24.133333</td>
+      <td>47.733333</td>
+      <td>70.566667</td>
+      <td>94.166667</td>
+      <td>118.666667</td>
+      <td>143.616667</td>
+      <td>174.016667</td>
+      <td>203.333333</td>
+      <td>223.583333</td>
+      <td>211.983333</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>LUIS MORALES</td>
+      <td>42286</td>
+      <td>13</td>
+      <td>1294</td>
+      <td>1076</td>
+      <td>22:50</td>
+      <td>46:21</td>
+      <td>1:11:07</td>
+      <td>1:34:42</td>
+      <td>...</td>
+      <td>22.833333</td>
+      <td>46.350000</td>
+      <td>71.116667</td>
+      <td>94.700000</td>
+      <td>118.816667</td>
+      <td>144.283333</td>
+      <td>174.450000</td>
+      <td>206.366667</td>
+      <td>221.916667</td>
+      <td>217.400000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>PETER CASTANO</td>
+      <td>20099</td>
+      <td>15</td>
+      <td>1413</td>
+      <td>1166</td>
+      <td>26:13</td>
+      <td>53:12</td>
+      <td>1:19:36</td>
+      <td>1:45:47</td>
+      <td>...</td>
+      <td>26.216667</td>
+      <td>53.200000</td>
+      <td>79.600000</td>
+      <td>105.783333</td>
+      <td>131.883333</td>
+      <td>158.300000</td>
+      <td>183.633333</td>
+      <td>209.766667</td>
+      <td>225.800000</td>
+      <td>219.516667</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 27 columns</p>
+</div></div></div>
+</div>
+<p>Looking good! Let’s see where <code class="docutils literal notranslate"><span class="pre">None</span></code>’s occurred as a result of bad values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">missing_value_count</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1"> - </span><span class="si">{</span><span class="n">missing_value_count</span><span class="si">}</span><span class="s1"> missing&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>div_place - 0 missing
+name - 0 missing
+bib - 0 missing
+age - 0 missing
+place - 0 missing
+gender_place - 0 missing
+5k_split - 0 missing
+10k_split - 0 missing
+15k_split - 0 missing
+20k_split - 0 missing
+25k_split - 0 missing
+30k_split - 0 missing
+35k_split - 0 missing
+40k_split - 0 missing
+clock_time - 0 missing
+net_time - 0 missing
+hometown - 10375 missing
+5k_split_min - 4 missing
+10k_split_min - 0 missing
+15k_split_min - 0 missing
+20k_split_min - 0 missing
+25k_split_min - 0 missing
+30k_split_min - 0 missing
+35k_split_min - 0 missing
+40k_split_min - 0 missing
+clock_time_min - 0 missing
+net_time_min - 0 missing
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looks like just a couple in <code class="docutils literal notranslate"><span class="pre">5k_split_min</span></code>. Let’s drop and we should be good to go!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;5k_split_min&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10371, 27)
+</pre></div>
+</div>
+</div>
+</div>
+<p>So we still have over 10,000 runners left to work with, that should be plenty for our purposes. With our data prepped, let’s start modeling.</p>
+</div>
+<div class="section" id="decision-trees-a-id-intro-dt-a">
+<h2>Decision trees <a id="intro_dt"></a><a class="headerlink" href="#decision-trees-a-id-intro-dt-a" title="Permalink to this headline">¶</a></h2>
+<p>Let’s just jump right in and use <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>’s implementation of <code class="docutils literal notranslate"><span class="pre">DecisionTree</span></code>. We want to predict their placing, so this is a <em>regression</em> problem, because we are predicting a continuous value. While placing is not <em>really</em> continuous (no one could get 4.3 place), there are so many possible values that it would be ridiculous to have a different category for each place. Therefore, it makes more sense to think of it as being continuous than as being categorical. Decision trees can be used for both regression and classification. They are more commonly used for classification, but we’ll start by using it for regression. To do so we will be using <code class="docutils literal notranslate"><span class="pre">DecisionTreeRegressor</span></code> from sklearn. Training it and making predictions with it should look exactly like how we did for linear regression. Let’s use all of our splits to predict their finishing place. We said we’ll test on 2017, but let’s still split 2016 into two sets in order to have something to tune our model with. Since 2017 is our true “test” data, it doesn’t make sense to say we’re splitting 2016 into train and “test” data. Thus subsetting the data this way is referred to as creating a “validation set”. A <strong>validation set</strong> is used to tweak your model until you’re ready to actually test it. It’s best practice to keep your test data as true test data, and not “show it” to your model before your model is ready.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Our new split columns are named the same as the old split column, but with &quot;_min&quot; appended. So let&#39;s create a list of those.</span>
+<span class="n">split_columns_min</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">_min&#39;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">split_columns</span><span class="p">]</span>
+<span class="n">split_cols_and_age</span> <span class="o">=</span> <span class="n">split_columns_min</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">split_cols_and_age</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;gender_place&#39;</span><span class="p">],</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>5k_split_min</th>
+      <th>10k_split_min</th>
+      <th>15k_split_min</th>
+      <th>20k_split_min</th>
+      <th>25k_split_min</th>
+      <th>30k_split_min</th>
+      <th>35k_split_min</th>
+      <th>40k_split_min</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2111</th>
+      <td>36.450000</td>
+      <td>68.966667</td>
+      <td>98.183333</td>
+      <td>129.983333</td>
+      <td>163.216667</td>
+      <td>203.983333</td>
+      <td>246.666667</td>
+      <td>286.816667</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>8256</th>
+      <td>27.916667</td>
+      <td>55.066667</td>
+      <td>82.016667</td>
+      <td>108.916667</td>
+      <td>139.033333</td>
+      <td>166.833333</td>
+      <td>201.250000</td>
+      <td>232.483333</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>4209</th>
+      <td>29.833333</td>
+      <td>60.433333</td>
+      <td>90.866667</td>
+      <td>123.050000</td>
+      <td>154.800000</td>
+      <td>187.750000</td>
+      <td>222.083333</td>
+      <td>255.266667</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>5336</th>
+      <td>22.366667</td>
+      <td>44.883333</td>
+      <td>67.383333</td>
+      <td>89.833333</td>
+      <td>112.233333</td>
+      <td>135.733333</td>
+      <td>166.750000</td>
+      <td>200.400000</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <th>11394</th>
+      <td>29.583333</td>
+      <td>60.600000</td>
+      <td>90.250000</td>
+      <td>120.016667</td>
+      <td>150.650000</td>
+      <td>181.816667</td>
+      <td>213.216667</td>
+      <td>244.083333</td>
+      <td>72</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Using a decision tree in sklearn is exactly like how you’ve used all other models in sklearn! From the perspective of someone learning machine learning, one of the best features about sklearn is how consistent it is. Pretty much every model follows the same pattern:</p>
+<ol class="simple">
+<li><p>Instantiate the model (meaning something like <code class="docutils literal notranslate"><span class="pre">lr</span> <span class="pre">=</span> <span class="pre">LinearRegression()</span></code> or <code class="docutils literal notranslate"><span class="pre">clf</span> <span class="pre">=</span> <span class="pre">LogisticRegression()</span></code>.</p></li>
+<li><p>Fit the model using <code class="docutils literal notranslate"><span class="pre">.fit()</span></code></p></li>
+<li><p>Use the model to make predictions using <code class="docutils literal notranslate"><span class="pre">.predict()</span></code></p></li>
+<li><p>(Optional) Get the score of the model (usually R^2 for regression and accuracy for classification) using <code class="docutils literal notranslate"><span class="pre">.score()</span></code></p></li>
+</ol>
+<p>Let’s follow this same pattern here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_reg</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DecisionTreeRegressor(ccp_alpha=0.0, criterion=&#39;mse&#39;, max_depth=None,
+                      max_features=None, max_leaf_nodes=None,
+                      min_impurity_decrease=0.0, min_impurity_split=None,
+                      min_samples_leaf=1, min_samples_split=2,
+                      min_weight_fraction_leaf=0.0, presort=&#39;deprecated&#39;,
+                      random_state=None, splitter=&#39;best&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preds</span> <span class="o">=</span> <span class="n">dt_reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Predicted: </span><span class="si">{</span><span class="n">preds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">, Actual: </span><span class="si">{</span><span class="n">y_valid</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">, Diff = </span><span class="si">{</span><span class="n">preds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">y_valid</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">y_valid</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="n">y_valid</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Predicted: 2506.0, Actual: 2545, Diff = -39.0 (1.53%)
+Predicted: 800.0, Actual: 847, Diff = -47.0 (5.55%)
+Predicted: 10298.0, Actual: 10197, Diff = 101.0 (0.99%)
+Predicted: 8833.0, Actual: 8577, Diff = 256.0 (2.98%)
+Predicted: 10989.0, Actual: 10828, Diff = 161.0 (1.49%)
+Predicted: 1959.0, Actual: 1890, Diff = 69.0 (3.65%)
+Predicted: 10721.0, Actual: 10694, Diff = 27.0 (0.25%)
+Predicted: 1368.0, Actual: 1328, Diff = 40.0 (3.01%)
+Predicted: 2193.0, Actual: 2157, Diff = 36.0 (1.67%)
+Predicted: 1674.0, Actual: 1724, Diff = -50.0 (2.90%)
+</pre></div>
+</div>
+</div>
+</div>
+<p>So most of these predictions are within a handful of percent (50-ish places) of being correct, that’s impressive! For comparison, let’s also build a linear regressor with this same data and compare the MSE from both.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preds_lr</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Predicted: </span><span class="si">{</span><span class="n">preds_lr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">, Actual: </span><span class="si">{</span><span class="n">y_valid</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">, Diff = </span><span class="si">{</span><span class="n">preds_lr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">y_valid</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">preds_lr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">y_valid</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="n">y_valid</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Predicted: 2881.4505952084746, Actual: 2545, Diff = 336.4505952084746 (13.22%)
+Predicted: 1019.8154901168928, Actual: 847, Diff = 172.81549011689276 (20.40%)
+Predicted: 9987.114569245616, Actual: 10197, Diff = -209.8854307543843 (2.06%)
+Predicted: 8196.702056815542, Actual: 8577, Diff = -380.29794318445784 (4.43%)
+Predicted: 11653.02324126436, Actual: 10828, Diff = 825.02324126436 (7.62%)
+Predicted: 2274.0219966673267, Actual: 1890, Diff = 384.0219966673267 (20.32%)
+Predicted: 11318.176668353688, Actual: 10694, Diff = 624.176668353688 (5.84%)
+Predicted: 1798.1529686199756, Actual: 1328, Diff = 470.1529686199756 (35.40%)
+Predicted: 2442.903099096622, Actual: 2157, Diff = 285.9030990966221 (13.25%)
+Predicted: 2144.7100749666715, Actual: 1724, Diff = 420.7100749666715 (24.40%)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The tree model looks to have done much better! Let’s compare R^2 and MSE to be sure.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Decision tree R^2 = </span><span class="si">{</span><span class="n">dt_reg</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Linear regression R^2 = </span><span class="si">{</span><span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Decision tree R^2 = 0.9972689036020543
+Linear regression R^2 = 0.9579743493585986
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span> <span class="k">as</span> <span class="n">mse</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Linear regresion MSE = </span><span class="si">{</span><span class="n">mse</span><span class="p">(</span><span class="n">preds_lr</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Decision Tree MSE = </span><span class="si">{</span><span class="n">mse</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Linear regresion MSE = 231799.09438088024
+Decision Tree MSE = 14914.017030848328
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s a huge difference!</p>
+<p>We said that a decision tree makes decisions by learning to split each leaf at a particular value. So what decisions did our tree learn to make? To answer that we can <em>visualize</em> our tree. <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> has a built-in function called <code class="docutils literal notranslate"><span class="pre">plot_tree</span></code>. <strong>Warning: Plotting this will take a while…</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">plot_tree</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plot_tree</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_08_50_0.png" src="_images/ch_08_50_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="overfitting-and-hyperparameters-a-id-overfitting-hyperparams-a">
+<h2>Overfitting and hyperparameters <a id="overfitting_hyperparams"></a><a class="headerlink" href="#overfitting-and-hyperparameters-a-id-overfitting-hyperparams-a" title="Permalink to this headline">¶</a></h2>
+<p>Woah, what happened there!? It looks like our tree is incredibly complex, with many, many different pathways and conditions. That’s not really what we want, because it’s likely the case that our model is <em>overfitting</em>. By <strong>overfitting</strong> we mean developing an overly complex model which does not generalize well to other scenarios. So it’s likely that the super-specific rules it learned <em>will not</em> apply well to 2017, nor any other year.</p>
+<p>When building a tree there are various hyperparameters that are used to control how the tree is grown. By <strong>hyperparameters</strong> we mean the values in a model that must be chosen by the user (as opposed to being <em>learned</em> from the data). The most common hyperparameters for decision trees are the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">max_depth</span></code>: Controls how many levels the tree can have (so <code class="docutils literal notranslate"><span class="pre">max_depth=1</span></code> means only one “question” can be asked to split the tree).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_samples_split</span></code>: Controls how many samples need to be seen which satisfy a rule before a new rule can be created. So if only two runners have a 5k split faster than 20 minutes (say), then by setting <code class="docutils literal notranslate"><span class="pre">min_samples_split=3</span></code> (or anything bigger than 2), no new rules would be created for these runners. This helps avoid creating ultra-specific nodes which may not generalize well.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_features</span></code>: How many columns can be considered. Again, this controls creating super-specific rules that require many, many columns to satisfy.</p></li>
+</ul>
+<p>Let’s look at the depth and number of leaves of the tree we just built.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Depth = </span><span class="si">{</span><span class="n">dt</span><span class="o">.</span><span class="n">get_depth</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;# of leaves = </span><span class="si">{</span><span class="n">dt</span><span class="o">.</span><span class="n">get_n_leaves</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Depth = 26
+# of leaves = 7259
+</pre></div>
+</div>
+</div>
+</div>
+<p>So our decision tree had thousands of different “rules” (i.e. leaves). Since we only had a little over 10k runners, this means most runners had their own individual rule! This is a problem, because we want to build a model that would work <em>in general</em>, not just on the data we trained it on. However, our tree instead learned a specific rule for every 1 or 2 runners. This could be something like “if their 5k time was less than 48 minutes and their 10k time was greater than 60 minutes and their 15k was less than… then predict 5920’th place”. This is what we mean by “overfitting”.</p>
+<p>The way to avoid overfitting is to restrict our tree by picking hyperparameters that do not allow ultra-specific rules to be learned. Let’s try building our tree again, but starting with some very mild hyperparameter choices to avoid this phenomenon of having an overly-complex tree. To do so, you simply need to supply these hyperparameters to the decision tree when you instantiate it (step 1).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_simple</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">dt_simple</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">preds_simple</span> <span class="o">=</span> <span class="n">dt_simple</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s plot this decision tree as well to see what it’s like.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plot_tree</span><span class="p">(</span><span class="n">dt_simple</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">split_columns_min</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_08_56_0.png" src="_images/ch_08_56_0.png" />
+</div>
+</div>
+<p>So we can see that it begins by looking at the <code class="docutils literal notranslate"><span class="pre">40k_split_min</span></code> time, splits it at 282.125 minutes, and then makes other decisions based on that. This seems like a more reasonable way to design a tree.</p>
+<p>We’d like to evaluate how well our model did. We’ve been doing that by putting some <code class="docutils literal notranslate"><span class="pre">print</span></code> statements inside a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, and also computing the MSE. Rather than continuing to copy-and-paste that code, let’s create a function which does it for us.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">summarize_model</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">actual</span><span class="p">,</span> <span class="n">num_examples</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+        <span class="n">actual</span> <span class="o">=</span> <span class="n">actual</span><span class="o">.</span><span class="n">values</span>
+        
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_examples</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Predicted: </span><span class="si">{</span><span class="n">preds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">, Actual: </span><span class="si">{</span><span class="n">actual</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">, Diff = </span><span class="si">{</span><span class="n">preds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">actual</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">actual</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="n">actual</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
+        
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;MSE: </span><span class="si">{</span><span class="n">mse</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">actual</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summarize_model</span><span class="p">(</span><span class="n">preds_simple</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Predicted: 2089.28, Actual: 2545.00, Diff = -455.72 (17.91%)
+Predicted: 722.84, Actual: 847.00, Diff = -124.16 (14.66%)
+Predicted: 10602.68, Actual: 10197.00, Diff = 405.68 (3.98%)
+Predicted: 9134.11, Actual: 8577.00, Diff = 557.11 (6.50%)
+Predicted: 10602.68, Actual: 10828.00, Diff = -225.32 (2.08%)
+Predicted: 2089.28, Actual: 1890.00, Diff = 199.28 (10.54%)
+Predicted: 10602.68, Actual: 10694.00, Diff = -91.32 (0.85%)
+Predicted: 722.84, Actual: 1328.00, Diff = -605.16 (45.57%)
+Predicted: 2089.28, Actual: 2157.00, Diff = -67.72 (3.14%)
+Predicted: 2089.28, Actual: 1724.00, Diff = 365.28 (21.19%)
+
+MSE: 181762.05746029768
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not great, but we also drastically reduced the complexity of our decision tree, so that’s to be expected. Also, notice that with only a very mild tree structure, our MSE of 182,162 is still lower than the MSE from linear regression of 220,525.</p>
+<p>Let’s also plot the predictions made by the tree against the actual, correct values. On both the x- and y-axis we’ll put the place the person got. This might seem weird, as normally the x-axis is what we feed into our model. But since we’re feeding so many variables into our model, there’s no single one to put on the x-axis. By putting the placing on both the x- and y-axis, a perfect prediction will be a diagonal line. However, our model is not perfect, so any deviation from that will let us see what’s going on.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">preds_simple</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_08_63_0.png" src="_images/ch_08_63_0.png" />
+</div>
+</div>
+<p>So it looks like our tree is roughly learning a step-function. In fact, if you look above at the tree diagram, you’ll see that each leaf on the bottom row tells you exactly what value it will predict for the placing for every runner who satisfied the necessary conditions to end up in that leaf. For example, to get to the first leaf on the left (starting at the top of the tree), a runner must have:</p>
+<ol class="simple">
+<li><p>Had a 40k split of less than 282 minutes</p></li>
+<li><p>Had a 40k split of less than 239 minutes</p></li>
+<li><p>Had a 40k split less than 212 minutes
+they would be assigned a finishing place of 722. Apparently there were 928 such runners (samples).
+<strong>WARNING: Your numbers may vary, as decision trees involve randomness, and each run will produce new results unless <code class="docutils literal notranslate"><span class="pre">random_state</span></code> is specified when building the tree.</strong></p></li>
+</ol>
+<p>So wait a minute, <em>every leaf in the tree is just looking at the 40k split!</em> Why is that? Probably because that’s the last split just 2 kilometers before the finishing line. So obviously the top finishers would be the fastest to that point! This is an example of building a model without really thinking about your data. If you’re not careful you can easily get results which <em>seem</em> good, but upon closer inspection they are highly flawed.</p>
+<p>To build a more realistic and useful model, let’s restrict ourselves to just the earlier splits to have a less-obvious problem. Let’s take the first three splits (5k, 10k and 15k), along with their age. Again, let’s first apply linear regression as a baseline. If our more complicated tree model can’t beat a simple line, then we’re doing something wrong.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grab just these columns in the training and validation sets</span>
+<span class="c1"># Note that the y doesn&#39;t change, because y is just their place, nothing to do with their times</span>
+<span class="n">splits_5_10_15_age_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;5k_split_min&#39;</span><span class="p">,</span> <span class="s1">&#39;10k_split_min&#39;</span><span class="p">,</span> <span class="s1">&#39;15k_split_min&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">]</span>
+
+<span class="n">X_train_splits_5_10_15_age</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="n">splits_5_10_15_age_cols</span><span class="p">]</span>
+<span class="n">X_valid_splits_5_10_15_age</span> <span class="o">=</span> <span class="n">X_valid</span><span class="p">[</span><span class="n">splits_5_10_15_age_cols</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit a linear regression model</span>
+<span class="n">lr_splits_5_10_15_age</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">lr_splits_5_10_15_age</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_splits_5_10_15_age</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit a decision tree</span>
+<span class="n">dt_splits_5_10_15_age</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">dt_splits_5_10_15_age</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_splits_5_10_15_age</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DecisionTreeRegressor(ccp_alpha=0.0, criterion=&#39;mse&#39;, max_depth=3,
+                      max_features=None, max_leaf_nodes=None,
+                      min_impurity_decrease=0.0, min_impurity_split=None,
+                      min_samples_leaf=1, min_samples_split=5,
+                      min_weight_fraction_leaf=0.0, presort=&#39;deprecated&#39;,
+                      random_state=None, splitter=&#39;best&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make predictions on the validation set with both the decision tree and the linear regression model</span>
+<span class="n">lr_splits_5_10_15_age_preds</span> <span class="o">=</span> <span class="n">lr_splits_5_10_15_age</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid_splits_5_10_15_age</span><span class="p">)</span>
+<span class="n">dt_splits_5_10_15_age_preds</span> <span class="o">=</span> <span class="n">dt_splits_5_10_15_age</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid_splits_5_10_15_age</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Results for linear regression</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Linear model:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">summarize_model</span><span class="p">(</span><span class="n">lr_splits_5_10_15_age_preds</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Linear model:
+====================
+Predicted: 2594.78, Actual: 2545.00, Diff = 49.78 (1.96%)
+Predicted: 1791.78, Actual: 847.00, Diff = 944.78 (111.54%)
+Predicted: 10640.01, Actual: 10197.00, Diff = 443.01 (4.34%)
+Predicted: 8094.84, Actual: 8577.00, Diff = -482.16 (5.62%)
+Predicted: 6810.22, Actual: 10828.00, Diff = -4017.78 (37.11%)
+Predicted: 3196.10, Actual: 1890.00, Diff = 1306.10 (69.11%)
+Predicted: 10615.06, Actual: 10694.00, Diff = -78.94 (0.74%)
+Predicted: 2054.87, Actual: 1328.00, Diff = 726.87 (54.73%)
+Predicted: 2295.13, Actual: 2157.00, Diff = 138.13 (6.40%)
+Predicted: 2694.68, Actual: 1724.00, Diff = 970.68 (56.30%)
+
+MSE: 1674606.3773056634
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Results for the decision tree model</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Decision tree model:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">summarize_model</span><span class="p">(</span><span class="n">dt_splits_5_10_15_age_preds</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Decision tree model:
+====================
+Predicted: 2168.25, Actual: 2545.00, Diff = -376.75 (14.80%)
+Predicted: 779.43, Actual: 847.00, Diff = -67.57 (7.98%)
+Predicted: 8884.37, Actual: 10197.00, Diff = -1312.63 (12.87%)
+Predicted: 7413.37, Actual: 8577.00, Diff = -1163.63 (13.57%)
+Predicted: 7413.37, Actual: 10828.00, Diff = -3414.63 (31.54%)
+Predicted: 2168.25, Actual: 1890.00, Diff = 278.25 (14.72%)
+Predicted: 10278.75, Actual: 10694.00, Diff = -415.25 (3.88%)
+Predicted: 2168.25, Actual: 1328.00, Diff = 840.25 (63.27%)
+Predicted: 2168.25, Actual: 2157.00, Diff = 11.25 (0.52%)
+Predicted: 2168.25, Actual: 1724.00, Diff = 444.25 (25.77%)
+
+MSE: 1648919.7445526074
+</pre></div>
+</div>
+</div>
+</div>
+<p>So the decision tree actually did slightly <em>worse</em> this time. Let’s plot the predictions of both models against the actual values to get a feel for what’s going on.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">dt_splits_5_10_15_age_preds</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;DT Predicted&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">lr_splits_5_10_15_age_preds</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;LR Predicted&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual placing&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted placing&#39;</span><span class="p">)</span>
+
+<span class="n">lr_r2</span> <span class="o">=</span> <span class="n">lr_splits_5_10_15_age</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_valid_splits_5_10_15_age</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">dt_r2</span> <span class="o">=</span> <span class="n">dt_splits_5_10_15_age</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_valid_splits_5_10_15_age</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;LR R^2 = </span><span class="si">{</span><span class="n">lr_r2</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, DT R^2 = </span><span class="si">{</span><span class="n">dt_r2</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_08_72_0.png" src="_images/ch_08_72_0.png" />
+</div>
+</div>
+<p>So again we see that the decision tree (green) is approximating a step function. You can see these values by going to the diagram we printed of our decision tree and looking at the leaves on the bottom row. Each one will say <code class="docutils literal notranslate"><span class="pre">value=...</span></code>, which is the value that gets assigned to that entire leaf. This is why decision trees are more often used for classification then regression. That’s because regression typically involves continuous values, whereas decision trees produce decidedly non-continuous step functions. Having said that, decision trees are extremely powerful and should not be overlooked for any type of problem.</p>
+<p>Let’s build one last decision tree, this time with a medium-level of depth and complexity. The point is to see how complex our tree needs to be before it outpeforms linear regression.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create our tree</span>
+<span class="n">dt_splits_5_10_15_age2</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Train our tree</span>
+<span class="n">dt_splits_5_10_15_age2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_splits_5_10_15_age</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Make predictions with our tree</span>
+<span class="n">dt_splits_5_10_15_age_preds2</span> <span class="o">=</span> <span class="n">dt_splits_5_10_15_age2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid_splits_5_10_15_age</span><span class="p">)</span>
+
+<span class="c1"># Compare predictions to linear regression</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Linear model:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">summarize_model</span><span class="p">(</span><span class="n">lr_splits_5_10_15_age_preds</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Decision tree model:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">summarize_model</span><span class="p">(</span><span class="n">dt_splits_5_10_15_age_preds2</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
+
+<span class="c1"># R^2</span>
+<span class="n">lr_r2</span> <span class="o">=</span> <span class="n">lr_splits_5_10_15_age</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_valid_splits_5_10_15_age</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="c1"># Same as above</span>
+<span class="n">dt_r2</span> <span class="o">=</span> <span class="n">dt_splits_5_10_15_age2</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_valid_splits_5_10_15_age</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># Plot the predictions</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">dt_splits_5_10_15_age_preds2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;DT Predicted&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">lr_splits_5_10_15_age_preds</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;LR Predicted&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual placing&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted placing&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;LR R^2 = </span><span class="si">{</span><span class="n">lr_r2</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, DT R^2 = </span><span class="si">{</span><span class="n">dt_r2</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Linear model:
+====================
+Predicted: 2594.78, Actual: 2545.00, Diff = 49.78 (1.96%)
+Predicted: 1791.78, Actual: 847.00, Diff = 944.78 (111.54%)
+Predicted: 10640.01, Actual: 10197.00, Diff = 443.01 (4.34%)
+Predicted: 8094.84, Actual: 8577.00, Diff = -482.16 (5.62%)
+Predicted: 6810.22, Actual: 10828.00, Diff = -4017.78 (37.11%)
+Predicted: 3196.10, Actual: 1890.00, Diff = 1306.10 (69.11%)
+Predicted: 10615.06, Actual: 10694.00, Diff = -78.94 (0.74%)
+Predicted: 2054.87, Actual: 1328.00, Diff = 726.87 (54.73%)
+Predicted: 2295.13, Actual: 2157.00, Diff = 138.13 (6.40%)
+Predicted: 2694.68, Actual: 1724.00, Diff = 970.68 (56.30%)
+
+MSE: 1674606.3773056634
+Decision tree model:
+====================
+Predicted: 1723.91, Actual: 2545.00, Diff = -821.09 (32.26%)
+Predicted: 1182.63, Actual: 847.00, Diff = 335.63 (39.63%)
+Predicted: 9469.34, Actual: 10197.00, Diff = -727.66 (7.14%)
+Predicted: 7719.15, Actual: 8577.00, Diff = -857.85 (10.00%)
+Predicted: 7719.15, Actual: 10828.00, Diff = -3108.85 (28.71%)
+Predicted: 2252.04, Actual: 1890.00, Diff = 362.04 (19.16%)
+Predicted: 10065.15, Actual: 10694.00, Diff = -628.85 (5.88%)
+Predicted: 1723.91, Actual: 1328.00, Diff = 395.91 (29.81%)
+Predicted: 1723.91, Actual: 2157.00, Diff = -433.09 (20.08%)
+Predicted: 1723.91, Actual: 1724.00, Diff = -0.09 (0.01%)
+
+MSE: 1440131.3709699702
+</pre></div>
+</div>
+<img alt="_images/ch_08_74_1.png" src="_images/ch_08_74_1.png" />
+</div>
+</div>
+<p>We’ve learned a valuable lesson in this notebook, which is that <strong>just because a model gives better results, doesn’t mean it’s a better model.</strong> We saw this with the decision tree, where it gave great predictions, but the tree itself was so complicated that it seemed unrealistic. Does it really make sense to have a model which requires most individuals to have their own custom rule. This leads to overfitting, which means models that don’t generalize well. In the future, we’ll look at our data more closely before just blindly picking a model to apply.</p>
+</div>
+<div class="section" id="the-mathematics-of-decision-trees-a-id-math-dt-a">
+<h2>The mathematics of decision trees <a id="math_dt"></a><a class="headerlink" href="#the-mathematics-of-decision-trees-a-id-math-dt-a" title="Permalink to this headline">¶</a></h2>
+<p>While we’ve now discussed <em>what</em> a decision tree is, there is still the question of <em>how</em> a decision tree is made. How is it that sklearn decides which column to look at first, and what the cutoff should be? Let’s go back to the Titanic data to understand this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">drive_dir</span> <span class="o">+</span> <span class="s1">&#39;data/titanic.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s build a decision tree classifier to predict the survival. We’ll then examine the tree and learn step-by-step how it was created. Let’s start by preparing our data, including dropping missing values nad label encoding any <code class="docutils literal notranslate"><span class="pre">object</span></code> columns so that all values are numbers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Drop any rows with missing values</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
+
+<span class="c1"># Columns we&#39;ll actually use (things like &quot;Name&quot; are probably useless)</span>
+<span class="n">X_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;SibSp&#39;</span><span class="p">,</span> <span class="s1">&#39;Parch&#39;</span><span class="p">,</span> <span class="s1">&#39;Fare&#39;</span><span class="p">,</span> <span class="s1">&#39;Embarked&#39;</span><span class="p">]</span>
+<span class="n">y_col</span> <span class="o">=</span> <span class="s1">&#39;Survived&#39;</span>
+
+<span class="n">df</span><span class="p">[</span><span class="n">X_cols</span><span class="p">]</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pclass        int64
+Sex          object
+Age         float64
+SibSp         int64
+Parch         int64
+Fare        float64
+Embarked     object
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">object_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Embarked&#39;</span><span class="p">]</span>
+<span class="c1"># Save the label encoders here so that we can use them later if we want to go back to the original text</span>
+<span class="n">label_encoders</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">object_cols</span><span class="p">:</span>
+    <span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+    <span class="n">label_encoders</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split the data into training and testing data</span>
+<span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">X_cols</span><span class="p">]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">]</span>
+
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="n">X_cols</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can build our classification tree.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None, criterion=&#39;gini&#39;,
+                       max_depth=3, max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=5,
+                       min_weight_fraction_leaf=0.0, presort=&#39;deprecated&#39;,
+                       random_state=None, splitter=&#39;best&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plot_tree</span><span class="p">(</span><span class="n">dt_clf</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Died&#39;</span><span class="p">,</span> <span class="s1">&#39;Survived&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_08_87_0.png" src="_images/ch_08_87_0.png" />
+</div>
+</div>
+<p>A decision tree makes its decision by trying to find which feature is the most important at each step. Let’s think about how we could do this. Suppose that all the passengers on the Titanic were males (obviously this wasn’t the case, but just bear with me). Then checking whether or not someone was a male would be useless, as it wouldn’t tell us anything. Similarly, if all but just, say, five were males, then that too is not useful. Even if it ended up all females survived, then we’ve only concluded something about five passengers. Therefore, our first task is to choose a feature that has an even balance of samples. If your feature has more than one possible value (like how <code class="docutils literal notranslate"><span class="pre">PClass</span></code> can be 1, 2, or 3, or how <code class="docutils literal notranslate"><span class="pre">Fare</span></code> can be any real number), then we also consider a cutoff. So we would want to choose a cutoff for <code class="docutils literal notranslate"><span class="pre">Fare</span></code> so that there is an even balance of people on each side of the cutoff. For instance, perhaps half the people had a fare more than $20, and half had a fare greater than or equal to $20. Then $20 would be our cutoff.</p>
+<p>Let’s start with the entire dataset and see what percentage survived.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1    0.672131
+0    0.327869
+Name: Survived, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>So about 67.2% of the passengers died, and the remaining 32.8% survived. Suppose you picked a random passenger about which you know nothing whatsoever. You are asked to guess whether or not they died. The best we can do is guess “died” 67.2% of the time, and guess “survived” 32.8% of the time, since that’s all the information we know. If we did so, how often would we be <em>wrong</em>?</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Event</p></th>
+<th class="head"><p>Probability</p></th>
+<th class="head"><p>Guessed correct?</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Guess survived, actually survived</p></td>
+<td><p>0.672 * 0.672 = 0.452 (prob. we guess survived * prob. they actually survived)</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Guess survived, actually died</p></td>
+<td><p>0.672 * 0.328 = 0.220 (prob. we guess survived * prob. they actually died)</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>Guess died, actually survived</p></td>
+<td><p>0.328 * 0.672 = 0.220</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>Guess died, actually died</p></td>
+<td><p>0.328 * 0.328 = 0.107</p></td>
+<td><p>Yes</p></td>
+</tr>
+</tbody>
+</table>
+<p>So we would have guessed <em>incorrectly</em> 0.220 + 0.220 = 0.440 = 44.0% of the time. Not bad, but can we do better if, rather than looking at the <em>entire</em> dataset, we instead split up the data? Let’s split it up by males and females, and consider each separately.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sex_le</span> <span class="o">=</span> <span class="n">label_encoders</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span>
+<span class="n">males_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sex_le</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="s1">&#39;male&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">females_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sex_le</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="s1">&#39;female&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">males_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>0</td>
+      <td>1</td>
+      <td>McCarthy, Mr. Timothy J</td>
+      <td>1</td>
+      <td>54.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>17463</td>
+      <td>51.8625</td>
+      <td>E46</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>22</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Beesley, Mr. Lawrence</td>
+      <td>1</td>
+      <td>34.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>248698</td>
+      <td>13.0000</td>
+      <td>D56</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>24</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Sloper, Mr. William Thompson</td>
+      <td>1</td>
+      <td>28.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>113788</td>
+      <td>35.5000</td>
+      <td>A6</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>28</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Fortune, Mr. Charles Alexander</td>
+      <td>1</td>
+      <td>19.0</td>
+      <td>3</td>
+      <td>2</td>
+      <td>19950</td>
+      <td>263.0000</td>
+      <td>C23 C25 C27</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>55</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Ostby, Mr. Engelhart Cornelius</td>
+      <td>1</td>
+      <td>65.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>113509</td>
+      <td>61.9792</td>
+      <td>B30</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">females_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>0</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>0</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Sandstrom, Miss. Marguerite Rut</td>
+      <td>0</td>
+      <td>4.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>PP 9549</td>
+      <td>16.7000</td>
+      <td>G6</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Bonnell, Miss. Elizabeth</td>
+      <td>0</td>
+      <td>58.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>113783</td>
+      <td>26.5500</td>
+      <td>C103</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>53</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Harper, Mrs. Henry Sleeper (Myna Haxtun)</td>
+      <td>0</td>
+      <td>49.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17572</td>
+      <td>76.7292</td>
+      <td>D33</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>What percentage of each group survived?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">males_df</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.568421
+1    0.431579
+Name: Survived, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">females_df</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1    0.931818
+0    0.068182
+Name: Survived, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s do the same calculations as above to find the probability of guessing wrong. But this time, rather than looking at what percentage of the <em>entire</em> set of passengers survived/died, we’ll deal with men and women separately.</p>
+<p><strong>Men only</strong></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Event</p></th>
+<th class="head"><p>Probability</p></th>
+<th class="head"><p>Guessed correct?</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Guess survived, actually survived</p></td>
+<td><p>0.432 * 0.432 = 0.187</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Guess survived, actually died</p></td>
+<td><p>0.432 * 0.568 = 0.245</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>Guess died, actually survived</p></td>
+<td><p>0.568 * 0.432 = 0.245</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>Guess died, actually died</p></td>
+<td><p>0.568 * 0.568 = 0.323</p></td>
+<td><p>Yes</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Women only</strong></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Event</p></th>
+<th class="head"><p>Probability</p></th>
+<th class="head"><p>Guessed correct?</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Guess survived, actually survived</p></td>
+<td><p>0.068 * 0.068 = 0.005</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Guess survived, actually died</p></td>
+<td><p>0.068 * 0.932 = 0.063</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>Guess died, actually survived</p></td>
+<td><p>0.932 * 0.068 = 0.063</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>Guess died, actually died</p></td>
+<td><p>0.932 * 0.932 = 0.869</p></td>
+<td><p>Yes</p></td>
+</tr>
+</tbody>
+</table>
+<p>So for <strong>men only</strong> we guessed incorrectly 0.245 + 0.245 = 0.490 = 49.0% of the time, and for <strong>women only</strong> we guessed incorrectly 0.063 + 0.063 = 0.126 = 12.6% of the time.</p>
+<p>Is this better than looking at the whole dataset? It’s a little tricky to tell at first glance, because now we have two percentages, as opposed to just the single percentage of incorrectness we had when we looked at the entire dataset. You may be tempted to average these two percentages and say that we were incorrect (49.0% + 12.6%) / 2 = 30.8% of the time. But that would assume that there are an equal number of men and women. Instead, we’ll take the <em>weighted average</em> of how many of each sex were on board. Let’s check how many of each sex were on board.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1    95
+0    88
+Name: Sex, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looking at the DataFrames above we see that males have a sex value of 1 and females of 0. So there were 95 males and 88 females. Thus there were 95 + 88 = 183 total passengers. Therefore the weighted average for incorrect guesses is given by</p>
+<div class="math notranslate nohighlight">
+\[
+\displaystyle\frac{95}{183} \cdot 0.490 + \frac{88}{183} \cdot 0.126 = 0.254 + 0.061 = 0.315 = 31.5\%
+\]</div>
+<p>Thus we expect to guess <em>incorrectly</em> about 31.5% of the time. This is indeed an improvement above looking at the entire dataset, for which we would have guessed incorrectly 44.0% of the time.</p>
+<p>So is <code class="docutils literal notranslate"><span class="pre">Sex</span></code> the “best” column? Following the ideas above, we can define “best” as the column which causes us to guess incorrectly <em>least often</em>. Rather than repeatedly doing this by hand, let’s write a function to do this work for us. Note that if we use a column like <code class="docutils literal notranslate"><span class="pre">Fare</span></code> which has many different values, we’ll also need to supply a cutoff. So we could (say) split up our passengers by those who paid more or less than \$20.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pct_guess_incorrectly</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">):</span>
+    <span class="c1"># Split up the data according to the cutoff</span>
+    <span class="n">df_lower</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">cutoff</span><span class="p">]</span>
+    <span class="n">df_upper</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">cutoff</span><span class="p">]</span>
+    
+    <span class="c1"># Find the percentage of survived and died for each subset</span>
+    <span class="n">lower_died_pct</span> <span class="o">=</span> <span class="n">df_lower</span><span class="p">[</span><span class="n">df_lower</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_lower</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">upper_died_pct</span> <span class="o">=</span> <span class="n">df_upper</span><span class="p">[</span><span class="n">df_upper</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_upper</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">lower_survived_pct</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">lower_died_pct</span>
+    <span class="n">upper_survived_pct</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">upper_died_pct</span>
+    
+    <span class="c1"># Find the percentage of incorrect guesses for each subsets</span>
+    <span class="c1"># Prob we picked died * prob they survived + prob we picked survived * prob they died</span>
+    <span class="n">lower_incorrect_pct</span> <span class="o">=</span> <span class="n">lower_died_pct</span><span class="o">*</span><span class="n">lower_survived_pct</span> <span class="o">+</span> <span class="n">lower_survived_pct</span><span class="o">*</span><span class="n">lower_died_pct</span> 
+    <span class="n">upper_incorrect_pct</span> <span class="o">=</span> <span class="n">upper_died_pct</span><span class="o">*</span><span class="n">upper_survived_pct</span> <span class="o">+</span> <span class="n">upper_survived_pct</span><span class="o">*</span><span class="n">upper_died_pct</span>
+    
+    <span class="c1"># Find what percentage of the people were in the upper and lower subsets</span>
+    <span class="n">pct_lower</span> <span class="o">=</span> <span class="n">df_lower</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+    <span class="n">pct_upper</span> <span class="o">=</span> <span class="n">df_upper</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+    
+    <span class="c1"># Compute the weighted average</span>
+    <span class="n">pct_incorrect</span> <span class="o">=</span> <span class="n">pct_lower</span> <span class="o">*</span> <span class="n">lower_incorrect_pct</span> <span class="o">+</span> <span class="n">pct_upper</span> <span class="o">*</span> <span class="n">upper_incorrect_pct</span>
+    
+    <span class="k">return</span> <span class="n">pct_incorrect</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s double-check that our function is giving the same values as we computed by hand for <code class="docutils literal notranslate"><span class="pre">Sex</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Since male == 1 and female == 0, we&#39;ll use a cutoff of 0.5 to split them up</span>
+<span class="c1"># In fact, any number strictly between 0 and 1 would work just fine</span>
+<span class="n">pct_guess_incorrectly</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.31580516118911284
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looks good! Let’s now try <code class="docutils literal notranslate"><span class="pre">Pclass</span></code>. We don’t know what the cutoff should be (the passenger classes are 1, 2, and 3, so we need to put a cutoff to split them up). We could pick a cutoff that puts all of the passenger classes together, such as <code class="docutils literal notranslate"><span class="pre">cutoff=0</span></code>. We could pick a cutoff which splits class 1 off, such as <code class="docutils literal notranslate"><span class="pre">cutoff=1.5</span></code>, and so forth. Let’s just compute it for each of them and see what cutoff gives the lowest chance of guessing incorrectly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># An error is coming...</span>
+<span class="n">pclass_cutoffs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">cutoff</span> <span class="ow">in</span> <span class="n">pclass_cutoffs</span><span class="p">:</span>
+    <span class="n">cutoff_pct_incorrect</span> <span class="o">=</span> <span class="n">pct_guess_incorrectly</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;Pclass&#39;</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cutoff = </span><span class="si">{</span><span class="n">cutoff</span><span class="si">}</span><span class="s1">, % incorrect = </span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">cutoff_pct_incorrect</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ZeroDivisionError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">162</span><span class="o">-</span><span class="mi">90</span><span class="n">fc85e86a0b</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">for</span> <span class="n">cutoff</span> <span class="ow">in</span> <span class="n">pclass_cutoffs</span><span class="p">:</span>
+<span class="ne">----&gt; </span><span class="mi">5</span>     <span class="n">cutoff_pct_incorrect</span> <span class="o">=</span> <span class="n">pct_guess_incorrectly</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;Pclass&#39;</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cutoff = </span><span class="si">{</span><span class="n">cutoff</span><span class="si">}</span><span class="s1">, % incorrect = </span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">cutoff_pct_incorrect</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+
+<span class="nn">&lt;ipython-input-158-21b216d99eb0&gt;</span> in <span class="ni">pct_guess_incorrectly</span><span class="nt">(df, col, cutoff)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> 
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="c1"># Find the percentage of survived and died for each subset</span>
+<span class="ne">----&gt; </span><span class="mi">7</span>     <span class="n">lower_died_pct</span> <span class="o">=</span> <span class="n">df_lower</span><span class="p">[</span><span class="n">df_lower</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_lower</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">upper_died_pct</span> <span class="o">=</span> <span class="n">df_upper</span><span class="p">[</span><span class="n">df_upper</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_upper</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">lower_survived_pct</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">lower_died_pct</span>
+
+<span class="ne">ZeroDivisionError</span>: division by zero
+</pre></div>
+</div>
+</div>
+</div>
+<p>Uh-oh, it looks like we’re dividing by zero somewhere! Why would this be? What’s happening is that (at least) one of our cutoffs is producing an empty subset of passengers. For example, there are no passengesr with a <code class="docutils literal notranslate"><span class="pre">Pclass</span> <span class="pre">&lt;</span> <span class="pre">0</span></code>. We didn’t take this into account when we wrote our function, so let’s fix it now by telling the user if they picked a bad cutoff.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pct_guess_incorrectly</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">):</span>
+    <span class="c1"># Split up the data according to the cutoff</span>
+    <span class="n">df_lower</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">cutoff</span><span class="p">]</span>
+    <span class="n">df_upper</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">cutoff</span><span class="p">]</span>
+    
+    <span class="c1"># If either of these subsets is empty, set the percentages to zero</span>
+    <span class="k">if</span> <span class="n">df_lower</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">df_upper</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cutoff of </span><span class="si">{</span><span class="n">cutoff</span><span class="si">}</span><span class="s1"> for column </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1"> produced an empty subset, change the cutoff&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    
+    <span class="c1"># Find the percentage of survived and died for each subset</span>
+    <span class="n">lower_died_pct</span> <span class="o">=</span> <span class="n">df_lower</span><span class="p">[</span><span class="n">df_lower</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_lower</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">upper_died_pct</span> <span class="o">=</span> <span class="n">df_upper</span><span class="p">[</span><span class="n">df_upper</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_upper</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">lower_survived_pct</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">lower_died_pct</span>
+    <span class="n">upper_survived_pct</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">upper_died_pct</span>
+    
+    <span class="c1"># Find the percentage of incorrect guesses for each subsets</span>
+    <span class="c1"># Prob we picked died * prob they survived + prob we picked survived * prob they died</span>
+    <span class="n">lower_incorrect_pct</span> <span class="o">=</span> <span class="n">lower_died_pct</span><span class="o">*</span><span class="n">lower_survived_pct</span> <span class="o">+</span> <span class="n">lower_survived_pct</span><span class="o">*</span><span class="n">lower_died_pct</span> 
+    <span class="n">upper_incorrect_pct</span> <span class="o">=</span> <span class="n">upper_died_pct</span><span class="o">*</span><span class="n">upper_survived_pct</span> <span class="o">+</span> <span class="n">upper_survived_pct</span><span class="o">*</span><span class="n">upper_died_pct</span>
+    
+    <span class="c1"># Find what percentage of the people were in the upper and lower subsets</span>
+    <span class="n">pct_lower</span> <span class="o">=</span> <span class="n">df_lower</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+    <span class="n">pct_upper</span> <span class="o">=</span> <span class="n">df_upper</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+    
+    <span class="c1"># Compute the weighted average</span>
+    <span class="n">pct_incorrect</span> <span class="o">=</span> <span class="n">pct_lower</span> <span class="o">*</span> <span class="n">lower_incorrect_pct</span> <span class="o">+</span> <span class="n">pct_upper</span> <span class="o">*</span> <span class="n">upper_incorrect_pct</span>
+    
+    <span class="k">return</span> <span class="n">pct_incorrect</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pclass_cutoffs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">cutoff</span> <span class="ow">in</span> <span class="n">pclass_cutoffs</span><span class="p">:</span>
+    <span class="n">cutoff_pct_incorrect</span> <span class="o">=</span> <span class="n">pct_guess_incorrectly</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;Pclass&#39;</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cutoff_pct_incorrect</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cutoff = </span><span class="si">{</span><span class="n">cutoff</span><span class="si">}</span><span class="s1">, % incorrect = </span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">cutoff_pct_incorrect</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cutoff of 0 for column Pclass produced an empty subset, change the cutoff
+Cutoff = 1.5, % incorrect = 44.07%
+Cutoff = 2.5, % incorrect = 43.73%
+Cutoff of 3.5 for column Pclass produced an empty subset, change the cutoff
+</pre></div>
+</div>
+</div>
+</div>
+<p>So it looks like grouping by passenger class is <em>not</em> an improvement over grouping by sex. Let’s try <code class="docutils literal notranslate"><span class="pre">Fare</span></code> next. Since there are so many possible fares, we’ll just create a really big list of cutoffs and let the code find which one is best. The simplest way to create a big list of evenly spaced points is to use <code class="docutils literal notranslate"><span class="pre">linspace()</span></code> from <code class="docutils literal notranslate"><span class="pre">numpy</span></code>. This creates linearly spaced points (hence the name). It wants to know the starting and ending points, and how many points you want in-between. Here’s an example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Starts at 0, ends at 5, creates 10 evenly spaced points in-between</span>
+<span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.        , 0.55555556, 1.11111111, 1.66666667, 2.22222222,
+       2.77777778, 3.33333333, 3.88888889, 4.44444444, 5.        ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create cutoffs for the entire range of fares, and generate 1000 different cutoffs</span>
+<span class="n">fare_cutoffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># Keep track of what cutoff produced the lowest percentage of incorrect guesses</span>
+<span class="n">best_pct_incorrect</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">best_cutoff</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="c1"># Go through all cutoffs</span>
+<span class="k">for</span> <span class="n">cutoff</span> <span class="ow">in</span> <span class="n">fare_cutoffs</span><span class="p">:</span>
+    <span class="n">cutoff_pct_incorrect</span> <span class="o">=</span> <span class="n">pct_guess_incorrectly</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;Fare&#39;</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">)</span>
+    <span class="c1"># Check if it worked (didn&#39;t return a None), and if the % incorrect is lower than what we&#39;ve seen so far</span>
+    <span class="k">if</span> <span class="n">cutoff_pct_incorrect</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">cutoff_pct_incorrect</span> <span class="o">&lt;</span> <span class="n">best_pct_incorrect</span><span class="p">:</span>
+        <span class="c1"># If so, save it</span>
+        <span class="n">best_pct_incorrect</span> <span class="o">=</span> <span class="n">cutoff_pct_incorrect</span>
+        <span class="n">best_cutoff</span> <span class="o">=</span> <span class="n">cutoff</span>
+        
+<span class="c1"># Print out the results</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Best cutoff = </span><span class="si">{</span><span class="n">best_cutoff</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> had a % incorrect of </span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">best_pct_incorrect</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cutoff of 0.0 for column Fare produced an empty subset, change the cutoff
+Best cutoff = 7.693 had a % incorrect of 41.01%
+</pre></div>
+</div>
+</div>
+</div>
+<p>So a cutoff of $7.69 produced the best outcome with 41.01% of the guesses being incorrect. This is still worse than we got with the <code class="docutils literal notranslate"><span class="pre">Sex</span></code> column.</p>
+<p>Certainly we could repeat this for all columns, but hopefully at this point you get the idea. In fact, <code class="docutils literal notranslate"><span class="pre">Sex</span></code> will produce the best results, as we know by looking at the decision tree we built! The decision trees go through this process for all columns and for all possible cutoffs. It then picks which one got the best result (lower percentage chance of guessing incorrectly) and chooses that as the first node. It then repeats this process for each node in the tree until the specificied <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> is reached.</p>
+<p>The value we have been calling “percentage guessed incorrectly” is really called the <strong>Gini impurity</strong>. If you look at the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier">sklearn decision tree documentation</a> you will see a parameter called “criterion”, which has a default value of “gini”. This means that the criteria it uses to form the tree is Gini impurity. You now understand how decision trees work!</p>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Grab another dataset and make your own decision trees. How do changing the hyperparameters affect the result?</p></li>
+<li><p>Write a function which goes through all possible columns and all cutoffs and finds which gives the best (lowest) Gini impurity.</p></li>
+<li><p>In the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier">sklearn decision tree documentation</a> there are many other hyperparameters you can choose. Read about them and try playing with them.</p></li>
+</ol>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="ch_07.html" title="previous page">Nearest neighbors</a>
+    <a class='right-next' id="next-link" href="ch_09.html" title="next page">Improving your model</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

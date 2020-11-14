@@ -1,0 +1,2350 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Improving your model &#8212; Introduction to Data Science</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Ensemble tree models" href="ch_10.html" />
+    <link rel="prev" title="Decision Trees" href="ch_08.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_01.html">
+   First steps with Pandas and Jupyter notebooks
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_02.html">
+   Plotting and grouping data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_03.html">
+   Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_04.html">
+   Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_05.html">
+   Training models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_06.html">
+   Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_07.html">
+   Nearest neighbors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_08.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Improving your model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_10.html">
+   Ensemble tree models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_11.html">
+   Working with large datasets
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/ch_09.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/ch_09.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loading-data-a-id-steps-a">
+   Loading data
+   <a id="steps">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-preparation">
+   Data preparation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-exploration">
+   Data exploration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-building">
+   Model building
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#logistic-regression">
+     Logistic regression
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nearest-neighbors">
+     Nearest neighbors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-trees">
+     Decision trees
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cross-validation-and-grid-search-a-id-cross-validation-a">
+   Cross validation and grid search
+   <a id="cross_validation">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ensembling-a-id-ensemble-a">
+   Ensembling
+   <a id="ensemble">
+   </a>
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="improving-your-model">
+<h1>Improving your model<a class="headerlink" href="#improving-your-model" title="Permalink to this headline">¶</a></h1>
+<p>At this point in the semester you’ve learned several models: linear regression, logistic regression, nearest neighbors and decision trees. Suppose you build a model and get your results. Is it possible to change your model in some way to improve the results? What can you try to accomplish? In this notebook we’ll remind you of several techniques you have already learned, and introduce some new ones. We’ll also work through an end-to-end example showing the data science lifecycle in action.</p>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span><span class="p">,</span> <span class="n">normalize</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">plot_confusion_matrix</span><span class="p">,</span> <span class="n">confusion_matrix</span>
+
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">mode</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="loading-data-a-id-steps-a">
+<h2>Loading data <a id="steps"></a><a class="headerlink" href="#loading-data-a-id-steps-a" title="Permalink to this headline">¶</a></h2>
+<p>For this project we’ll be working with data on all commercial flights in January 2019. The data comes from a <a class="reference external" href="https://www.kaggle.com/divyansh22/flight-delay-prediction">Kaggle dataset</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/flights_jan_2019.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DAY_OF_MONTH</th>
+      <th>DAY_OF_WEEK</th>
+      <th>OP_UNIQUE_CARRIER</th>
+      <th>OP_CARRIER_AIRLINE_ID</th>
+      <th>OP_CARRIER</th>
+      <th>TAIL_NUM</th>
+      <th>OP_CARRIER_FL_NUM</th>
+      <th>ORIGIN_AIRPORT_ID</th>
+      <th>ORIGIN_AIRPORT_SEQ_ID</th>
+      <th>ORIGIN</th>
+      <th>...</th>
+      <th>DEST</th>
+      <th>DEP_TIME</th>
+      <th>DEP_DEL15</th>
+      <th>DEP_TIME_BLK</th>
+      <th>ARR_TIME</th>
+      <th>ARR_DEL15</th>
+      <th>CANCELLED</th>
+      <th>DIVERTED</th>
+      <th>DISTANCE</th>
+      <th>Unnamed: 21</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+      <td>9E</td>
+      <td>20363</td>
+      <td>9E</td>
+      <td>N8688C</td>
+      <td>3280</td>
+      <td>11953</td>
+      <td>1195302</td>
+      <td>GNV</td>
+      <td>...</td>
+      <td>ATL</td>
+      <td>601.0</td>
+      <td>0.0</td>
+      <td>0600-0659</td>
+      <td>722.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>300.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>9E</td>
+      <td>20363</td>
+      <td>9E</td>
+      <td>N348PQ</td>
+      <td>3281</td>
+      <td>13487</td>
+      <td>1348702</td>
+      <td>MSP</td>
+      <td>...</td>
+      <td>CVG</td>
+      <td>1359.0</td>
+      <td>0.0</td>
+      <td>1400-1459</td>
+      <td>1633.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>596.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>2</td>
+      <td>9E</td>
+      <td>20363</td>
+      <td>9E</td>
+      <td>N8896A</td>
+      <td>3282</td>
+      <td>11433</td>
+      <td>1143302</td>
+      <td>DTW</td>
+      <td>...</td>
+      <td>CVG</td>
+      <td>1215.0</td>
+      <td>0.0</td>
+      <td>1200-1259</td>
+      <td>1329.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>229.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>2</td>
+      <td>9E</td>
+      <td>20363</td>
+      <td>9E</td>
+      <td>N8886A</td>
+      <td>3283</td>
+      <td>15249</td>
+      <td>1524906</td>
+      <td>TLH</td>
+      <td>...</td>
+      <td>ATL</td>
+      <td>1521.0</td>
+      <td>0.0</td>
+      <td>1500-1559</td>
+      <td>1625.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>223.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>2</td>
+      <td>9E</td>
+      <td>20363</td>
+      <td>9E</td>
+      <td>N8974C</td>
+      <td>3284</td>
+      <td>10397</td>
+      <td>1039707</td>
+      <td>ATL</td>
+      <td>...</td>
+      <td>FSM</td>
+      <td>1847.0</td>
+      <td>0.0</td>
+      <td>1900-1959</td>
+      <td>1940.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>579.0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 22 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="data-preparation">
+<h2>Data preparation<a class="headerlink" href="#data-preparation" title="Permalink to this headline">¶</a></h2>
+<p>We’ll start by only selecting the columns we want. Some columns are reduncant, as they give the airport both as a number and as an abbreviation. Some are not especially useful, like the tail number on the airplane. You can see a description of each column at the link to the dataset above. We have a description of the columns we are keeping below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;DAY_OF_MONTH&#39;, &#39;DAY_OF_WEEK&#39;, &#39;OP_UNIQUE_CARRIER&#39;,
+       &#39;OP_CARRIER_AIRLINE_ID&#39;, &#39;OP_CARRIER&#39;, &#39;TAIL_NUM&#39;, &#39;OP_CARRIER_FL_NUM&#39;,
+       &#39;ORIGIN_AIRPORT_ID&#39;, &#39;ORIGIN_AIRPORT_SEQ_ID&#39;, &#39;ORIGIN&#39;,
+       &#39;DEST_AIRPORT_ID&#39;, &#39;DEST_AIRPORT_SEQ_ID&#39;, &#39;DEST&#39;, &#39;DEP_TIME&#39;,
+       &#39;DEP_DEL15&#39;, &#39;DEP_TIME_BLK&#39;, &#39;ARR_TIME&#39;, &#39;ARR_DEL15&#39;, &#39;CANCELLED&#39;,
+       &#39;DIVERTED&#39;, &#39;DISTANCE&#39;, &#39;Unnamed: 21&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;DAY_OF_MONTH&#39;</span><span class="p">,</span> <span class="s1">&#39;DAY_OF_WEEK&#39;</span><span class="p">,</span> <span class="s1">&#39;OP_CARRIER_AIRLINE_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;ORIGIN&#39;</span><span class="p">,</span> <span class="s1">&#39;DEST&#39;</span><span class="p">,</span> <span class="s1">&#39;DEP_TIME&#39;</span><span class="p">,</span> <span class="s1">&#39;DEP_DEL15&#39;</span><span class="p">,</span> <span class="s1">&#39;ARR_TIME&#39;</span><span class="p">,</span> <span class="s1">&#39;ARR_DEL15&#39;</span><span class="p">,</span> <span class="s1">&#39;CANCELLED&#39;</span><span class="p">,</span> <span class="s1">&#39;DIVERTED&#39;</span><span class="p">,</span> <span class="s1">&#39;DISTANCE&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s make the column names lowercase and do our usual check of missing values. We’ll also rename the <code class="docutils literal notranslate"><span class="pre">op_carrier_airline_id</span></code> column to something simpler.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cleaned_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="s1">&#39;OP_CARRIER_AIRLINE_ID&#39;</span> <span class="k">else</span> <span class="s1">&#39;airline&#39;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">cleaned_cols</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">missing_value_count</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">missing_value_pct</span> <span class="o">=</span> <span class="n">missing_value_count</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">missing_value_count</span><span class="si">}</span><span class="s1"> missing (</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">missing_value_pct</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>day_of_month: 0 missing (0.00%)
+day_of_week: 0 missing (0.00%)
+airline: 0 missing (0.00%)
+origin: 0 missing (0.00%)
+dest: 0 missing (0.00%)
+dep_time: 16352 missing (2.80%)
+dep_del15: 16355 missing (2.80%)
+arr_time: 17061 missing (2.92%)
+arr_del15: 18022 missing (3.09%)
+cancelled: 0 missing (0.00%)
+diverted: 0 missing (0.00%)
+distance: 0 missing (0.00%)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is a brief description of the columns we are keeping (or at least the ones which aren’t self-explanatory):</p>
+<ul class="simple">
+<li><p><strong>airline:</strong> A unique identifier for the airline</p></li>
+<li><p><strong>origin:</strong> The airport the plane started at</p></li>
+<li><p><strong>dest:</strong> The airport the plane was headed to</p></li>
+<li><p><strong>dep_time:</strong> The actual departure time, in the format “hhmm”</p></li>
+<li><p><strong>dep_del15:</strong> Whether or not the flight departure was delayed by 15 minutes or more (0 = not delayed, 1 = delayed)</p></li>
+<li><p><strong>arr_time:</strong> The actual arrival time, in the format “hhmm”</p></li>
+<li><p><strong>arr_del15:</strong> Whether or not the flight arrival was delayed by 15 minutes or more</p></li>
+<li><p><strong>cancelled:</strong> Whether or not the flight was cancelled (0 = not cancelled, 1 = cancelled)</p></li>
+<li><p><strong>diverted:</strong> Whether or not the flight was diverted (told to change path, 0 = No, 1 = Yes)</p></li>
+<li><p><strong>distance:</strong> The distance between the airports in miles</p></li>
+</ul>
+<p>In this notebook we are interested in predicting whether or not a flight will be delayed upon arrival (will it arrive later than scheduled). Therefore, we will drop any rows which have missing values are the departure and arrival times/delays.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> rows remaining&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>565963 rows remaining
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check each column to make sure the data is what we expect it to be.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>day_of_month      int64
+day_of_week       int64
+airline           int64
+origin           object
+dest             object
+dep_time        float64
+dep_del15       float64
+arr_time        float64
+arr_del15       float64
+cancelled       float64
+diverted        float64
+distance        float64
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>These look good, except that the time columns (<code class="docutils literal notranslate"><span class="pre">dep_time</span></code> and <code class="docutils literal notranslate"><span class="pre">arr_time</span></code>) are of the form “hhmm”, and we’d really like this to be simpler to work with. Let’s just convert it to hours, so that “1200” becomes 12, and “1430” because 14.5 (since 30 minutes = 0.5 hours). Right now these are all stored as floats, which means getting the first two and last two digits is a bit tricky. What would be simpler is just to tell Pandas when loading this data that we want those columns to be strings. You can do this when running <code class="docutils literal notranslate"><span class="pre">read_csv()</span></code> by setting <code class="docutils literal notranslate"><span class="pre">dtype={'col_name':</span> <span class="pre">col_type}</span></code>. Rather than going through all this work again, we’ll also tell Pandas to only load the subset of columns we want, using the <code class="docutils literal notranslate"><span class="pre">usecols=[first_col_number,</span> <span class="pre">second_col_number,</span> <span class="pre">...]</span></code> parameter. You tell it which number column you want (they start at zero). Finally, we can specify <code class="docutils literal notranslate"><span class="pre">names=['col1_new_name',</span> <span class="pre">'col2_new_name',</span> <span class="pre">...]</span></code> to tell it what names we want to use.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note that cols is the list of columns we want, which we defined earlier. cleaned_cols is the cleaned up column names we did earlier as well.</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">drive_dir</span> <span class="o">+</span> <span class="s1">&#39;data/flights_jan_2019.csv&#39;</span><span class="p">,</span> 
+                 <span class="n">usecols</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span>
+                 <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;DEP_TIME&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s1">&#39;ARR_TIME&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">})</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">cleaned_cols</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>day_of_month</th>
+      <th>day_of_week</th>
+      <th>airline</th>
+      <th>origin</th>
+      <th>dest</th>
+      <th>dep_time</th>
+      <th>dep_del15</th>
+      <th>arr_time</th>
+      <th>arr_del15</th>
+      <th>cancelled</th>
+      <th>diverted</th>
+      <th>distance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>GNV</td>
+      <td>ATL</td>
+      <td>0601</td>
+      <td>0.0</td>
+      <td>0722</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>300.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>MSP</td>
+      <td>CVG</td>
+      <td>1359</td>
+      <td>0.0</td>
+      <td>1633</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>596.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>DTW</td>
+      <td>CVG</td>
+      <td>1215</td>
+      <td>0.0</td>
+      <td>1329</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>229.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>TLH</td>
+      <td>ATL</td>
+      <td>1521</td>
+      <td>0.0</td>
+      <td>1625</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>223.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>ATL</td>
+      <td>FSM</td>
+      <td>1847</td>
+      <td>0.0</td>
+      <td>1940</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>579.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>That looks better. Let’s now create the departure and arrival hour columns as described earlier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hhmm_to_hour</span><span class="p">(</span><span class="n">hhmm</span><span class="p">):</span>
+    <span class="c1"># Get the first two characters</span>
+    <span class="n">hh</span> <span class="o">=</span> <span class="n">hhmm</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="c1"># Get the last two characters</span>
+    <span class="n">mm</span> <span class="o">=</span> <span class="n">hhmm</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+    <span class="c1"># Turn them into integeres</span>
+    <span class="n">hh</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
+    <span class="n">mm</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mm</span><span class="p">)</span>
+    <span class="c1"># Math</span>
+    <span class="n">hour</span> <span class="o">=</span> <span class="n">hh</span> <span class="o">+</span> <span class="n">mm</span><span class="o">/</span><span class="mi">60</span>
+    <span class="k">return</span> <span class="n">hour</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Testing it out</span>
+<span class="n">hhmm_to_hour</span><span class="p">(</span><span class="s1">&#39;1430&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;dep_hour&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dep_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">hhmm_to_hour</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;arr_hour&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;arr_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">hhmm_to_hour</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;dep_time&#39;</span><span class="p">,</span> <span class="s1">&#39;arr_time&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>day_of_month</th>
+      <th>day_of_week</th>
+      <th>airline</th>
+      <th>origin</th>
+      <th>dest</th>
+      <th>dep_del15</th>
+      <th>arr_del15</th>
+      <th>cancelled</th>
+      <th>diverted</th>
+      <th>distance</th>
+      <th>dep_hour</th>
+      <th>arr_hour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>GNV</td>
+      <td>ATL</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>300.0</td>
+      <td>6.016667</td>
+      <td>7.366667</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>MSP</td>
+      <td>CVG</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>596.0</td>
+      <td>13.983333</td>
+      <td>16.550000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>DTW</td>
+      <td>CVG</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>229.0</td>
+      <td>12.250000</td>
+      <td>13.483333</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>TLH</td>
+      <td>ATL</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>223.0</td>
+      <td>15.350000</td>
+      <td>16.416667</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>ATL</td>
+      <td>FSM</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>579.0</td>
+      <td>18.783333</td>
+      <td>19.666667</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>As mentioned above, we want to build a model to predict whether or not a flight will be delayed upon arrival. With that in mind, let’s start exploring the data.</p>
+<p>Finally, we’ll need to work with numbers for our models, so let’s label encode the origin and destination airports.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">origin_le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;origin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">origin_le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;origin&#39;</span><span class="p">])</span>
+
+<span class="n">dest_le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;dest&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dest_le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;dest&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>day_of_month</th>
+      <th>day_of_week</th>
+      <th>airline</th>
+      <th>origin</th>
+      <th>dest</th>
+      <th>dep_del15</th>
+      <th>arr_del15</th>
+      <th>cancelled</th>
+      <th>diverted</th>
+      <th>distance</th>
+      <th>dep_hour</th>
+      <th>arr_hour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>128</td>
+      <td>19</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>300.0</td>
+      <td>6.016667</td>
+      <td>7.366667</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>225</td>
+      <td>80</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>596.0</td>
+      <td>13.983333</td>
+      <td>16.550000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>95</td>
+      <td>80</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>229.0</td>
+      <td>12.250000</td>
+      <td>13.483333</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>325</td>
+      <td>19</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>223.0</td>
+      <td>15.350000</td>
+      <td>16.416667</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>19</td>
+      <td>120</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>579.0</td>
+      <td>18.783333</td>
+      <td>19.666667</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Finally, we will use this data again next week, so let’s save a copy of the cleaned up version.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../data/flights_jan_2019_cleaned.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-exploration">
+<h2>Data exploration<a class="headerlink" href="#data-exploration" title="Permalink to this headline">¶</a></h2>
+<p>Since the goal is to understand flight delays, let’s start by looking at the flights that are delayed. First, how many of them are there?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;arr_del15&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0    0.814083
+1.0    0.185917
+Name: arr_del15, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>We only care about those that are delayed upon arrival, but let’s also check out the departures.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;dep_del15&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0    0.826305
+1.0    0.173695
+Name: dep_del15, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Almost identical. How many flights have a delayed arrival but <em>not</em> a delayed departure (or vice-versa)?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dep_del15_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;dep_del15&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">dep_del15_df</span><span class="p">[</span><span class="s1">&#39;arr_del15&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0    0.796379
+0.0    0.203621
+Name: arr_del15, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>So of those flights with a delayed departure, almost 80% of them also have a delayed arrival. Let’s now do vice-versa.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_del15_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;arr_del15&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">arr_del15_df</span><span class="p">[</span><span class="s1">&#39;dep_del15&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0    0.744027
+0.0    0.255973
+Name: dep_del15, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Of those with a delayed arrival, about 74% of them had a delayed departure. So (not surprisingly) when predicting whether or not the arrival will be delayed, looking at whether or not the departure is delayed is highly relevant.</p>
+<p>Next, we see that about 18.6% of flights have a delayed arrival. Let’s go through each day of the month and see if one tends to have a much higher or lower rate than that. We’ll do this using <code class="docutils literal notranslate"><span class="pre">groupby</span></code>. We’ll add up the delayed arrivals for each day of the month using <code class="docutils literal notranslate"><span class="pre">.sum()</span></code>. Since <code class="docutils literal notranslate"><span class="pre">arr_del15</span></code> is either 0 or 1, adding it up will count how many delays there are. To get this as a percentage we’ll divide by the <code class="docutils literal notranslate"><span class="pre">.count()</span></code> of how many flights arrived on that day of the month.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;day_of_month&#39;</span><span class="p">)[</span><span class="s1">&#39;arr_del15&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;day_of_month&#39;</span><span class="p">)[</span><span class="s1">&#39;arr_del15&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>day_of_month
+1     0.215423
+2     0.257957
+3     0.186185
+4     0.127087
+5     0.160788
+6     0.198471
+7     0.151579
+8     0.101620
+9     0.103387
+10    0.143248
+11    0.160589
+12    0.150572
+13    0.162158
+14    0.151467
+15    0.154934
+16    0.129132
+17    0.200223
+18    0.219003
+19    0.201091
+20    0.210049
+21    0.269010
+22    0.225870
+23    0.272890
+24    0.311952
+25    0.226672
+26    0.133417
+27    0.188134
+28    0.178465
+29    0.145864
+30    0.204032
+31    0.208535
+Name: arr_del15, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>It looks like there are a few days of the month with especially high/low delays, such as days 8 and 9 with only 10%, and day 24 with 31%. So maybe this column will be useful for our model. Let’s do the same for <code class="docutils literal notranslate"><span class="pre">day_of_week</span></code>, <code class="docutils literal notranslate"><span class="pre">airline</span></code>, <code class="docutils literal notranslate"><span class="pre">origin</span></code> and <code class="docutils literal notranslate"><span class="pre">dest</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">groupby_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;day_of_week&#39;</span><span class="p">,</span> <span class="s1">&#39;airline&#39;</span><span class="p">,</span> <span class="s1">&#39;origin&#39;</span><span class="p">,</span> <span class="s1">&#39;dest&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">groupby_cols</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">c</span><span class="p">)[</span><span class="s1">&#39;arr_del15&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">c</span><span class="p">)[</span><span class="s1">&#39;arr_del15&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>day_of_week
+1    0.186837
+2    0.167916
+3    0.193716
+4    0.209893
+5    0.183462
+6    0.160310
+7    0.189246
+Name: arr_del15, dtype: float64
+========================================
+airline
+19393    0.150240
+19690    0.125424
+19790    0.128101
+19805    0.182353
+19930    0.173530
+19977    0.198500
+20304    0.227036
+20363    0.202462
+20366    0.247705
+20368    0.258142
+20378    0.185653
+20397    0.155349
+20398    0.246478
+20409    0.274802
+20416    0.158771
+20436    0.248894
+20452    0.238675
+Name: arr_del15, dtype: float64
+========================================
+origin
+0      0.202492
+1      0.190476
+2      0.128326
+3      0.133333
+4      0.084337
+         ...   
+341    0.131148
+342    0.214286
+343    0.200593
+344    0.160000
+345    0.078261
+Name: arr_del15, Length: 346, dtype: float64
+========================================
+dest
+0      0.197531
+1      0.142857
+2      0.144028
+3      0.150000
+4      0.120482
+         ...   
+341    0.171488
+342    0.222222
+343    0.176355
+344    0.264151
+345    0.139130
+Name: arr_del15, Length: 346, dtype: float64
+========================================
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once again, these all seem useful. There’s certainly many more questions we could explore, but let’s start building our model and see how it performs. Then, based on the results we can go back and try to answer some questions that our model doesn’t seem to understand.</p>
+</div>
+<div class="section" id="model-building">
+<h2>Model building<a class="headerlink" href="#model-building" title="Permalink to this headline">¶</a></h2>
+<p>As always we’ll start by doing a train-test split. One thing which is good practice with imbalanced data is to split in a <em>stratified</em> way. By <strong>stratified</strong> we mean that the percentage of rows for the column you are trying to predict is approximately the same in the training and test sets. So for example, if 10% of the flights are delayed in the training set, then we also want approximately 10% of the flights to be delayed in the test set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;arr_del15&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;arr_del15&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0    0.814083
+1.0    0.185917
+Name: arr_del15, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_df</span><span class="p">[</span><span class="s1">&#39;arr_del15&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0    0.814083
+1.0    0.185917
+Name: arr_del15, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can see that both sets have 18.6% of the arrivals being delayed.</p>
+<p>Let’s split the data into X and y. Since some models can only use continuous values, we’ll separate out the columns by type to make it easier to handle.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_col</span> <span class="o">=</span> <span class="s1">&#39;arr_del15&#39;</span>
+
+<span class="n">X_cont_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;day_of_month&#39;</span><span class="p">,</span> <span class="s1">&#39;distance&#39;</span><span class="p">,</span> <span class="s1">&#39;dep_hour&#39;</span><span class="p">,</span> <span class="s1">&#39;arr_hour&#39;</span><span class="p">]</span>
+<span class="n">X_cat_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;day_of_week&#39;</span><span class="p">,</span> <span class="s1">&#39;airline&#39;</span><span class="p">,</span> <span class="s1">&#39;origin&#39;</span><span class="p">,</span> <span class="s1">&#39;dest&#39;</span><span class="p">,</span> <span class="s1">&#39;cancelled&#39;</span><span class="p">,</span> <span class="s1">&#39;diverted&#39;</span><span class="p">,</span> <span class="s1">&#39;dep_del15&#39;</span><span class="p">]</span>
+<span class="n">X_all_cols</span> <span class="o">=</span> <span class="n">X_cont_cols</span> <span class="o">+</span> <span class="n">X_cat_cols</span>
+
+<span class="n">X_train_cont</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">X_cont_cols</span><span class="p">]</span>
+<span class="n">X_train_cat</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">X_cat_cols</span><span class="p">]</span>
+<span class="n">X_train_all</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">X_all_cols</span><span class="p">]</span>
+
+<span class="n">X_test_cont</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="n">X_cont_cols</span><span class="p">]</span>
+<span class="n">X_test_cat</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="n">X_cat_cols</span><span class="p">]</span>
+<span class="n">X_test_all</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="n">X_all_cols</span><span class="p">]</span>
+
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now choose a model. Since we are doing classification our choices that we learned thus far are, along with a brief discussion of their strengths and weaknesses:
+- Logistic regression: Simple, basic linear regression in disguise. However, it only works with continuous columns.
+- Nearest neighbors: Very flexible, can work with both continuous and categorical columns. However, we want each flight to have a lot of “neighbors” to compare to. This may or may not be an issue.
+- Decision tree: Very flexible, can work with both continuous and categorical columns. The downside is that we need to be careful with picking the hyperparameters.</p>
+<p>Logistic regression sounds like the weakest choice. However, it’s good to start with a simple model and use the results as a baseline. Therefore, we’ll train a logistic regression model using the continuous columns, and use the results as a baseline to try and beat.</p>
+<div class="section" id="logistic-regression">
+<h3>Logistic regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">logr_clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+
+<span class="n">logr_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_cont</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">y_pred_logr</span> <span class="o">=</span> <span class="n">logr_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_cont</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_logr</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/paulsavala/anaconda3/envs/math_3439/lib/python3.8/site-packages/sklearn/metrics/_classification.py:1272: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+         0.0       0.81      1.00      0.90    184297
+         1.0       0.00      0.00      0.00     42089
+
+    accuracy                           0.81    226386
+   macro avg       0.41      0.50      0.45    226386
+weighted avg       0.66      0.81      0.73    226386
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">logr_clf</span><span class="p">,</span> <span class="n">X_test_cont</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x11e1bbac0&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_09_57_1.png" src="_images/ch_09_57_1.png" />
+</div>
+</div>
+<p>So logistic regression is never even predicting a flight to be delayed. Hopefully that won’t be hard to beat…</p>
+</div>
+<div class="section" id="nearest-neighbors">
+<h3>Nearest neighbors<a class="headerlink" href="#nearest-neighbors" title="Permalink to this headline">¶</a></h3>
+<p>Recall that nearest neighbors works by taking a single row and then finding <span class="math notranslate nohighlight">\(K\)</span> other rows which are “closest” to it. By “closest” we mean the distance as measured using the <code class="docutils literal notranslate"><span class="pre">metric</span></code> hyperparameter. For continuous columns this could simply be the usual Euclidean distance function you’re used to: <span class="math notranslate nohighlight">\(\sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}\)</span>. But for categorical columns we want to use other metrics. Review last week’s material if you are unsure of these.</p>
+<p>If you just try to run nearest neighbors, you will see that it takes forever. The reason is that our dataset is quite large:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">X_train_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> rows in the training data&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>339577 rows in the training data
+</pre></div>
+</div>
+</div>
+</div>
+<p>Therefore, we want to take a small sample and train on just that. One way to do that is to pick a small sample of the indices and just use those.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">X_train_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="n">X_mini</span> <span class="o">=</span> <span class="n">X_train_all</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">]</span>
+<span class="n">y_mini</span> <span class="o">=</span> <span class="n">y_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">sample_idx</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nn_clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">nn_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_mini</span><span class="p">,</span> <span class="n">y_mini</span><span class="p">)</span>
+
+<span class="n">y_pred_nn</span> <span class="o">=</span> <span class="n">nn_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_all</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">nn_clf</span><span class="p">,</span> <span class="n">X_test_all</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x11e1f5310&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_09_64_1.png" src="_images/ch_09_64_1.png" />
+</div>
+</div>
+<p>This seems like an improvement, but there are still a number of issues:</p>
+<ol class="simple">
+<li><p>There are a mixture of continuous and categorical variables. How we measure if distance is “close” is completely different from how we measure if two airlines are “close”. Unfortunately, you can only specify one metric, so we have to pick one which is good at something and bad at something else.</p></li>
+<li><p>It’s slow to train. Nearest neighbors requires going through every point, then finding the five closest points, then seeing what they were predicted as. This takes lots of time.</p></li>
+</ol>
+<p>Let’s move on and try a decision tree.</p>
+</div>
+<div class="section" id="decision-trees">
+<h3>Decision trees<a class="headerlink" href="#decision-trees" title="Permalink to this headline">¶</a></h3>
+<p>We’ll fit a decision tree to all of the columns. We’ll start with a guess at the hyperparameters and see how it turns out.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">dt_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_all</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None, criterion=&#39;gini&#39;,
+                       max_depth=5, max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=10, min_samples_split=5,
+                       min_weight_fraction_leaf=0.0, presort=&#39;deprecated&#39;,
+                       random_state=None, splitter=&#39;best&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">dt_clf</span><span class="p">,</span> <span class="n">X_test_all</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x11e1f5280&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_09_68_1.png" src="_images/ch_09_68_1.png" />
+</div>
+</div>
+<p>This seems reasonable, but it’s still underpredicting the delays (predicted label of 1). We saw previously that this can be partially addressed by resampling the data. We saw both over- and under-sampling the data performed well in this case. Since our dataset is large it seems reasonable to undersample. Remember that ovesampling means reusing sample from the minority class (flight delay) repeatedly in training. This is potentially problematic, and is primarily needed when your dataset is small.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;arr_del15&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0    276444
+1.0     63133
+Name: arr_del15, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Minority class has 63,133 samples</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">63133</span>
+
+<span class="n">train_delayed_df</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;arr_del15&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">train_not_delayed_df</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;arr_del15&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
+
+<span class="n">train_under_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train_delayed_df</span><span class="p">,</span> <span class="n">train_not_delayed_df</span><span class="p">])</span>
+
+<span class="n">X_train_under</span> <span class="o">=</span> <span class="n">train_under_df</span><span class="p">[</span><span class="n">X_all_cols</span><span class="p">]</span>
+<span class="n">y_train_under</span> <span class="o">=</span> <span class="n">train_under_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_clf_under</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">dt_clf_under</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_under</span><span class="p">,</span> <span class="n">y_train_under</span><span class="p">)</span>
+
+<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">dt_clf_under</span><span class="p">,</span> <span class="n">X_test_all</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">values_format</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x11f0e3040&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_09_72_1.png" src="_images/ch_09_72_1.png" />
+</div>
+</div>
+<p>We now see that a label of 1 is being predicted far more often. In fact, it’s being predicted a bit <em>too often</em> (as can be seen by 74,347 non-delayed flights being predicted as delayed). This isn’t great, but at least our model is now predicting in a more balanced way.</p>
+</div>
+</div>
+<div class="section" id="cross-validation-and-grid-search-a-id-cross-validation-a">
+<h2>Cross validation and grid search <a id="cross_validation"></a><a class="headerlink" href="#cross-validation-and-grid-search-a-id-cross-validation-a" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have a model to start with we want to improve it. One major way to improve models is by finding which hyperparameters give the best results. We did this previously by picking some possibilities and simply writing <code class="docutils literal notranslate"><span class="pre">for</span></code> loops to try them all. This works, but it’s problematic for a few reasons. One is that it’s slow and kind of a pain. Another is that we have to keep re-using the test data over and over to see our results. Therefore, in essence we’re training our model on the test data. That’s not what test data is for. Test data is meant to be used only once you have a final (or near-final) model. The fix for this is cross validation.</p>
+<p><strong>Cross validation</strong> is a technique where you take your training data and split it into <span class="math notranslate nohighlight">\(n\)</span> “folds”. You then train your model on <span class="math notranslate nohighlight">\(n-1\)</span> folds and evaluate it on the final fold. Here is an illustration of this from <a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html">sklearn’s site</a>.</p>
+<p><img alt="Cross validation" src="_images/grid_search_cross_validation.png" /></p>
+<p>Let’s do an example by hand. Once we understand that we’ll see how sklearn makes this easy for us. We’ll take our training data and split it into five folds, as shown above. To do so we need to find how many rows there are and divide that by five.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">train_under_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> rows, so each fold has </span><span class="si">{</span><span class="n">train_under_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">5</span><span class="si">}</span><span class="s1"> rows&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>126266 rows, so each fold has 25253.2 rows
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fold1_df</span> <span class="o">=</span> <span class="n">train_under_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">25253</span><span class="p">]</span>
+<span class="n">fold2_df</span> <span class="o">=</span> <span class="n">train_under_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">25253</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="mi">25253</span><span class="p">]</span>
+<span class="n">fold3_df</span> <span class="o">=</span> <span class="n">train_under_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="mi">25253</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="mi">25253</span><span class="p">]</span>
+<span class="n">fold4_df</span> <span class="o">=</span> <span class="n">train_under_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">3</span><span class="o">*</span><span class="mi">25253</span><span class="p">:</span><span class="mi">4</span><span class="o">*</span><span class="mi">25253</span><span class="p">]</span>
+<span class="n">fold5_df</span> <span class="o">=</span> <span class="n">train_under_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">4</span><span class="o">*</span><span class="mi">25253</span><span class="p">:]</span>
+
+<span class="n">folds</span> <span class="o">=</span> <span class="p">[</span><span class="n">fold1_df</span><span class="p">,</span> <span class="n">fold2_df</span><span class="p">,</span> <span class="n">fold3_df</span><span class="p">,</span> <span class="n">fold4_df</span><span class="p">,</span> <span class="n">fold5_df</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">folds</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Fold </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">f</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> rows&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fold 1: 25253 rows
+Fold 2: 25253 rows
+Fold 3: 25253 rows
+Fold 4: 25253 rows
+Fold 5: 25254 rows
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we’ll pick some hyperparameters, train our model on 4 of the folds, and then evaluate it on the final fold. This way, our test set is never used when we’re finding hyperparameters!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Try increasing the max depth</span>
+<span class="n">dt_clf_under</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Stack together the first four folds to train on</span>
+<span class="n">X_four_folds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">fold1_df</span><span class="p">[</span><span class="n">X_all_cols</span><span class="p">],</span> <span class="n">fold2_df</span><span class="p">[</span><span class="n">X_all_cols</span><span class="p">],</span> <span class="n">fold3_df</span><span class="p">[</span><span class="n">X_all_cols</span><span class="p">],</span> <span class="n">fold4_df</span><span class="p">[</span><span class="n">X_all_cols</span><span class="p">]])</span>
+<span class="n">y_four_folds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">fold1_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">],</span> <span class="n">fold2_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">],</span> <span class="n">fold3_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">],</span> <span class="n">fold4_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">]])</span>
+
+<span class="n">dt_clf_under</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_four_folds</span><span class="p">,</span> <span class="n">y_four_folds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None, criterion=&#39;gini&#39;,
+                       max_depth=10, max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=10, min_samples_split=5,
+                       min_weight_fraction_leaf=0.0, presort=&#39;deprecated&#39;,
+                       random_state=None, splitter=&#39;best&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Evaluate it on the fifth fold</span>
+<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">dt_clf_under</span><span class="p">,</span> <span class="n">X_test_all</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">values_format</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x11fd40e80&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_09_81_1.png" src="_images/ch_09_81_1.png" />
+</div>
+</div>
+<p>The goal of cross validation is to find good hyperparameters without having to re-use the test set over and over again for training. However, doing cross validation by hand like this is slow. Luckily, sklearn has a helper function called <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> which does two things:</p>
+<ol class="simple">
+<li><p>It performs cross validation as described above</p></li>
+<li><p>It simultaneously goes through and tries a “grid” of hyperparameters that you specify.</p></li>
+</ol>
+<p>Let’s have it pick which hyperparameters are best out of the following options:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hyperparam_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;min_samples_split&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+                  <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+                  <span class="s1">&#39;min_samples_leaf&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we instantiate grid search just like you did for a model. However, to be clera, grid search is <em>not</em> a model, it’s a way to pick the best hyperparameters for your model. What it does is return the model with the hyperparameters that gave the best result.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+
+<span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">dt_clf</span><span class="p">,</span> <span class="n">hyperparam_grid</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># n_jobs tells it to use parallel processing. Long story short, it will be faster.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This may take a while, go grab a coffee...</span>
+<span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_under</span><span class="p">,</span> <span class="n">y_train_under</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV(cv=None, error_score=nan,
+             estimator=DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None,
+                                              criterion=&#39;gini&#39;, max_depth=None,
+                                              max_features=None,
+                                              max_leaf_nodes=None,
+                                              min_impurity_decrease=0.0,
+                                              min_impurity_split=None,
+                                              min_samples_leaf=1,
+                                              min_samples_split=2,
+                                              min_weight_fraction_leaf=0.0,
+                                              presort=&#39;deprecated&#39;,
+                                              random_state=None,
+                                              splitter=&#39;best&#39;),
+             iid=&#39;deprecated&#39;, n_jobs=-1,
+             param_grid={&#39;max_depth&#39;: [3, 5, 7, 10, 15, 25, 50],
+                         &#39;min_samples_leaf&#39;: [2, 5, 10, 15, 25, 50, 100],
+                         &#39;min_samples_split&#39;: [2, 5, 10, 15, 25, 50, 100]},
+             pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=False,
+             scoring=None, verbose=0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Grid search can be slow. It is literally fitting a new model for all combinations of hyperparameters that you specified. So (for instance) if you specified five values of one parameter, ten of another, and 7 of one more, then it’s fitting <span class="math notranslate nohighlight">\(5 \cdot 10\cdot 7=350\)</span> models. So be careful to not just through tons and tons of hyperparameters at it, or it will never finish.</p>
+<p>Once it’s done, you can just use it exactly like your decision tree. In fact, it <em>is</em> your decision tree, with the best possible choice of hyperparameters from the possibilities you supplied. If you’d like to see exactly what those hyperparameters are, you can do the following:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;max_depth&#39;: 15, &#39;min_samples_leaf&#39;: 25, &#39;min_samples_split&#39;: 15}
+</pre></div>
+</div>
+</div>
+</div>
+<p>So it looks like it got the best results with a max depth of 50 (much deeper than we tried!). Note that the max depth and min samples split are both the largest values I let it try. So maybe something larger would be better. Let’s do another grid search, but pick parameters near what this grid search found was best.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+
+<span class="n">hyperparam_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;min_samples_split&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">75</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span>
+                  <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">75</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span>
+                  <span class="s1">&#39;min_samples_leaf&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]}</span>
+
+<span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">dt_clf</span><span class="p">,</span> <span class="n">hyperparam_grid</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_under</span><span class="p">,</span> <span class="n">y_train_under</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV(cv=None, error_score=nan,
+             estimator=DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None,
+                                              criterion=&#39;gini&#39;, max_depth=None,
+                                              max_features=None,
+                                              max_leaf_nodes=None,
+                                              min_impurity_decrease=0.0,
+                                              min_impurity_split=None,
+                                              min_samples_leaf=1,
+                                              min_samples_split=2,
+                                              min_weight_fraction_leaf=0.0,
+                                              presort=&#39;deprecated&#39;,
+                                              random_state=None,
+                                              splitter=&#39;best&#39;),
+             iid=&#39;deprecated&#39;, n_jobs=-1,
+             param_grid={&#39;max_depth&#39;: [75, 100, 125, 150, 175, 200],
+                         &#39;min_samples_leaf&#39;: [3, 5, 7],
+                         &#39;min_samples_split&#39;: [75, 100, 125, 150, 175, 200]},
+             pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=False,
+             scoring=None, verbose=0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;max_depth&#39;: 175, &#39;min_samples_leaf&#39;: 5, &#39;min_samples_split&#39;: 200}
+</pre></div>
+</div>
+</div>
+</div>
+<p>It looks like it keeps wanting to go deeper. For right now let’s leave it at 200 and see how things go. We’ll evaluate this model on our test set (which the decision tree hasn’t yet seen!) and see what kind of results we get.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">grid_search</span><span class="p">,</span> <span class="n">X_test_all</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x121e59cd0&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_09_93_1.png" src="_images/ch_09_93_1.png" />
+</div>
+</div>
+<p>This is a big improvement. 65% of the non-delayed flights were predicted to be non-delayed, and 65% of the delayed flights were predicted to be delayed.</p>
+<p>A good next step is to see where your model is struggling. What flights is it making an incorrect decision on? To do this we’ll take the training data and make predictions. We’ll then grab all rows where the prediction didn’t match the actual delay.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_all</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">misclassified_df</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;arr_del15&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">y_pred</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">misclassified_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>day_of_month</th>
+      <th>day_of_week</th>
+      <th>airline</th>
+      <th>origin</th>
+      <th>dest</th>
+      <th>dep_del15</th>
+      <th>arr_del15</th>
+      <th>cancelled</th>
+      <th>diverted</th>
+      <th>distance</th>
+      <th>dep_hour</th>
+      <th>arr_hour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>561380</th>
+      <td>30</td>
+      <td>3</td>
+      <td>20366</td>
+      <td>156</td>
+      <td>149</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>295.0</td>
+      <td>16.600000</td>
+      <td>17.800000</td>
+    </tr>
+    <tr>
+      <th>176973</th>
+      <td>10</td>
+      <td>4</td>
+      <td>20304</td>
+      <td>306</td>
+      <td>297</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>599.0</td>
+      <td>8.533333</td>
+      <td>10.116667</td>
+    </tr>
+    <tr>
+      <th>132927</th>
+      <td>7</td>
+      <td>1</td>
+      <td>20378</td>
+      <td>251</td>
+      <td>14</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>602.0</td>
+      <td>19.683333</td>
+      <td>22.366667</td>
+    </tr>
+    <tr>
+      <th>514407</th>
+      <td>28</td>
+      <td>1</td>
+      <td>19805</td>
+      <td>251</td>
+      <td>327</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1788.0</td>
+      <td>10.033333</td>
+      <td>15.900000</td>
+    </tr>
+    <tr>
+      <th>164421</th>
+      <td>9</td>
+      <td>3</td>
+      <td>20452</td>
+      <td>201</td>
+      <td>238</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>403.0</td>
+      <td>6.250000</td>
+      <td>7.916667</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">misclassified_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">train_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">% of training data was misclassified (</span><span class="si">{</span><span class="n">misclassified_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> samples)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>32.97% of training data was misclassified (111962 samples)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s also grab the training data which was classified <em>correctly</em> and see if any interesting differences jump out at us.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correct_df</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;arr_del15&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">y_pred</span><span class="p">]</span>
+<span class="n">correct_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>day_of_month</th>
+      <th>day_of_week</th>
+      <th>airline</th>
+      <th>origin</th>
+      <th>dest</th>
+      <th>dep_del15</th>
+      <th>arr_del15</th>
+      <th>cancelled</th>
+      <th>diverted</th>
+      <th>distance</th>
+      <th>dep_hour</th>
+      <th>arr_hour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>201091</th>
+      <td>11</td>
+      <td>5</td>
+      <td>19393</td>
+      <td>308</td>
+      <td>237</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>390.0</td>
+      <td>18.616667</td>
+      <td>19.916667</td>
+    </tr>
+    <tr>
+      <th>108973</th>
+      <td>6</td>
+      <td>7</td>
+      <td>20304</td>
+      <td>225</td>
+      <td>297</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1589.0</td>
+      <td>23.383333</td>
+      <td>2.216667</td>
+    </tr>
+    <tr>
+      <th>1569</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20409</td>
+      <td>246</td>
+      <td>148</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1056.0</td>
+      <td>6.650000</td>
+      <td>9.550000</td>
+    </tr>
+    <tr>
+      <th>21341</th>
+      <td>2</td>
+      <td>3</td>
+      <td>19393</td>
+      <td>180</td>
+      <td>88</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>862.0</td>
+      <td>6.316667</td>
+      <td>9.850000</td>
+    </tr>
+    <tr>
+      <th>221442</th>
+      <td>12</td>
+      <td>6</td>
+      <td>19393</td>
+      <td>88</td>
+      <td>204</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>895.0</td>
+      <td>6.366667</td>
+      <td>10.233333</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare the flight delays by day of month for the correctly and incorrectly classified samples</span>
+<span class="n">correct_df</span><span class="p">[</span><span class="s1">&#39;day_of_month&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-</span> <span class="n">misclassified_df</span><span class="p">[</span><span class="s1">&#39;day_of_month&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1    -0.011443
+2    -0.009328
+3    -0.007460
+4     0.005143
+5     0.007942
+6     0.001150
+7     0.003607
+8     0.018945
+9     0.021020
+10    0.013903
+11    0.009410
+12    0.006477
+13    0.000868
+14    0.014917
+15    0.008328
+16    0.012050
+17   -0.010234
+18   -0.014203
+19   -0.008355
+20   -0.010037
+21   -0.012790
+22   -0.010344
+23   -0.007255
+24   -0.011964
+25   -0.012326
+26    0.008029
+27   -0.000070
+28    0.000288
+29   -0.000477
+30    0.002296
+31   -0.008086
+Name: day_of_month, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>So no particular day of the month jumps out as being very different between the correctly and misclassified samples. Let’s write a function to do this and plot it, and then do it for each column. We’ll compute the percentage that it is off by, relative to the correct classification.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compare_classifications_by_col</span><span class="p">(</span><span class="n">col</span><span class="p">):</span>
+    <span class="n">comparison</span> <span class="o">=</span> <span class="n">correct_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-</span> <span class="n">misclassified_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">comparison</span> <span class="o">=</span> <span class="n">comparison</span> <span class="o">/</span> <span class="n">correct_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">comparison</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Column </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compare_classifications_by_col</span><span class="p">(</span><span class="s1">&#39;day_of_month&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_09_104_0.png" src="_images/ch_09_104_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compare_classifications_by_col</span><span class="p">(</span><span class="s1">&#39;day_of_week&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_09_105_0.png" src="_images/ch_09_105_0.png" />
+</div>
+</div>
+<p>A maximum relative difference of 10% based on the day of the week.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compare_classifications_by_col</span><span class="p">(</span><span class="s1">&#39;airline&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_09_107_0.png" src="_images/ch_09_107_0.png" />
+</div>
+</div>
+<p>Certain airlines seem to do much worse than others.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compare_classifications_by_col</span><span class="p">(</span><span class="s1">&#39;origin&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_09_109_0.png" src="_images/ch_09_109_0.png" />
+</div>
+</div>
+<p>A big difference (relative to the others) for one airport, maybe we should look into that one.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compare_classifications_by_col</span><span class="p">(</span><span class="s1">&#39;dest&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_09_111_0.png" src="_images/ch_09_111_0.png" />
+</div>
+</div>
+<p>Same.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compare_classifications_by_col</span><span class="p">(</span><span class="s1">&#39;dep_del15&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_09_113_0.png" src="_images/ch_09_113_0.png" />
+</div>
+</div>
+<p>Only a 0.8% difference, not interesting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compare_classifications_by_col</span><span class="p">(</span><span class="s1">&#39;dep_hour&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_09_115_0.png" src="_images/ch_09_115_0.png" />
+</div>
+</div>
+<p>Flights leaving early in the morning are often misclassified.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compare_classifications_by_col</span><span class="p">(</span><span class="s1">&#39;arr_hour&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_09_117_0.png" src="_images/ch_09_117_0.png" />
+</div>
+</div>
+<p>Nothing big jumps out.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compare_classifications_by_col</span><span class="p">(</span><span class="s1">&#39;distance&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_09_119_0.png" src="_images/ch_09_119_0.png" />
+</div>
+</div>
+<p>It’s strange that some distance are way off.</p>
+<p>So it looks like there were a few areas where there is a noticeable difference between the correctly classified and misclassified samples.</p>
+</div>
+<div class="section" id="ensembling-a-id-ensemble-a">
+<h2>Ensembling <a id="ensemble"></a><a class="headerlink" href="#ensembling-a-id-ensemble-a" title="Permalink to this headline">¶</a></h2>
+<p>One way to deal with this is through what is called “model ensembling”. <strong>Model ensembling</strong> means training multiple models, and then having them “vote” on the correct answer. So for example, if we trained three models, then if two of them predicted the flight would be delayed and one didn’t, we would go with the majority vote of it being delayed. This can be done a few different ways. One way is just to train multiple models on all of the data. Another is to train one or two models on the entire data, and then train the remaining model(s) on just the samples that were misclassified. That is the approach we’ll take here. We will train a nearest neighbors classifier on the samples that were misclassified. We’ll then train a slightly shallower decision tree on the misclassified data to use as our third vote. This is a decent approach because a shallower tree should look for more “big picture” ideas, rather than forming ultra-specific rules over 200+ levels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nn_clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;hamming&#39;</span><span class="p">)</span>
+
+<span class="n">nn_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_all</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KNeighborsClassifier(algorithm=&#39;auto&#39;, leaf_size=30, metric=&#39;hamming&#39;,
+                     metric_params=None, n_jobs=None, n_neighbors=5, p=2,
+                     weights=&#39;uniform&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt2_clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+
+<span class="n">hyperparam_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;min_samples_split&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">250</span><span class="p">],</span>
+                  <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span>
+                  <span class="s1">&#39;min_samples_leaf&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]}</span>
+
+<span class="n">grid_search2</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">dt2_clf</span><span class="p">,</span> <span class="n">hyperparam_grid</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">grid_search2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_all</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GridSearchCV(cv=None, error_score=nan,
+             estimator=DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None,
+                                              criterion=&#39;gini&#39;, max_depth=None,
+                                              max_features=None,
+                                              max_leaf_nodes=None,
+                                              min_impurity_decrease=0.0,
+                                              min_impurity_split=None,
+                                              min_samples_leaf=1,
+                                              min_samples_split=2,
+                                              min_weight_fraction_leaf=0.0,
+                                              presort=&#39;deprecated&#39;,
+                                              random_state=None,
+                                              splitter=&#39;best&#39;),
+             iid=&#39;deprecated&#39;, n_jobs=-1,
+             param_grid={&#39;max_depth&#39;: [20, 30, 40, 50, 60],
+                         &#39;min_samples_leaf&#39;: [5, 7, 9],
+                         &#39;min_samples_split&#39;: [150, 200, 250]},
+             pre_dispatch=&#39;2*n_jobs&#39;, refit=True, return_train_score=False,
+             scoring=None, verbose=0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search2</span><span class="o">.</span><span class="n">best_params_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;max_depth&#39;: 20, &#39;min_samples_leaf&#39;: 9, &#39;min_samples_split&#39;: 200}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we want to make our models “vote”. We’ll write a function to find the most common vote (the “mode”) and return it. Note that <code class="docutils literal notranslate"><span class="pre">mode</span></code> is imported from the <code class="docutils literal notranslate"><span class="pre">scipy</span></code> library at the top of the notebook, it is <em>not</em> a built-in Python function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ensembled_model</span><span class="p">(</span><span class="n">model1</span><span class="p">,</span> <span class="n">model2</span><span class="p">,</span> <span class="n">model3</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="n">y1_pred</span> <span class="o">=</span> <span class="n">model1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">y2_pred</span> <span class="o">=</span> <span class="n">model2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">y3_pred</span> <span class="o">=</span> <span class="n">model3</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">mode</span><span class="p">([</span><span class="n">y1_pred</span><span class="p">,</span> <span class="n">y2_pred</span><span class="p">,</span> <span class="n">y3_pred</span><span class="p">])</span><span class="o">.</span><span class="n">mode</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">voting_results</span> <span class="o">=</span> <span class="n">ensembled_model</span><span class="p">(</span><span class="n">grid_search</span><span class="p">,</span> <span class="n">nn_clf</span><span class="p">,</span> <span class="n">grid_search2</span><span class="p">,</span> <span class="n">X_test_all</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">voting_results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0., 0., 0., ..., 0., 0., 0.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">acc</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">y_test</span> <span class="o">==</span> <span class="n">voting_results</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">voting_results</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;An overall accuracy of </span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">acc</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>An overall accuracy of 83.06%
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">voting_results</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.95555543, 0.04444457],
+       [0.71643422, 0.28356578]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>So we’re doing very well predicting flights that will not be delayed (95%!), but still struggling on flights that will be delayed. Ensembling by hand like this is a slow, laborious process. Next week we will learn about models that have ensembling built into them, and and more efficient. However, ensembling by hand is still extremely popular, and almost all models that win data science competitions are ensembles.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="ch_08.html" title="previous page">Decision Trees</a>
+    <a class='right-next' id="next-link" href="ch_10.html" title="next page">Ensemble tree models</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,2243 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nearest neighbors &#8212; Introduction to Data Science</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Decision Trees" href="ch_08.html" />
+    <link rel="prev" title="Classification" href="ch_06.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_01.html">
+   First steps with Pandas and Jupyter notebooks
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_02.html">
+   Plotting and grouping data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_03.html">
+   Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_04.html">
+   Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_05.html">
+   Training models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_06.html">
+   Classification
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Nearest neighbors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_08.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_09.html">
+   Improving your model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_10.html">
+   Ensemble tree models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_11.html">
+   Working with large datasets
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/ch_07.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/ch_07.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-loading">
+   Data loading
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#label-encoding">
+   Label encoding
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#can-we-use-logistic-regression-now-a-id-logistic-reg-a">
+   Can we use logistic regression now?
+   <a id="logistic_reg">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#supervised-vs-unsupervised-models-a-id-supervised-unsupervised-a">
+   Supervised vs unsupervised models
+   <a id="supervised_unsupervised">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nearest-neighbors-a-id-nearest-neighbors-a">
+   Nearest neighbors
+   <a id="nearest_neighbors">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualizing-predictions-using-pca-a-id-visualizing-preds-a">
+   Visualizing predictions using PCA
+   <a id="visualizing_preds">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="nearest-neighbors">
+<h1>Nearest neighbors<a class="headerlink" href="#nearest-neighbors" title="Permalink to this headline">¶</a></h1>
+<p>Last week we learned about logistic regression. This was the first classification technique we learned. However, one limitation of logistic regression is that the input variables must be continuous. What can we do if we have categorical variables that we want to train our model with? One model that handles categorical variables as well as continuous variables is nearest neighbors. This week we will learn about nearest neighbors, along with other ways to deal with categorical variables.</p>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span><span class="p">,</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-loading">
+<h2>Data loading<a class="headerlink" href="#data-loading" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook we will continue working with data from an Internet Service Provider (ISP). Below is a brief refresher on some of the columns.</p>
+<ul class="simple">
+<li><p><strong>customerID:</strong> A unique ID for each customer</p></li>
+<li><p><strong>Partner:</strong> Whether or not the customer has a partner (spouse/significant other)</p></li>
+<li><p><strong>tenure:</strong> How many months the person has been a customer</p></li>
+<li><p><strong>MonthlyCharges:</strong> How much (in dollars) the customer is charged every month</p></li>
+<li><p><strong>TotalCharges:</strong> How much the customer has been charged over their lifetime with the ISP</p></li>
+<li><p><strong>Churn:</strong> Whether or not a customer leaves the ISP (i.e. cancels their service)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/isp_customers.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customerID</th>
+      <th>gender</th>
+      <th>SeniorCitizen</th>
+      <th>Partner</th>
+      <th>Dependents</th>
+      <th>tenure</th>
+      <th>PhoneService</th>
+      <th>MultipleLines</th>
+      <th>InternetService</th>
+      <th>OnlineSecurity</th>
+      <th>...</th>
+      <th>DeviceProtection</th>
+      <th>TechSupport</th>
+      <th>StreamingTV</th>
+      <th>StreamingMovies</th>
+      <th>Contract</th>
+      <th>PaperlessBilling</th>
+      <th>PaymentMethod</th>
+      <th>MonthlyCharges</th>
+      <th>TotalCharges</th>
+      <th>Churn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7590-VHVEG</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>1</td>
+      <td>No</td>
+      <td>No phone service</td>
+      <td>DSL</td>
+      <td>No</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Electronic check</td>
+      <td>29.85</td>
+      <td>29.85</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5575-GNVDE</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>34</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>No</td>
+      <td>Mailed check</td>
+      <td>56.95</td>
+      <td>1889.5</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3668-QPYBK</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Mailed check</td>
+      <td>53.85</td>
+      <td>108.15</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7795-CFOCW</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>45</td>
+      <td>No</td>
+      <td>No phone service</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>No</td>
+      <td>Bank transfer (automatic)</td>
+      <td>42.30</td>
+      <td>1840.75</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9237-HQITU</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Fiber optic</td>
+      <td>No</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Electronic check</td>
+      <td>70.70</td>
+      <td>151.65</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div></div></div>
+</div>
+<p>We’ll do the same cleaning as we did last week.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;TotalCharges&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span> 
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="label-encoding">
+<h2>Label encoding<a class="headerlink" href="#label-encoding" title="Permalink to this headline">¶</a></h2>
+<p>Most machine learning models only work with numerical data. It is fine for the numerical data to be categorical, but it must be numerical. Therefore, almost no model can work with vlaues like “Female” or “No phone service”. Therefore the first step when dealing with categorical data is to “encode” your categorical data to make it numerical. All that encoding is is changing data to numbers. Let’s encode the gender column first. We’ll do this “by hand”, and later do it in a more efficient way using sklearn.</p>
+<p>The simplest “by hand” way to encode data is to make a Python dictionary which maps the text values to numerical values. So for example, we could set Female to be 0 and Male to be 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gender_map</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Female&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Male&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can then use the Pandas <code class="docutils literal notranslate"><span class="pre">.map()</span></code> function. This takes in a dictionary (or a function) and applies is to every row. It then replaces the value in that row with the result from the function, or the value in the dictionary. That may sound complicated, but it’s actually very simple. By supplying <code class="docutils literal notranslate"><span class="pre">.map()</span></code> with the <code class="docutils literal notranslate"><span class="pre">gender_map</span></code> above for the column <code class="docutils literal notranslate"><span class="pre">gender</span></code>, it will replace every <code class="docutils literal notranslate"><span class="pre">'Female'</span></code> with <code class="docutils literal notranslate"><span class="pre">0</span></code> and every <code class="docutils literal notranslate"><span class="pre">'Male'</span></code> with <code class="docutils literal notranslate"><span class="pre">'1'</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">gender_map</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customerID</th>
+      <th>gender</th>
+      <th>SeniorCitizen</th>
+      <th>Partner</th>
+      <th>Dependents</th>
+      <th>tenure</th>
+      <th>PhoneService</th>
+      <th>MultipleLines</th>
+      <th>InternetService</th>
+      <th>OnlineSecurity</th>
+      <th>...</th>
+      <th>DeviceProtection</th>
+      <th>TechSupport</th>
+      <th>StreamingTV</th>
+      <th>StreamingMovies</th>
+      <th>Contract</th>
+      <th>PaperlessBilling</th>
+      <th>PaymentMethod</th>
+      <th>MonthlyCharges</th>
+      <th>TotalCharges</th>
+      <th>Churn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7590-VHVEG</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>1</td>
+      <td>No</td>
+      <td>No phone service</td>
+      <td>DSL</td>
+      <td>No</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Electronic check</td>
+      <td>29.85</td>
+      <td>29.85</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5575-GNVDE</td>
+      <td>1</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>34</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>No</td>
+      <td>Mailed check</td>
+      <td>56.95</td>
+      <td>1889.50</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3668-QPYBK</td>
+      <td>1</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Mailed check</td>
+      <td>53.85</td>
+      <td>108.15</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7795-CFOCW</td>
+      <td>1</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>45</td>
+      <td>No</td>
+      <td>No phone service</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>No</td>
+      <td>Bank transfer (automatic)</td>
+      <td>42.30</td>
+      <td>1840.75</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9237-HQITU</td>
+      <td>0</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Fiber optic</td>
+      <td>No</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Electronic check</td>
+      <td>70.70</td>
+      <td>151.65</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div></div></div>
+</div>
+<p>That’s it! We can do the same thing for any column we want. If you want to avoid typing all values by hand (perhaps there are dozens of them, or perhaps each one is very long), you can also use <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> to save you time. What <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> does is return each item in a list, along with a counter. Here’s an example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 a
+1 b
+2 c
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, the first thing <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> returns is the counter. The first item is in the zeroth place, so it returns a zero. It also returns what that item is (<code class="docutils literal notranslate"><span class="pre">'a'</span></code> in our case). It then repeats this for all items.</p>
+<p>We can use this to our advantage to make our own maps without having to write out all items by hand. Let’s do this for the column <code class="docutils literal notranslate"><span class="pre">MultipleLines</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiple_lines_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">item</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;MultipleLines&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiple_lines_map</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;No phone service&#39;: 0, &#39;No&#39;: 1, &#39;Yes&#39;: 2}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Breaking this down, we first <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> all the unique values in the column <code class="docutils literal notranslate"><span class="pre">MultipleLines</span></code>. Then, <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> returns two things: the counter (which we called <code class="docutils literal notranslate"><span class="pre">i</span></code>) and the item (which we called <code class="docutils literal notranslate"><span class="pre">item</span></code>). We then using comprehension to make a dictionary. The key is the item, and the value is the counter. Try doing it for other columns!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;MultipleLines&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;MultipleLines&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">multiple_lines_map</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customerID</th>
+      <th>gender</th>
+      <th>SeniorCitizen</th>
+      <th>Partner</th>
+      <th>Dependents</th>
+      <th>tenure</th>
+      <th>PhoneService</th>
+      <th>MultipleLines</th>
+      <th>InternetService</th>
+      <th>OnlineSecurity</th>
+      <th>...</th>
+      <th>DeviceProtection</th>
+      <th>TechSupport</th>
+      <th>StreamingTV</th>
+      <th>StreamingMovies</th>
+      <th>Contract</th>
+      <th>PaperlessBilling</th>
+      <th>PaymentMethod</th>
+      <th>MonthlyCharges</th>
+      <th>TotalCharges</th>
+      <th>Churn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7590-VHVEG</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>1</td>
+      <td>No</td>
+      <td>0</td>
+      <td>DSL</td>
+      <td>No</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Electronic check</td>
+      <td>29.85</td>
+      <td>29.85</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5575-GNVDE</td>
+      <td>1</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>34</td>
+      <td>Yes</td>
+      <td>1</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>No</td>
+      <td>Mailed check</td>
+      <td>56.95</td>
+      <td>1889.50</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3668-QPYBK</td>
+      <td>1</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>1</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Mailed check</td>
+      <td>53.85</td>
+      <td>108.15</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7795-CFOCW</td>
+      <td>1</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>45</td>
+      <td>No</td>
+      <td>0</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>No</td>
+      <td>Bank transfer (automatic)</td>
+      <td>42.30</td>
+      <td>1840.75</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9237-HQITU</td>
+      <td>0</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>1</td>
+      <td>Fiber optic</td>
+      <td>No</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Electronic check</td>
+      <td>70.70</td>
+      <td>151.65</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div></div></div>
+</div>
+<p>While this works great, it has some problems. One problem is that if you have to keep track of what a <code class="docutils literal notranslate"><span class="pre">gender</span></code> of 0 means, what a <code class="docutils literal notranslate"><span class="pre">MultipleLines</span></code> of 2 means, and so forth. Also, if you wanted to go backwards (i.e. turn <code class="docutils literal notranslate"><span class="pre">MultipleLines</span> <span class="pre">=</span> <span class="pre">0</span></code> into <code class="docutils literal notranslate"><span class="pre">'No</span> <span class="pre">phone</span> <span class="pre">service'</span></code>), you would need to make a reverse map that turns the numbers back into text. This is totally do-able, but a bit annoying.</p>
+<p>Luckily, sklearn has a helper function (surprise!) to help with this. It is called a <code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code>. A label encoder just does what we did, but it handles all of these steps for us. In order to use a <code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code>, you must <code class="docutils literal notranslate"><span class="pre">.fit()</span></code> it on the data you want to encode (so likely <code class="docutils literal notranslate"><span class="pre">df['my_column']</span></code>). It can then <code class="docutils literal notranslate"><span class="pre">.transform()</span></code> a column to turn text into numbers. It can also <code class="docutils literal notranslate"><span class="pre">.inverse_transform()</span></code> to turn numbers back into text. Let’s try it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">contract_le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">contract_le</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Contract&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Contract&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">contract_le</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Contract&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customerID</th>
+      <th>gender</th>
+      <th>SeniorCitizen</th>
+      <th>Partner</th>
+      <th>Dependents</th>
+      <th>tenure</th>
+      <th>PhoneService</th>
+      <th>MultipleLines</th>
+      <th>InternetService</th>
+      <th>OnlineSecurity</th>
+      <th>...</th>
+      <th>DeviceProtection</th>
+      <th>TechSupport</th>
+      <th>StreamingTV</th>
+      <th>StreamingMovies</th>
+      <th>Contract</th>
+      <th>PaperlessBilling</th>
+      <th>PaymentMethod</th>
+      <th>MonthlyCharges</th>
+      <th>TotalCharges</th>
+      <th>Churn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7590-VHVEG</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>1</td>
+      <td>No</td>
+      <td>0</td>
+      <td>DSL</td>
+      <td>No</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Electronic check</td>
+      <td>29.85</td>
+      <td>29.85</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5575-GNVDE</td>
+      <td>1</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>34</td>
+      <td>Yes</td>
+      <td>1</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>1</td>
+      <td>No</td>
+      <td>Mailed check</td>
+      <td>56.95</td>
+      <td>1889.50</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3668-QPYBK</td>
+      <td>1</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>1</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Mailed check</td>
+      <td>53.85</td>
+      <td>108.15</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7795-CFOCW</td>
+      <td>1</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>45</td>
+      <td>No</td>
+      <td>0</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>1</td>
+      <td>No</td>
+      <td>Bank transfer (automatic)</td>
+      <td>42.30</td>
+      <td>1840.75</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9237-HQITU</td>
+      <td>0</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>1</td>
+      <td>Fiber optic</td>
+      <td>No</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Electronic check</td>
+      <td>70.70</td>
+      <td>151.65</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div></div></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Contract</span></code> column has been converted into text. What if we want to go backwards?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Contract&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">contract_le</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Contract&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customerID</th>
+      <th>gender</th>
+      <th>SeniorCitizen</th>
+      <th>Partner</th>
+      <th>Dependents</th>
+      <th>tenure</th>
+      <th>PhoneService</th>
+      <th>MultipleLines</th>
+      <th>InternetService</th>
+      <th>OnlineSecurity</th>
+      <th>...</th>
+      <th>DeviceProtection</th>
+      <th>TechSupport</th>
+      <th>StreamingTV</th>
+      <th>StreamingMovies</th>
+      <th>Contract</th>
+      <th>PaperlessBilling</th>
+      <th>PaymentMethod</th>
+      <th>MonthlyCharges</th>
+      <th>TotalCharges</th>
+      <th>Churn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7590-VHVEG</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>1</td>
+      <td>No</td>
+      <td>0</td>
+      <td>DSL</td>
+      <td>No</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Electronic check</td>
+      <td>29.85</td>
+      <td>29.85</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5575-GNVDE</td>
+      <td>1</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>34</td>
+      <td>Yes</td>
+      <td>1</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>No</td>
+      <td>Mailed check</td>
+      <td>56.95</td>
+      <td>1889.50</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3668-QPYBK</td>
+      <td>1</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>1</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Mailed check</td>
+      <td>53.85</td>
+      <td>108.15</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7795-CFOCW</td>
+      <td>1</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>45</td>
+      <td>No</td>
+      <td>0</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>No</td>
+      <td>Bank transfer (automatic)</td>
+      <td>42.30</td>
+      <td>1840.75</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9237-HQITU</td>
+      <td>0</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>1</td>
+      <td>Fiber optic</td>
+      <td>No</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Electronic check</td>
+      <td>70.70</td>
+      <td>151.65</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div></div></div>
+</div>
+<p>And we’re back!</p>
+<p>Let’s write a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to go through the columns we want to encode. We’ll save each of the encoders into a dictionary so that we can access it later if we need it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cat_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Partner&#39;</span><span class="p">,</span> <span class="s1">&#39;Dependents&#39;</span><span class="p">,</span> <span class="s1">&#39;PhoneService&#39;</span><span class="p">,</span> <span class="s1">&#39;InternetService&#39;</span><span class="p">,</span> <span class="s1">&#39;Contract&#39;</span><span class="p">,</span> <span class="s1">&#39;PaymentMethod&#39;</span><span class="p">,</span> <span class="s1">&#39;Churn&#39;</span><span class="p">]</span>
+<span class="n">label_encoder</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Go through each categorical column</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cat_cols</span><span class="p">:</span>
+    <span class="c1"># Create a new label encoder for this column</span>
+    <span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+    
+    <span class="c1"># Fit the label encoder on the column data</span>
+    <span class="n">le</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+    
+    <span class="c1"># Transform the column to numeric</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+    
+    <span class="c1"># Save the label encoder to the label_encoder dictionary, indexed by the column name</span>
+    <span class="n">label_encoder</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customerID</th>
+      <th>gender</th>
+      <th>SeniorCitizen</th>
+      <th>Partner</th>
+      <th>Dependents</th>
+      <th>tenure</th>
+      <th>PhoneService</th>
+      <th>MultipleLines</th>
+      <th>InternetService</th>
+      <th>OnlineSecurity</th>
+      <th>...</th>
+      <th>DeviceProtection</th>
+      <th>TechSupport</th>
+      <th>StreamingTV</th>
+      <th>StreamingMovies</th>
+      <th>Contract</th>
+      <th>PaperlessBilling</th>
+      <th>PaymentMethod</th>
+      <th>MonthlyCharges</th>
+      <th>TotalCharges</th>
+      <th>Churn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7590-VHVEG</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>No</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>2</td>
+      <td>29.85</td>
+      <td>29.85</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5575-GNVDE</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>34</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>1</td>
+      <td>No</td>
+      <td>3</td>
+      <td>56.95</td>
+      <td>1889.50</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3668-QPYBK</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>3</td>
+      <td>53.85</td>
+      <td>108.15</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7795-CFOCW</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>45</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>1</td>
+      <td>No</td>
+      <td>0</td>
+      <td>42.30</td>
+      <td>1840.75</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9237-HQITU</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>No</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>2</td>
+      <td>70.70</td>
+      <td>151.65</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div></div></div>
+</div>
+<p>To make things easier, let’s just grab a few columns to work with.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;SeniorCitizen&#39;</span><span class="p">,</span> <span class="s1">&#39;tenure&#39;</span><span class="p">,</span> <span class="s1">&#39;MultipleLines&#39;</span><span class="p">,</span> <span class="s1">&#39;MonthlyCharges&#39;</span><span class="p">,</span> <span class="s1">&#39;TotalCharges&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">cat_cols</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gender</th>
+      <th>SeniorCitizen</th>
+      <th>tenure</th>
+      <th>MultipleLines</th>
+      <th>MonthlyCharges</th>
+      <th>TotalCharges</th>
+      <th>Partner</th>
+      <th>Dependents</th>
+      <th>PhoneService</th>
+      <th>InternetService</th>
+      <th>Contract</th>
+      <th>PaymentMethod</th>
+      <th>Churn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>29.85</td>
+      <td>29.85</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0</td>
+      <td>34</td>
+      <td>1</td>
+      <td>56.95</td>
+      <td>1889.50</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>53.85</td>
+      <td>108.15</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>0</td>
+      <td>45</td>
+      <td>0</td>
+      <td>42.30</td>
+      <td>1840.75</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>70.70</td>
+      <td>151.65</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gender               int64
+SeniorCitizen        int64
+tenure               int64
+MultipleLines        int64
+MonthlyCharges     float64
+TotalCharges       float64
+Partner              int64
+Dependents           int64
+PhoneService         int64
+InternetService      int64
+Contract             int64
+PaymentMethod        int64
+Churn                int64
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="can-we-use-logistic-regression-now-a-id-logistic-reg-a">
+<h2>Can we use logistic regression now? <a id="logistic_reg"></a><a class="headerlink" href="#can-we-use-logistic-regression-now-a-id-logistic-reg-a" title="Permalink to this headline">¶</a></h2>
+<p>We said at the top of this notebook that logistic regression only works with continuous data, not categorical. But you may be wondering, why not just use logistic regression now that all columns are numbers? They may not be <em>continuous</em>, but they’re still numbers. In fact, you <em>can</em> use logistic regression (in that the commands will work). Let’s try before moving on.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the logistic regression object</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+
+<span class="c1"># Train-test split the data</span>
+<span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">sub_df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Split up the columns into the input and output</span>
+<span class="n">X_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;SeniorCitizen&#39;</span><span class="p">,</span> <span class="s1">&#39;tenure&#39;</span><span class="p">,</span> <span class="s1">&#39;MultipleLines&#39;</span><span class="p">,</span> <span class="s1">&#39;MonthlyCharges&#39;</span><span class="p">,</span> <span class="s1">&#39;TotalCharges&#39;</span><span class="p">,</span> <span class="s1">&#39;Partner&#39;</span><span class="p">,</span> <span class="s1">&#39;Dependents&#39;</span><span class="p">,</span> <span class="s1">&#39;PhoneService&#39;</span><span class="p">,</span> <span class="s1">&#39;InternetService&#39;</span><span class="p">,</span> <span class="s1">&#39;Contract&#39;</span><span class="p">,</span> <span class="s1">&#39;PaymentMethod&#39;</span><span class="p">]</span>
+<span class="n">y_col</span> <span class="o">=</span> <span class="s1">&#39;Churn&#39;</span>
+
+<span class="c1"># Create the training set</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">X_cols</span><span class="p">]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">]</span>
+
+<span class="c1"># Create the testing set</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="n">X_cols</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">]</span>
+
+<span class="c1"># Fit the model on the training data</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Make predictions on the testing data</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Classification report to see how we did</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+           0       0.84      0.88      0.86      1559
+           1       0.62      0.54      0.57       551
+
+    accuracy                           0.79      2110
+   macro avg       0.73      0.71      0.72      2110
+weighted avg       0.78      0.79      0.79      2110
+</pre></div>
+</div>
+</div>
+</div>
+<p>This seems reasonable. We are getting decent precision, recall and f1-score. We will keep these results as a baseline. Once we learn about more models in this notebook, we will see how the results compare.</p>
+<p>Regardless, it’s worth pointing out that <em>this is a bad model, even if the results look good.</em> The reason is that logistic regression is really just linear regression in disguise. Recall from last week that logistic regression fits a line <span class="math notranslate nohighlight">\(f(x)\)</span> so that <span class="math notranslate nohighlight">\(\sigma\Bigl(f(x)\Bigr)\)</span> (<span class="math notranslate nohighlight">\(\sigma\)</span> is the sigmoid function) best predicts the probabilities of each class. The line is fit based on the data. However, if we make a scatterplot of, say, <code class="docutils literal notranslate"><span class="pre">gender</span></code> versus <code class="docutils literal notranslate"><span class="pre">Churn</span></code> we get the following:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Churn&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x120c9aa60&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_07_36_1.png" src="_images/ch_07_36_1.png" />
+</div>
+</div>
+<p>How could we possibly fit a line to this? Even though the axes makes it look like the data is continuous, each one only takes values 0 or 1. So, while sklearn <em>will</em> gladly fit a line to this (shown below), it is garbage. This illustrates why you need to <em>understand</em> what a model is doing, as opposed to simply memorizing commands.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Line of best fit for gender vs churn</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sub_df</span><span class="p">[[</span><span class="s1">&#39;gender&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">sub_df</span><span class="p">[</span><span class="s1">&#39;Churn&#39;</span><span class="p">]</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Plot the scatterplot and the line</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual values&#39;</span><span class="p">)</span>
+
+<span class="n">X_for_line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_for_line</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_for_line</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Linear regression&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gender vs Churn&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_07_38_0.png" src="_images/ch_07_38_0.png" />
+</div>
+</div>
+<p>What an amazing line of best fit! So in summary, don’t do this. Anyone who knows what they are doing would look at this code and say “this person has no idea how logistic regression works.”</p>
+</div>
+<div class="section" id="supervised-vs-unsupervised-models-a-id-supervised-unsupervised-a">
+<h2>Supervised vs unsupervised models <a id="supervised_unsupervised"></a><a class="headerlink" href="#supervised-vs-unsupervised-models-a-id-supervised-unsupervised-a" title="Permalink to this headline">¶</a></h2>
+<p>Up until this point all models we have learned are what are called “supervised models.” By a <strong>supervised model</strong> we mean a model trained by telling it what the ground truth is (the correct labels), and having the model learn to predict these values. You may think that this is the only way we possibly could train a model. After all, how could a model possibly learn to make correct predictions if it doesn’t know what the correct answer is! However, consider the following situation: You move to a new country where you don’t speak the language. You want to buy a train ticket to go visit another city, however you don’t know how much the ticket will cost. Moreover, since you don’t speak the language you can’t ask anyone how much it costs. However, as you’re waiting in line you watch the other people buying tickets. You notice the people in the same line as you all seem to pay around \<span class="math notranslate nohighlight">\(20. Therefore, you decide that you'll also just hand the cashier \\\)</span>20, and hopefully that will be the correct amount of money. You don’t <em>know the answer</em> for how much the ticket will cost. However, by observing <em>people around you</em> you are able to <em>make a prediction</em>. This is exactly how many unsupervised models work. By an <strong>unsupervised model</strong> we mean a model that learns its form by comparing its predictions to the ground truth.</p>
+</div>
+<div class="section" id="nearest-neighbors-a-id-nearest-neighbors-a">
+<h2>Nearest neighbors <a id="nearest_neighbors"></a><a class="headerlink" href="#nearest-neighbors-a-id-nearest-neighbors-a" title="Permalink to this headline">¶</a></h2>
+<p>Nearest neighbors is one of the most common unsupervised models. It works by looking at the points closest to it (hence the name “nearest neighbors”), and predicts the same label as those points do. So while nearest neighbors uses the ground truth so that it can see what its neighbors are predicting, it <em>does not</em> adjust its predictions based on whether or not it got the correct answer. Let’s jump right into an example.</p>
+<p>At this point you should be starting to get more comfortable with how sklearn models work. Therefore, we will skip the details of the code below, but ask you to fill in the details yourself using the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html#sklearn.neighbors.KNeighborsClassifier">sklearn documentation</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nn_clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+
+<span class="n">nn_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KNeighborsClassifier(algorithm=&#39;auto&#39;, leaf_size=30, metric=&#39;minkowski&#39;,
+                     metric_params=None, n_jobs=None, n_neighbors=5, p=2,
+                     weights=&#39;uniform&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nn_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 0, ..., 0, 1, 0])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nn_clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.8, 0.2],
+       [0. , 1. ],
+       [0.8, 0.2],
+       ...,
+       [1. , 0. ],
+       [0.4, 0.6],
+       [0.6, 0.4]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, the nearest neighbors model is predicting which class each sample should belong to, along with the probability (if you use <code class="docutils literal notranslate"><span class="pre">.predict_proba()</span></code>). This should look just like the results of logistic regression:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Logistic regression predictions</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 0, ..., 0, 0, 1])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Logistic regression predicted probabilities</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.62635386, 0.37364614],
+       [0.32739281, 0.67260719],
+       [0.55533517, 0.44466483],
+       ...,
+       [0.98057425, 0.01942575],
+       [0.52777754, 0.47222246],
+       [0.45268345, 0.54731655]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before we do any further, let’s look at the classification report to see how this new model did.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred_nn</span> <span class="o">=</span> <span class="n">nn_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nn</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+           0       0.83      0.88      0.86      1559
+           1       0.59      0.50      0.54       551
+
+    accuracy                           0.78      2110
+   macro avg       0.71      0.69      0.70      2110
+weighted avg       0.77      0.78      0.77      2110
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you look above at the classification report for logistic regression you will see that this nearest neighbors model actually achieves similar results. The f1-scores are very similar, along with precision and recall. However, as we discussed above, logistic regression would be a poor choice of a model, even if the results looked better. Remember that what this nearest neighbors model is doing is looking at <em>similar ISP customers and making predictions based on those</em>. Therefore, we are using a model that learns from already existing customers. This is totally logical.</p>
+<p>While the initial results from our nearest neighbors model is decent, there is actually more we can do to improve it. For one thing, nearest neighbors makes its predictions by looking at the number of neighbors. How many neighbors is it looking at? If you look at the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html#sklearn.neighbors.KNeighborsClassifier">sklearn documentation</a> you will see that by default it uses five neighbors. Let’s try some different values and see how the results compare.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build models with different number of neighbors used for prediction</span>
+<span class="k">for</span> <span class="n">n_neighbors</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">]:</span>
+    <span class="c1"># Build the classifier</span>
+    <span class="n">nn_clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">)</span>
+    
+    <span class="c1"># Train it</span>
+    <span class="n">nn_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    
+    <span class="c1"># Make predictions on the test set</span>
+    <span class="n">y_pred_nn</span> <span class="o">=</span> <span class="n">nn_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    
+    <span class="c1"># Print the classification report</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n_neighbors</span><span class="si">}</span><span class="s1"> neighbors&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nn</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 neighbors
+              precision    recall  f1-score   support
+
+           0       0.82      0.80      0.81      1559
+           1       0.46      0.49      0.48       551
+
+    accuracy                           0.72      2110
+   macro avg       0.64      0.64      0.64      2110
+weighted avg       0.72      0.72      0.72      2110
+
+========================================
+5 neighbors
+              precision    recall  f1-score   support
+
+           0       0.83      0.88      0.86      1559
+           1       0.59      0.50      0.54       551
+
+    accuracy                           0.78      2110
+   macro avg       0.71      0.69      0.70      2110
+weighted avg       0.77      0.78      0.77      2110
+
+========================================
+10 neighbors
+              precision    recall  f1-score   support
+
+           0       0.81      0.93      0.86      1559
+           1       0.65      0.39      0.49       551
+
+    accuracy                           0.79      2110
+   macro avg       0.73      0.66      0.68      2110
+weighted avg       0.77      0.79      0.77      2110
+
+========================================
+15 neighbors
+              precision    recall  f1-score   support
+
+           0       0.82      0.92      0.86      1559
+           1       0.64      0.43      0.52       551
+
+    accuracy                           0.79      2110
+   macro avg       0.73      0.67      0.69      2110
+weighted avg       0.77      0.79      0.77      2110
+
+========================================
+</pre></div>
+</div>
+</div>
+</div>
+<p>So it seems like the f1-score is best for both classes around 5 neighbors.</p>
+<p>One question you should be asking yourself is, “how is the model measuring ‘nearest’?” In particular, if you think back to the original data, we had values like “Yes”, “No”, “Multiple phone lines”, etc. So which is closer, “Yes” and “No”, or “Yes” and “Multiple phone lines”? It doesn’t really make sense to say one is closer than the other, they’re just words. By default, nearest neighbors is using the usual Euclidean distance function. So it says that 0 is closer 1 than it is to 2. This is bad for our data, since 0, 1 and 2 are just numbers randomly assigned to each value. If we changed what values we assigned to them we would get different results. Luckily for us, sklearn allows you to pick different <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.DistanceMetric.html#sklearn.neighbors.DistanceMetric">distance functions</a>. We are in the situation of having integer values, so we should pick a function from the “Metrics intended for integer-valued vector spaces” list. Hamming distance is simply the number of neighbors with different values (so, for instance, number of neighbors who don’t have “multiple phone lines”, divided by the total number of neighbors). Therefore, a point is “close” if this distance is small, and thus if the neighbor has the same values. Let’s use that distance function by specifying <code class="docutils literal notranslate"><span class="pre">metric='hamming'</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build models with different number of neighbors used for prediction</span>
+<span class="k">for</span> <span class="n">n_neighbors</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">]:</span>
+    <span class="c1"># Build the classifier</span>
+    <span class="n">nn_clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;hamming&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Train it</span>
+    <span class="n">nn_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    
+    <span class="c1"># Make predictions on the test set</span>
+    <span class="n">y_pred_nn</span> <span class="o">=</span> <span class="n">nn_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    
+    <span class="c1"># Print the classification report</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n_neighbors</span><span class="si">}</span><span class="s1"> neighbors&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nn</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 neighbors
+              precision    recall  f1-score   support
+
+           0       0.83      0.76      0.80      1559
+           1       0.46      0.57      0.51       551
+
+    accuracy                           0.71      2110
+   macro avg       0.65      0.67      0.65      2110
+weighted avg       0.74      0.71      0.72      2110
+
+========================================
+5 neighbors
+              precision    recall  f1-score   support
+
+           0       0.85      0.77      0.81      1559
+           1       0.49      0.62      0.54       551
+
+    accuracy                           0.73      2110
+   macro avg       0.67      0.69      0.68      2110
+weighted avg       0.75      0.73      0.74      2110
+
+========================================
+10 neighbors
+              precision    recall  f1-score   support
+
+           0       0.84      0.81      0.83      1559
+           1       0.52      0.57      0.54       551
+
+    accuracy                           0.75      2110
+   macro avg       0.68      0.69      0.69      2110
+weighted avg       0.76      0.75      0.75      2110
+
+========================================
+15 neighbors
+              precision    recall  f1-score   support
+
+           0       0.86      0.77      0.81      1559
+           1       0.50      0.65      0.56       551
+
+    accuracy                           0.74      2110
+   macro avg       0.68      0.71      0.69      2110
+weighted avg       0.77      0.74      0.75      2110
+
+========================================
+</pre></div>
+</div>
+</div>
+</div>
+<p>While the f1-scores aren’t drastically different, we can see that the precision and recall values for each class are often closer together. Therefore, the results our model makes are more reliable, since we don’t have to say “if it predicts the customer <em>will</em> churn then I’m highly confident in the result, but if it predicts they <em>won’t</em> churn then it’s probably wrong.” Again, machine learning is not just about building models that return good metrics. It’s about building models for which you can <em>defend their predictions</em>. If an internet company is spending tens of millions of dollars based on your predictions, you need to be able to back up your model. Simply saying “it returned a high score” is not good enough.</p>
+</div>
+<div class="section" id="visualizing-predictions-using-pca-a-id-visualizing-preds-a">
+<h2>Visualizing predictions using PCA <a id="visualizing_preds"></a><a class="headerlink" href="#visualizing-predictions-using-pca-a-id-visualizing-preds-a" title="Permalink to this headline">¶</a></h2>
+<p>Besides just tables of numbers, it would be nice to <em>see</em> what our model is predicting. The problem is that we have twelve input columns and one output column, so we would have to “see” 13 dimensional space. This is why we have to rely so much on metrics to help us “see” how our model is doing. However, we do have a tool at our disposal to help us. <strong>Principal component analysis</strong> (or PCA for short) is a mathematical technique to take a high dimensional vector space, and transform it into a lower dimensional vector space, while preserving the distance between points as much as possible. It’s beyond the scope of this course to go into the details of PCA, but here are several resources: <a class="reference external" href="https://setosa.io/ev/principal-component-analysis/">1</a>, <a class="reference external" href="https://towardsdatascience.com/a-one-stop-shop-for-principal-component-analysis-5582fb7e0a9c">2</a>, <a class="reference external" href="https://builtin.com/data-science/step-step-explanation-principal-component-analysis">3</a>. The short version is that PCA does the best job it can (in a strict mathematical sense) to take data in high dimensions and represent it in lower dimensions in a way that is “as close as possible” to the original data. Sklearn makes PCA very easy. Simply specify how many dimensions you want to reduce it to (referred to as the number of “components”) and <code class="docutils literal notranslate"><span class="pre">.fit()</span></code> it to your data, just like you did for your models.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use one of the better models</span>
+<span class="n">nn_clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;hamming&#39;</span><span class="p">)</span>
+<span class="n">nn_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KNeighborsClassifier(algorithm=&#39;auto&#39;, leaf_size=30, metric=&#39;hamming&#39;,
+                     metric_params=None, n_jobs=None, n_neighbors=10, p=2,
+                     weights=&#39;uniform&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">X_cols</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PCA(copy=True, iterated_power=&#39;auto&#39;, n_components=2, random_state=None,
+    svd_solver=&#39;auto&#39;, tol=0.0, whiten=False)
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to see the data “transformed” into lower dimensions, use the <code class="docutils literal notranslate"><span class="pre">.transform()</span></code> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_train_pca</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-2149.18993938,    38.88171609],
+       [-2264.34862277,   -18.18256247],
+       [ 1283.41925878,     3.30003747],
+       ...,
+       [-2164.00336359,    11.5014036 ],
+       [-2208.37301471,    31.39090074],
+       [-1357.21923612,    -7.58733048]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Data shape: </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1"> (original) --&gt; </span><span class="si">{</span><span class="n">X_train_pca</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data shape: (4922, 12) (original) --&gt; (4922, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>So we can see that the data went from having 12 columns (dimensions) down to just 2. In order to plot this, we’ll split up the data into churning and non-churning customers. We’ll print all the non-churning customers as green, and the churning customers as red.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">split_churn</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">nonchurn_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Churn&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">churn_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Churn&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">X_nonchurn</span> <span class="o">=</span> <span class="n">nonchurn_df</span><span class="p">[</span><span class="n">X_cols</span><span class="p">]</span>
+    <span class="n">y_nonchurn</span> <span class="o">=</span> <span class="n">nonchurn_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">]</span>
+
+    <span class="n">X_churn</span> <span class="o">=</span> <span class="n">churn_df</span><span class="p">[</span><span class="n">X_cols</span><span class="p">]</span>
+    <span class="n">y_churn</span> <span class="o">=</span> <span class="n">churn_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">X_nonchurn</span><span class="p">,</span> <span class="n">y_nonchurn</span><span class="p">,</span> <span class="n">X_churn</span><span class="p">,</span> <span class="n">y_churn</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_nonchurn</span><span class="p">,</span> <span class="n">y_train_nonchurn</span><span class="p">,</span> <span class="n">X_train_churn</span><span class="p">,</span> <span class="n">y_train_churn</span> <span class="o">=</span> <span class="n">split_churn</span><span class="p">(</span><span class="n">train_df</span><span class="p">)</span>
+<span class="n">X_test_nonchurn</span><span class="p">,</span> <span class="n">y_test_nonchurn</span><span class="p">,</span> <span class="n">X_test_churn</span><span class="p">,</span> <span class="n">y_test_churn</span> <span class="o">=</span> <span class="n">split_churn</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>First let’s just PCA the X values for just the training data. We’ll peek at the data to see what it looks like, then plot it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_pca_nonchurn</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train_nonchurn</span><span class="p">)</span>
+<span class="n">X_train_pca_churn</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train_churn</span><span class="p">)</span>
+
+<span class="n">X_train_pca_nonchurn</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-2149.18993938,    38.88171609],
+       [ 1283.41925878,     3.30003747],
+       [-1593.80623066,   -34.09533561],
+       ...,
+       [  775.06532704,    -3.0332664 ],
+       [-2164.00336359,    11.5014036 ],
+       [-1357.21923612,    -7.58733048]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="c1"># Get all rows, but just the first/second column</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X_train_pca_nonchurn</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">X_train_pca_nonchurn</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Non-churning&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X_train_pca_churn</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">X_train_pca_churn</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Churning&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Churning vs non-churning customers&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_07_66_0.png" src="_images/ch_07_66_0.png" />
+</div>
+</div>
+<p>So you can see that the non-churning and churning customers each (somewhat) have their own “grouping”. This is good, because our nearest neighbors model will decide where a new (test) customer should fit (churn vs non-churn) based on its neighbors. It looks like this approach makes sense. Let’s now do the same for the test set. However, to get a better feel for how the model is doing, any points that were misclassified (so customers where our model said they would churn but in actuality they didn’t, or vice-versa) we will mark with an “x”. This is more advanced code and plotting, but I encourage you to try your best to understand it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grab the churning and non-churning customers</span>
+<span class="n">X_test_nonchurn</span><span class="p">,</span> <span class="n">y_test_nonchurn</span><span class="p">,</span> <span class="n">X_test_churn</span><span class="p">,</span> <span class="n">y_test_churn</span> <span class="o">=</span> <span class="n">split_churn</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span>
+
+<span class="c1"># Use our nearest neighbors model to predict whether or not each customer in the test set will churn</span>
+<span class="n">y_pred_nonchurn</span> <span class="o">=</span> <span class="n">nn_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_nonchurn</span><span class="p">)</span>
+<span class="n">y_pred_churn</span> <span class="o">=</span> <span class="n">nn_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_churn</span><span class="p">)</span>
+
+<span class="c1"># Find which predictions were correct</span>
+<span class="n">correct_nonchurn_preds</span> <span class="o">=</span> <span class="n">y_pred_nonchurn</span> <span class="o">==</span> <span class="n">y_test_nonchurn</span>
+<span class="n">correct_churn_preds</span> <span class="o">=</span> <span class="n">y_pred_churn</span> <span class="o">==</span> <span class="n">y_test_churn</span>
+
+<span class="c1"># Grab the nonchurn customers from X_test</span>
+<span class="n">X_test_nonchurn_correct</span> <span class="o">=</span> <span class="n">X_test_nonchurn</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">correct_nonchurn_preds</span><span class="p">]</span>
+<span class="c1"># Also grab the incorrect predictions. Here &quot;~&quot; means &quot;not&quot;, and it inverts True and False. So ~True == False</span>
+<span class="n">X_test_nonchurn_wrong</span> <span class="o">=</span> <span class="n">X_test_nonchurn</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">correct_nonchurn_preds</span><span class="p">]</span>
+
+<span class="c1"># Grab the churn customers from X_test</span>
+<span class="n">X_test_churn_correct</span> <span class="o">=</span> <span class="n">X_test_churn</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">correct_churn_preds</span><span class="p">]</span>
+<span class="n">X_test_churn_wrong</span> <span class="o">=</span> <span class="n">X_test_churn</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">correct_churn_preds</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Next we&#39;ll PCA all four groups</span>
+<span class="n">X_test_nonchurn_correct_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_nonchurn_correct</span><span class="p">)</span>
+<span class="n">X_test_nonchurn_wrong_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_nonchurn_wrong</span><span class="p">)</span>
+
+<span class="n">X_test_churn_correct_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_churn_correct</span><span class="p">)</span>
+<span class="n">X_test_churn_wrong_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_churn_wrong</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Finally, we&#39;ll plot all four groups, making those with an incorrect prediction an &quot;x&quot;</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X_test_nonchurn_correct_pca</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">X_test_nonchurn_correct_pca</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Non-churn&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X_test_nonchurn_wrong_pca</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">X_test_nonchurn_wrong_pca</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Non-churn&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X_test_churn_correct_pca</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">X_test_churn_correct_pca</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Churn&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X_test_churn_wrong_pca</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">X_test_churn_wrong_pca</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Churn&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Churning vs non-churning customers&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_07_70_0.png" src="_images/ch_07_70_0.png" />
+</div>
+</div>
+<p>Note that the color is the actual label. So “x“‘s are in the color that they <em>should</em> have been predicted, but were not. Thus we can see some interesting customers. For example, in the top-left is a customer who did not churn (green “x”). Our model predicted she would churn since she is “near” many other red points, however she did not. Similarly, those customers on the far-right who churned (red “x”) were predicted to churn, yet they didn’t. If you worked at this ISP it would be interesting to dive into these outliers and see if there are any obvious patterns about what makes them different. Perhaps they had a poor experience, or were given a special discount? At the same time, remember that the scatter plot above is trying to display 12 dimensional data in 2d, so any conclusions we make from this need to be taken with a grain of salt.</p>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>We (somewhat randomly) picked some columns for <code class="docutils literal notranslate"><span class="pre">X_cols</span></code> to train our model on. Are these the best columns to use? Try looking through the columns in the original data and seeing if you can come up with some better columns.</p></li>
+<li><p>Try nearest neighbors with different number of neighbors to see if you get better results.</p></li>
+<li><p>Try some different distance metrics for nearest neighbors.</p></li>
+<li><p>PCA down to three dimensions, then plot these in a three dimensional graph (Google it!)</p></li>
+<li><p>Try all of this with new data!</p></li>
+</ol>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="ch_06.html" title="previous page">Classification</a>
+    <a class='right-next' id="next-link" href="ch_08.html" title="next page">Decision Trees</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

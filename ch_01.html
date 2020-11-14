@@ -1,0 +1,3429 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>First steps with Pandas and Jupyter notebooks &#8212; Introduction to Data Science</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Plotting and grouping data" href="ch_02.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="#">
+   First steps with Pandas and Jupyter notebooks
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_02.html">
+   Plotting and grouping data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_03.html">
+   Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_04.html">
+   Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_05.html">
+   Training models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_06.html">
+   Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_07.html">
+   Nearest neighbors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_08.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_09.html">
+   Improving your model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_10.html">
+   Ensemble tree models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_11.html">
+   Working with large datasets
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/ch_01.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/ch_01.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   First steps with Pandas and Jupyter notebooks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jupyter-notebooks">
+     Jupyter notebooks
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jupyter-notebook-cheat-sheet-a-id-jupyter-a">
+     Jupyter notebook cheat-sheet
+     <a id="jupyter">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#markdown-cheat-sheet">
+     Markdown cheat-sheet
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#double-click-on-this-cell-to-see-a-breakdown-of-how-i-accomplished-all-these-things">
+       Double-click on this cell to see a breakdown of how I accomplished all these things.
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#this-is-a-big-header">
+   This is a big header
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#this-is-a-slightly-smaller-header">
+     This is a slightly smaller header
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#you-can-pretty-much-go-as-small-as-you-want">
+       You can pretty much go as small as you want
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jupyter-notebook-best-practices">
+     Jupyter notebook best practices
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-a-id-python-a">
+   Python
+   <a id="python">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-types-a-id-data-types-a">
+     Data types
+     <a id="data_types">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-structures-a-id-data-structures-a">
+     Data structures
+     <a id="data_structures">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#control-structures-a-id-control-structures-a">
+     Control structures
+     <a id="control_structures">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functions-a-id-functions-a">
+     Functions
+     <a id="functions">
+     </a>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#defining-functions-a-id-defining-functions-a">
+       Defining functions
+       <a id="defining_functions">
+       </a>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#calling-functions-a-id-calling-functions-a">
+       Calling functions
+       <a id="calling_functions">
+       </a>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#default-values-a-id-default-values-a">
+       Default values
+       <a id="default_values">
+       </a>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#f-strings-a-id-f-strings-a">
+       f-strings
+       <a id="f_strings">
+       </a>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#range-a-id-range-a">
+       Range
+       <a id="range">
+       </a>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#list-comprehension-a-id-list-comprehension-a">
+       List comprehension
+       <a id="list_comprehension">
+       </a>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-packages-a-id-using-packages-a">
+     Using packages
+     <a id="using_packages">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-homework">
+     Python: Homework
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pandas-a-id-pandas-a">
+   Pandas
+   <a id="pandas">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#imports">
+     Imports
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loading-the-data-a-id-loading-data-a">
+     Loading the data
+     <a id="loading_data">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#looking-at-the-data-a-id-looking-at-data-a">
+     Looking at the data
+     <a id="looking_at_data">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#describing-the-data-numerically-a-id-data-numerically-a">
+     Describing the data numerically
+     <a id="data_numerically">
+     </a>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#value-counts">
+       Value counts
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#basic-statistics">
+       Basic statistics
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analyzing-subsets-of-data-a-id-subset-data-a">
+     Analyzing subsets of data
+     <a id="subset_data">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-missing-data-and-dealing-with-it-a-id-missing-data-a">
+     Finding missing data (and dealing with it)
+     <a id="missing_data">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#working-with-series-a-id-series-a">
+     Working with Series
+     <a id="series">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercises">
+     Exercises
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#resources">
+     Resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="first-steps-with-pandas-and-jupyter-notebooks">
+<h1>First steps with Pandas and Jupyter notebooks<a class="headerlink" href="#first-steps-with-pandas-and-jupyter-notebooks" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="jupyter-notebooks">
+<h2>Jupyter notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this headline">¶</a></h2>
+<p>What you’re looking at right now is what’s called a Jupyter notebook. When you took your programming course, you probably wrote your code in a text editor and then ran it from the command line. Modern data scientists typically start their work in Jupyter notebooks. A notebook is a collection of code cells (like the one at the top of this notebook) which run Python code, and Markdown cells (like this one!) which have text.</p>
+<p>If you’ve ever used Mathematica or similar math systems, this is a very similar setup. Rather than writing your code in the text editor, leaving to run it in a console, and then coming back to change it, everything happens in one place.</p>
+</div>
+<div class="section" id="jupyter-notebook-cheat-sheet-a-id-jupyter-a">
+<h2>Jupyter notebook cheat-sheet <a id="jupyter"></a><a class="headerlink" href="#jupyter-notebook-cheat-sheet-a-id-jupyter-a" title="Permalink to this headline">¶</a></h2>
+<p>To edit a cell, click on it (if it’s a <code class="docutils literal notranslate"><span class="pre">Code</span></code> cell), or double-click on it (if it’s a <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> cell). You can change a cell between <code class="docutils literal notranslate"><span class="pre">Code</span></code> and <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> by clicking on the cell, then using the dropdown at the top of this worksheet. You can also click to the left of the cell and hitting <code class="docutils literal notranslate"><span class="pre">C</span></code> on your keyboard for <code class="docutils literal notranslate"><span class="pre">Code</span></code>, or <code class="docutils literal notranslate"><span class="pre">M</span></code> for <code class="docutils literal notranslate"><span class="pre">Markdown</span></code>. To run a cell, select the cell, then hit <code class="docutils literal notranslate"><span class="pre">Shift-Enter</span></code>. The output will appear below it. Not all commands will generate an output, so your output can be blank.</p>
+<p>Cells are just containers for tiny Python programs. So you can do something like <code class="docutils literal notranslate"><span class="pre">3+2</span></code> and run it with <code class="docutils literal notranslate"><span class="pre">Shift-Enter</span></code> and get an output of <code class="docutils literal notranslate"><span class="pre">5</span></code>. You can also write <code class="docutils literal notranslate"><span class="pre">if</span></code> statements, define new functions, classes, etc. Anything that works in Python works here too.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You’ll need to either download this notebook or run it in Binder in order to execute cells!</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a code cell. Click in it to edit it.</span>
+<span class="c1"># Try running some small Python code here (like adding two numbers).</span>
+<span class="c1"># Then, click Shift-Enter to run it. You should see the output below this cell.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="markdown-cheat-sheet">
+<h2>Markdown cheat-sheet<a class="headerlink" href="#markdown-cheat-sheet" title="Permalink to this headline">¶</a></h2>
+<p>Markdown is a way to type pretty text using bold, italics, links, codeblocks and more, without needing to use a word processor like Microsoft Word. There is a little bit of memorization, but it’s not too bad. Below are examples of the most common things you’ll use. For a more detailed list, checkout <a class="reference external" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">this cheatsheet</a>.</p>
+<div class="section" id="double-click-on-this-cell-to-see-a-breakdown-of-how-i-accomplished-all-these-things">
+<h3>Double-click on this cell to see a breakdown of how I accomplished all these things.<a class="headerlink" href="#double-click-on-this-cell-to-see-a-breakdown-of-how-i-accomplished-all-these-things" title="Permalink to this headline">¶</a></h3>
+<p><em>This is italic</em></p>
+<p><strong>This is bold</strong></p>
+</div>
+</div>
+</div>
+<div class="section" id="this-is-a-big-header">
+<h1>This is a big header<a class="headerlink" href="#this-is-a-big-header" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="this-is-a-slightly-smaller-header">
+<h2>This is a slightly smaller header<a class="headerlink" href="#this-is-a-slightly-smaller-header" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="you-can-pretty-much-go-as-small-as-you-want">
+<h3>You can pretty much go as small as you want<a class="headerlink" href="#you-can-pretty-much-go-as-small-as-you-want" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>You can also make a list by using dashes</p></li>
+<li><p>You can make as many as you want</p></li>
+</ul>
+<ol class="simple">
+<li><p>If you want numbers instead</p></li>
+<li><p>Just use numbers</p></li>
+</ol>
+<p>You can also makes links as follows: <span class="xref myst">The title for your link</span></p>
+<p>If you want to type something that uses Python, and you want to remember that this is a Python <em>command</em> (as opposed to just some text), it’s good practice to surround it with backticks. Backticks are the thing in the top-left of your keyboard, on the same key as the tilde ~.</p>
+<p>As an example, suppose you were writing something up showing someone how to use the print command in Python. You could write the following:</p>
+<p>“In order to add something in Python, just type the numbers. For example, you could teach someone how to print in Python by telling them to type <code class="docutils literal notranslate"><span class="pre">print(3+2)</span></code>.”</p>
+<p>See how surrounding it with backticks made it look different? It makes it clear that this is a Python command, and not just some random text.</p>
+</div>
+</div>
+<div class="section" id="jupyter-notebook-best-practices">
+<h2>Jupyter notebook best practices<a class="headerlink" href="#jupyter-notebook-best-practices" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Always title your notebook.</p></li>
+<li><p>Break your code into sections. Start by doing your imports, then your next section might be loading the data, and so forth. Title each section using Markdown, and give each section a description of what you’re doing there.</p></li>
+<li><p>Keep your code clean. It’s okay to create new cells to test things, but once your testing is done and those cells are no longer needed, delete them. Go back to old working cells and clean them up. Write the code nicer, put a Markdown cell describing what’s going on, etc.</p></li>
+<li><p>Leave yourself notes about what you’ve done. <em>Right now</em> you remember what you’ve done, but you won’t remember it a month from now.</p></li>
+<li><p>If you find yourself copying and pasting some code over and over, make it into a function and call that function instead.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="python-a-id-python-a">
+<h1>Python <a id="python"></a><a class="headerlink" href="#python-a-id-python-a" title="Permalink to this headline">¶</a></h1>
+<p>The following is a brief review of Python. Use it to refresh your memory and to help you with the homework.</p>
+<div class="section" id="data-types-a-id-data-types-a">
+<h2>Data types <a id="data_types"></a><a class="headerlink" href="#data-types-a-id-data-types-a" title="Permalink to this headline">¶</a></h2>
+<p>In Python, the most common ways to represent data (called <strong>data types</strong>) are as one of the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span></code>: An integer (whole number, positive or negative)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float</span></code>: A decimal</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">str</span></code>: A string (characters, such as “abc”)</p></li>
+</ul>
+<p>In order to see what data type something is, you can just type <code class="docutils literal notranslate"><span class="pre">type(my_thing)</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="mf">123.45</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>float
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-structures-a-id-data-structures-a">
+<h2>Data structures <a id="data_structures"></a><a class="headerlink" href="#data-structures-a-id-data-structures-a" title="Permalink to this headline">¶</a></h2>
+<p>When you want to store data, there are several ways to do it. The simplest way is just to store it in a variable. You can do this by typing <code class="docutils literal notranslate"><span class="pre">my_variable</span> <span class="pre">=</span> <span class="pre">some_value</span></code>. In a Jupyter Notebook (the thing you’re working in right now), you don’t necessarily need to type <code class="docutils literal notranslate"><span class="pre">print</span></code> if you want to look at a variable. You can just type the variable name and run the cell.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since I put the <code class="docutils literal notranslate"><span class="pre">x</span></code> as the last thing in the cell, Jupyter printed it out for me to see what it is.</p>
+<p>Often you will need to store several variables/pieces of data in an organized way. The most common ways to do this are the following <strong>data structures</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">list</span></code>: A list of values. Lists are created using brackets (<code class="docutils literal notranslate"><span class="pre">[</span></code> and <code class="docutils literal notranslate"><span class="pre">]</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set</span></code>: Similar to a list, but there is no order, and each object shows up at most once. Created using curly braces (<code class="docutils literal notranslate"><span class="pre">{</span></code> and <code class="docutils literal notranslate"><span class="pre">}</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dict</span></code>: A dictionary. This stores things with a <code class="docutils literal notranslate"><span class="pre">key</span></code> and a <code class="docutils literal notranslate"><span class="pre">value</span></code>. Dictionaries are created using curly braces.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]</span>
+<span class="c1"># The set and list look the same at first, but once you print them you will see the difference.</span>
+<span class="n">my_set</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">}</span> 
+<span class="n">my_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Savala&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">36</span><span class="p">,</span> <span class="s1">&#39;favorite_number&#39;</span><span class="p">:</span> <span class="mf">3.14</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 1, 2, 3, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;c&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_set</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1, 2, 3, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_dict</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;last_name&#39;: &#39;Savala&#39;, &#39;age&#39;: 36, &#39;favorite_number&#39;: 3.14}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_dict</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>36
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="control-structures-a-id-control-structures-a">
+<h2>Control structures <a id="control_structures"></a><a class="headerlink" href="#control-structures-a-id-control-structures-a" title="Permalink to this headline">¶</a></h2>
+<p>Often you want to control how some events happen. This could mean things like <code class="docutils literal notranslate"><span class="pre">if</span></code> today is Saturday then don’t do homework, or something like <code class="docutils literal notranslate"><span class="pre">for</span></code> each number in this list, check if it’s prime. These are called <strong>control structures</strong>. The most common control structures in Python are <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code> statements, and <code class="docutils literal notranslate"><span class="pre">for</span></code> loops (there are more!).</p>
+<p><code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code> structures work just like you think. Remember to put a colon <code class="docutils literal notranslate"><span class="pre">:</span></code> after each one, and indent everything that happens in each part.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Somehow, 5 is less than 3&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;How is it that 5 is greater than 7?&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;That makes no sense!&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Whew, guess everything is okay&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Whew, guess everything is okay
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">for</span></code> loops take some structure (often a <code class="docutils literal notranslate"><span class="pre">list</span></code>) and iterate through it. This is useful when you want to work with every element in a list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+4
+9
+16
+25
+36
+49
+64
+81
+100
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="functions-a-id-functions-a">
+<h2>Functions <a id="functions"></a><a class="headerlink" href="#functions-a-id-functions-a" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="defining-functions-a-id-defining-functions-a">
+<h3>Defining functions <a id="defining_functions"></a><a class="headerlink" href="#defining-functions-a-id-defining-functions-a" title="Permalink to this headline">¶</a></h3>
+<p>Writing code as functions is incredibly important in any programming language. This should seem familiar to math people, as we deal with functions all the time! In Python, write a function using the <code class="docutils literal notranslate"><span class="pre">def</span></code> command. You then put the name of the function, and in parentheses all the inputs the function takes. Don’t forget to include a colon <code class="docutils literal notranslate"><span class="pre">:</span></code> at the end, and to indent everything inside the function. At the end you can (but don’t have to) use the <code class="docutils literal notranslate"><span class="pre">return</span></code> statement to return some value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A function with no return statement</span>
+<span class="k">def</span> <span class="nf">add_and_print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add_and_print</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A function with a return statement</span>
+<span class="k">def</span> <span class="nf">add_and_return</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add_and_return</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
+</pre></div>
+</div>
+</div>
+</div>
+<p>These two look the same, but there’s an important difference. If we <code class="docutils literal notranslate"><span class="pre">return</span></code> a value, then we can store that value and use it later. If we simply <code class="docutils literal notranslate"><span class="pre">print</span></code> the value, that’s not possible. Example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">add_and_return</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">z</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Now I can manipulate z however I want&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
+14
+Now I can manipulate z however I want
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>An error is coming!</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We will get an error because add_and_print doesn&#39;t return anything, </span>
+<span class="c1"># so the program has no idea what value to save to z.</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">add_and_print</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">z</span>
+<span class="n">z</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">19</span><span class="o">-</span><span class="mi">950</span><span class="n">ae8e0bd90</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># so the program has no idea what value to save to z.</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">z</span> <span class="o">=</span> <span class="n">add_and_print</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">z</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">z</span>
+
+<span class="ne">TypeError</span>: unsupported operand type(s) for *: &#39;int&#39; and &#39;NoneType&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="calling-functions-a-id-calling-functions-a">
+<h3>Calling functions <a id="calling_functions"></a><a class="headerlink" href="#calling-functions-a-id-calling-functions-a" title="Permalink to this headline">¶</a></h3>
+<p>Functions have <strong>arguments</strong>, which are simply the inputs. When you define the function all the arguments must have names. That’s why we used <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> when we defined <code class="docutils literal notranslate"><span class="pre">add_and_print</span></code> above. Here’s another example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_name</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span> <span class="n">middle_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Your first name is &#39;</span> <span class="o">+</span> <span class="n">first_name</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Your middle name is &#39;</span> <span class="o">+</span> <span class="n">middle_name</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Your last name is &#39;</span> <span class="o">+</span> <span class="n">last_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When you call this function, you can choose to use those argument names or not. That is, either of the following two are exactly the same:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_name</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s1">&#39;Paul&#39;</span><span class="p">,</span> <span class="n">middle_name</span><span class="o">=</span><span class="s1">&#39;Awesome&#39;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="s1">&#39;Savala&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Your first name is Paul
+Your middle name is Awesome
+Your last name is Savala
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_name</span><span class="p">(</span><span class="s1">&#39;Paul&#39;</span><span class="p">,</span> <span class="s1">&#39;Awesome&#39;</span><span class="p">,</span> <span class="s1">&#39;Savala&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Your first name is Paul
+Your middle name is Awesome
+Your last name is Savala
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that in the first one we directly wrote <code class="docutils literal notranslate"><span class="pre">first_name=&quot;Paul&quot;,</span> <span class="pre">...</span></code>, while in the second we simply typed them in. <strong>If you do not use the argument names, you type the arguments in the order the function definition has them.</strong> Since the function has <code class="docutils literal notranslate"><span class="pre">first_name</span></code> as the first argument, then it just assumes it’s the first argument (<code class="docutils literal notranslate"><span class="pre">first_name</span></code>), that the second is the second argument (<code class="docutils literal notranslate"><span class="pre">middle_name</span></code>), and so forth. <strong>If you do supply the arugment names then the order doesn’t matter.</strong> Here are some examples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is wrong!</span>
+<span class="n">my_name</span><span class="p">(</span><span class="s1">&#39;Savala&#39;</span><span class="p">,</span> <span class="s1">&#39;Awesome&#39;</span><span class="p">,</span> <span class="s1">&#39;Paul&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Your first name is Savala
+Your middle name is Awesome
+Your last name is Paul
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This works though</span>
+<span class="n">my_name</span><span class="p">(</span><span class="n">last_name</span><span class="o">=</span><span class="s1">&#39;Savala&#39;</span><span class="p">,</span> <span class="n">middle_name</span><span class="o">=</span><span class="s1">&#39;Awesome&#39;</span><span class="p">,</span> <span class="n">first_name</span><span class="o">=</span><span class="s1">&#39;Paul&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Your first name is Paul
+Your middle name is Awesome
+Your last name is Savala
+</pre></div>
+</div>
+</div>
+</div>
+<p>Either way is just fine, it’s totally up to you. If your function has many arguments then it’s good practice to include the argument names when you call it. That way the person reading your work isn’t trying to remember/guess what the seventh argument in a big list of arguments is. But if it’s just one or two then omitting the argument name is probably just fine.</p>
+</div>
+<div class="section" id="default-values-a-id-default-values-a">
+<h3>Default values <a id="default_values"></a><a class="headerlink" href="#default-values-a-id-default-values-a" title="Permalink to this headline">¶</a></h3>
+<p>In a function you can supply <strong>default values</strong>. For instance, not everyone has a middle name. So in the function above we would like middle name to be optional. We can do this by setting a default value of, say, <code class="docutils literal notranslate"><span class="pre">None</span></code>. To do this, simply put the default value there when you define the function:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Here comes an error!</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_name</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span> <span class="n">middle_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">last_name</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Your first name is &#39;</span> <span class="o">+</span> <span class="n">first_name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">middle_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Your middle name is &#39;</span> <span class="o">+</span> <span class="n">middle_name</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Your last name is &#39;</span> <span class="o">+</span> <span class="n">last_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-29-87c0b4110724&gt;&quot;</span><span class="gt">, line </span><span class="mi">1</span>
+    <span class="k">def</span> <span class="nf">my_name</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span> <span class="n">middle_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">last_name</span><span class="p">):</span>
+                <span class="o">^</span>
+<span class="ne">SyntaxError</span>: non-default argument follows default argument
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see from the error, arguments <em>without</em> a default value (like <code class="docutils literal notranslate"><span class="pre">first_name</span></code> and <code class="docutils literal notranslate"><span class="pre">last_name</span></code> in our example) need to come first, then arguments <em>with</em> default values must come last. So let’s fix that.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_name</span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span><span class="p">,</span> <span class="n">middle_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Your first name is &#39;</span> <span class="o">+</span> <span class="n">first_name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">middle_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Your middle name is &#39;</span> <span class="o">+</span> <span class="n">middle_name</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Your last name is &#39;</span> <span class="o">+</span> <span class="n">last_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_name</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s1">&#39;Paul&#39;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="s1">&#39;Savala&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Your first name is Paul
+Your last name is Savala
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="f-strings-a-id-f-strings-a">
+<h3>f-strings <a id="f_strings"></a><a class="headerlink" href="#f-strings-a-id-f-strings-a" title="Permalink to this headline">¶</a></h3>
+<p>If you want to print text, but also include a variable, there are three ways to do it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Method 1 (the old &quot;format&quot; way)</span>
+<span class="n">my_age</span> <span class="o">=</span> <span class="mi">36</span>
+<span class="n">my_name</span> <span class="o">=</span> <span class="s1">&#39;Paul&#39;</span>
+
+<span class="s1">&#39;My name is </span><span class="si">{name}</span><span class="s1"> and I am </span><span class="si">{age}</span><span class="s1"> years old&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">my_name</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="n">my_age</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;My name is Paul and I am 36 years old&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Method 2 (use +)</span>
+<span class="s1">&#39;My name is &#39;</span> <span class="o">+</span> <span class="n">my_name</span> <span class="o">+</span> <span class="s1">&#39; and I am &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">my_age</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; years old&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;My name is Paul and I am 36 years old&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Both of these methods works, but they are ugly and slow. In addition, for “method 2” to work, everything has to be a string. So if you removed <code class="docutils literal notranslate"><span class="pre">str(...)</span></code> from <code class="docutils literal notranslate"><span class="pre">my_age</span></code> it would give an error.</p>
+<p>A much cleaner way which was introduced with Python version 3.6 is called f-strings (the “f” stands for “format”). All you need to do is put an <code class="docutils literal notranslate"><span class="pre">f</span></code> in front of your string. Then, in the curly braces write the name of your variable. Here’s an example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note the &quot;f&quot; in front of the string. That tells Python this is an f-string.</span>
+<span class="sa">f</span><span class="s1">&#39;My name is </span><span class="si">{</span><span class="n">my_name</span><span class="si">}</span><span class="s1"> and I am </span><span class="si">{</span><span class="n">my_age</span><span class="si">}</span><span class="s1"> years old&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;My name is Paul and I am 36 years old&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>f-strings are very useful for printing all kinds of variables, including numbers. However, floats with many numbers after the decimal can print out annoyingly long. For instance, consider the following example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sa">f</span><span class="s1">&#39;If a pizza costs $22 and is divided between 7 people, then each person pays $</span><span class="si">{</span><span class="mi">22</span><span class="o">/</span><span class="mi">7</span><span class="si">}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;If a pizza costs $22 and is divided between 7 people, then each person pays $3.142857142857143&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Do we really need to see how much each person pays down to the billionth of a penny? We would like just two decimal places. We can do this by including a <strong>format</strong> at the end. The one we will use the most often is <code class="docutils literal notranslate"><span class="pre">.2f</span></code>. The dot “.” refers to the decimal. The “2” refers to two places after the decimal. The “f” refers to the number being a float (if you don’t put this it will sometimes print the number in scientific form, which is probably not what you wanted). To tell Python you want to use a format, just put a colon “:” after your computation, and then put the format you want. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Notice the change in the colons where the calculation occurs</span>
+<span class="sa">f</span><span class="s1">&#39;If a pizza costs $22 and is divided between 7 people, then each person pays $</span><span class="si">{</span><span class="mi">22</span><span class="o">/</span><span class="mi">7</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;If a pizza costs $22 and is divided between 7 people, then each person pays $3.14&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="range-a-id-range-a">
+<h3>Range <a id="range"></a><a class="headerlink" href="#range-a-id-range-a" title="Permalink to this headline">¶</a></h3>
+<p>Suppose I have a list of 5 elements, and I want to know which ones are odd. So for instance, if <code class="docutils literal notranslate"><span class="pre">my_list</span> <span class="pre">=</span> <span class="pre">[4,</span> <span class="pre">1,</span> <span class="pre">1,</span> <span class="pre">8,</span> <span class="pre">9]</span></code>, I want to know that the second, third and fifth elements are odd. Remember that in Python these <strong>indices</strong> start by counting at zero. So the <code class="docutils literal notranslate"><span class="pre">indices_with_odd_elements</span> <span class="pre">=</span> <span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">4]</span></code>. The easiest way to access the incides in a list is to use the <code class="docutils literal notranslate"><span class="pre">range</span></code> function. By default a <code class="docutils literal notranslate"><span class="pre">range</span></code> is it’s own thing. In order to be able to better see what is going on, it is useful to convert it to a list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>range(0, 10)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6, 7, 8, 9]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 3, 5, 7, 9]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">my_list</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The index is </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> and the value is </span><span class="si">{</span><span class="n">my_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The index is 0 and the value is 4
+The index is 1 and the value is 1
+The index is 2 and the value is 1
+The index is 3 and the value is 8
+The index is 4 and the value is 9
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="list-comprehension-a-id-list-comprehension-a">
+<h3>List comprehension <a id="list_comprehension"></a><a class="headerlink" href="#list-comprehension-a-id-list-comprehension-a" title="Permalink to this headline">¶</a></h3>
+<p>One of the most useful and important ideas in Python is list comprehension. List comprehension allows you to modify a list element-by-element, without needing to use a <code class="docutils literal notranslate"><span class="pre">for</span></code>-loop. Here is an example where we add one to each number in a list. We first show how we would do it with a <code class="docutils literal notranslate"><span class="pre">for</span></code>-loop, and then next show the better way to do it (using list comprehension). We will write functions to create a new list <code class="docutils literal notranslate"><span class="pre">add_one_list</span></code> which is the original list, but with one added to each element.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">add_one_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># This setup is slow and ugly</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">my_list</span><span class="p">)):</span>
+    <span class="n">add_one_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">my_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">add_one_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 6, 7, 3, 8, 6, 9, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>A better way is to use list comprehension. To do list comprehension, you simply write <code class="docutils literal notranslate"><span class="pre">[what_I_want_to_do</span> <span class="pre">for</span> <span class="pre">x</span> <span class="pre">in</span> <span class="pre">my_list]</span></code>. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="n">add_one_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">]</span>
+
+<span class="n">add_one_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 6, 7, 3, 8, 6, 9, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>It’s worth noting that Python has “comprehension” for things beyond lists. You can also do it for dictionaries and sets.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="n">int_str_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;str&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">my_list</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">],</span> 
+                <span class="s1">&#39;int&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">my_list</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">]}</span>
+
+<span class="n">int_str_dict</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;str&#39;: [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;], &#39;int&#39;: [1, 2, 3]}
+</pre></div>
+</div>
+</div>
+</div>
+<p>You should try to use list (or other types of) comprehension as much as possible. They are much faster than loops, and are generally easier to read. This will help greatly when you work with datasets with hundreds of thousands of rows of data.</p>
+</div>
+</div>
+<div class="section" id="using-packages-a-id-using-packages-a">
+<h2>Using packages <a id="using_packages"></a><a class="headerlink" href="#using-packages-a-id-using-packages-a" title="Permalink to this headline">¶</a></h2>
+<p>While Python comes with many functions built in, it doesn’t have <em>everything</em> could ever want. For example, let’s say we wanted to compute sine of an angle. We might try something like <code class="docutils literal notranslate"><span class="pre">sine(1)</span></code>, or <code class="docutils literal notranslate"><span class="pre">sin(1)</span></code> (I’m using radians here). Let’s see what happens.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Here comes an error!</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sine</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">45</span><span class="o">-</span><span class="mi">1</span><span class="n">d306da0da99</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sine</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;sine&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sin</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">46</span><span class="o">-</span><span class="mi">025</span><span class="n">f39ddbe02</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sin</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;sin&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python doesn’t have a “sine” function. We could perhaps write one ourselves. For example, sine has a series definition given by
+$<span class="math notranslate nohighlight">\(
+\sin(x) = \displaystyle\sum_{n=0}^{\infty} \frac{(-1)^n}{(2n+1)!}x^{2n+1}
+\)</span><span class="math notranslate nohighlight">\(
+However this is a lot of work, and would also require writing a factorial function, and probably eventually a \)</span>\pi$ function as well. Luckily for us, other people have already done the hard work! They have done so by writing <strong>packages</strong>. A Python package is simply a collection of code that you can use. Rather than having to copy-paste code you <strong>import</strong> from these packages. For example, there is a <code class="docutils literal notranslate"><span class="pre">math</span></code> package we can use. We will import it as such:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, nothing happened. However, we can access functions inside of this package by using <strong>dot notation</strong>. For example, to use the sine function we would type:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8414709848078965
+</pre></div>
+</div>
+</div>
+</div>
+<p>To access <span class="math notranslate nohighlight">\(\pi\)</span> we could do:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.141592653589793
+</pre></div>
+</div>
+</div>
+</div>
+<p>And to use a factorial we could write:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5040
+</pre></div>
+</div>
+</div>
+</div>
+<p>Packages are extremely powerful. When you are considering writing some complex code, you should first search to see if someone has already written a package which does it for you.</p>
+<p>When importing from packages, you don’t necessary need to import the entire package, which is what we did when we typed <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">math</span></code>. Some packages are very large, and importing them makes your program slower. Say, for instance, that we only wanted to use the sine function. We could type the following to only import that one function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sin</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9092974268256817
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you only plan to use one or two functions from a package, it is good practice to only import those functions. That keeps the code clean and fast.</p>
+</div>
+<div class="section" id="python-homework">
+<h2>Python: Homework<a class="headerlink" href="#python-homework" title="Permalink to this headline">¶</a></h2>
+<p>For each of the following questions, write a function which does what is asked.</p>
+<ol class="simple">
+<li><p>Print out the first 20 even numbers</p></li>
+<li><p>Test whether or not a number is prime</p></li>
+<li><p>Given a list of integers, return a list containing only the odd numbers</p></li>
+<li><p>Given a list of integers and a target number, return True if two numbers in that list add up to the target number, or False if nothing does. For instance, <code class="docutils literal notranslate"><span class="pre">list_of_integers</span> <span class="pre">=</span> <span class="pre">[1,</span> <span class="pre">4,</span> <span class="pre">-4,</span> <span class="pre">2,</span> <span class="pre">8]</span></code> and <code class="docutils literal notranslate"><span class="pre">target=6</span></code> we would return <code class="docutils literal notranslate"><span class="pre">True</span></code>, because <code class="docutils literal notranslate"><span class="pre">4+2=6</span></code> and both 4 and 2 are in <code class="docutils literal notranslate"><span class="pre">list_of_integers</span></code>. But we would return <code class="docutils literal notranslate"><span class="pre">False</span></code> if <code class="docutils literal notranslate"><span class="pre">target=7</span></code>, because no two numbers in the list add up to 7.</p></li>
+<li><p>Given a string <code class="docutils literal notranslate"><span class="pre">s</span></code> with the first letter capitalized (such as “Math”), return the reversed string (backwards), but fix the capitalization (so it should return “Hatm”).</p></li>
+<li><p>Use list comprehension (described above) to square every element in a list.</p></li>
+<li><p>Use list comprehension to replace each element in the list of positive integers with the word “even” if it is even or “odd” if it is odd. So if the input is <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">5,</span> <span class="pre">3,</span> <span class="pre">6]</span></code>, it should return <code class="docutils literal notranslate"><span class="pre">['odd',</span> <span class="pre">'odd',</span> <span class="pre">'odd',</span> <span class="pre">'even']</span></code>.</p></li>
+<li><p>Given a list of positive integers, return a dictionary showing the even and odd numbers. For example, if the input is <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">5,</span> <span class="pre">3,</span> <span class="pre">6]</span></code>, then the return should be <code class="docutils literal notranslate"><span class="pre">{'odd':</span> <span class="pre">[1,</span> <span class="pre">5,</span> <span class="pre">3],</span> <span class="pre">'even':</span> <span class="pre">[6]}</span></code>.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="pandas-a-id-pandas-a">
+<h1>Pandas <a id="pandas"></a><a class="headerlink" href="#pandas-a-id-pandas-a" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<p>Pandas is the library which all data scientists use to manipulate data. We need to tell Python to <em>use</em> Pandas. The way to do that is to import it by typing <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas</span></code>. Then when we want to use it, we type <code class="docutils literal notranslate"><span class="pre">pandas.thing_I_want_pandas_to_do</span></code>, just like we did with the <code class="docutils literal notranslate"><span class="pre">math</span></code> package above. However, typing <code class="docutils literal notranslate"><span class="pre">pandas</span></code> over and over is a bit cumbersome. So it’s common to <strong>alias</strong> pandas by giving it a shorter name. The common name is <code class="docutils literal notranslate"><span class="pre">pd</span></code>. So we’ll <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas</span> <span class="pre">as</span> <span class="pre">pd</span></code>, which means that we can now work with Pandas by typing <code class="docutils literal notranslate"><span class="pre">pd.thing_I_want_pandas_to_do</span></code>, which saves us a bit of typing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="loading-the-data-a-id-loading-data-a">
+<h2>Loading the data <a id="loading_data"></a><a class="headerlink" href="#loading-the-data-a-id-loading-data-a" title="Permalink to this headline">¶</a></h2>
+<p>I have my folders setup so that I have a <code class="docutils literal notranslate"><span class="pre">data</span></code> folder where I keep all my data. So, when I load my data in the next step, I need to tell Pandas to look in the <code class="docutils literal notranslate"><span class="pre">data</span></code> folder. If you <em>don’t</em> have a data folder and the data is just sitting in the same folder as your current notebook, then you don’t need that <code class="docutils literal notranslate"><span class="pre">data/</span></code> part. Dealing with directories can be a bit of a headache, so it’s good practice to always create a <code class="docutils literal notranslate"><span class="pre">data</span></code> folder, and put your data in there.</p>
+<p>This data is taken from the <a class="reference external" href="https://www.kaggle.com/c/titanic/data">Titanic Kaggle competition</a>, and describes the survival (or not) of passengers aboard the Titanic. Here’s a brief description of the data:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="text-align:center head"><p>Definition</p></th>
+<th class="text-align:center head"><p>Key</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>survival</p></td>
+<td class="text-align:center"><p>Survival</p></td>
+<td class="text-align:center"><p>0 = No, 1 = Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>pclass</p></td>
+<td class="text-align:center"><p>Ticket class</p></td>
+<td class="text-align:center"><p>1 = 1st, 2 = 2nd, 3 = 3rd</p></td>
+</tr>
+<tr class="row-even"><td><p>sex</p></td>
+<td class="text-align:center"><p>Sex</p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Age</p></td>
+<td class="text-align:center"><p>Age in years</p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+<tr class="row-even"><td><p>sibsp</p></td>
+<td class="text-align:center"><p># of siblings / spouses aboard the Titanic</p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>parch</p></td>
+<td class="text-align:center"><p># of parents / children aboard the Titanic</p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+<tr class="row-even"><td><p>ticket</p></td>
+<td class="text-align:center"><p>Ticket number</p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>fare</p></td>
+<td class="text-align:center"><p>Passenger fare</p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+<tr class="row-even"><td><p>cabin</p></td>
+<td class="text-align:center"><p>Cabin number</p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>embarked</p></td>
+<td class="text-align:center"><p>Port of Embarkation</p></td>
+<td class="text-align:center"><p>C = Cherbourg, Q = Queenstown, S = Southampton</p></td>
+</tr>
+</tbody>
+</table>
+<p>Pandas stores data as things called <strong>DataFrames</strong>, so it’s typical to call the variable you load the data into <code class="docutils literal notranslate"><span class="pre">df</span></code>. If you have a bunch of different datasets you’re loading, you can tweak the name to help you remember what the data is. So this could be called <code class="docutils literal notranslate"><span class="pre">titanic_df</span></code>, or <code class="docutils literal notranslate"><span class="pre">train_df</span></code>. For now, we’ll just use <code class="docutils literal notranslate"><span class="pre">df</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/titanic.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s break this command down:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pd</span></code> says that we are using a function from Pandas, which we aliased as pd</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read_csv</span></code> is the function we are using from Pandas. It reads in a CSV (command-separated value) file. If you’ve never heard of a CSV file, it’s basically just an Excel file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">drive_dir</span></code> is the Google drive folder. It’s created in the very first cell of this notebook (look at the very top).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data/</span></code> is the folder where my data is stored in Google drive</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">titanic.csv</span></code> is the name of my file that I want to load.</p></li>
+</ul>
+</div>
+<div class="section" id="looking-at-the-data-a-id-looking-at-data-a">
+<h2>Looking at the data <a id="looking_at_data"></a><a class="headerlink" href="#looking-at-the-data-a-id-looking-at-data-a" title="Permalink to this headline">¶</a></h2>
+<p>In order to look at the data, you either just type <code class="docutils literal notranslate"><span class="pre">df</span></code> to have it print out the entire DataFrame, or you can use the <code class="docutils literal notranslate"><span class="pre">.head()</span></code> command. It’s generally preferable to use <code class="docutils literal notranslate"><span class="pre">.head()</span></code>, since that just shows the first 5 rows (by default). If you <em>do</em> want to see more rows, you can pass a number into that function, telling it how many rows you want to see. I did that below to see 10 rows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Moran, Mr. James</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>330877</td>
+      <td>8.4583</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>0</td>
+      <td>1</td>
+      <td>McCarthy, Mr. Timothy J</td>
+      <td>male</td>
+      <td>54.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>17463</td>
+      <td>51.8625</td>
+      <td>E46</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Palsson, Master. Gosta Leonard</td>
+      <td>male</td>
+      <td>2.0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>349909</td>
+      <td>21.0750</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)</td>
+      <td>female</td>
+      <td>27.0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>347742</td>
+      <td>11.1333</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Nasser, Mrs. Nicholas (Adele Achem)</td>
+      <td>female</td>
+      <td>14.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>237736</td>
+      <td>30.0708</td>
+      <td>NaN</td>
+      <td>C</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Note that Pandas always includes an <code class="docutils literal notranslate"><span class="pre">index</span></code> row on the left, which uniquely numbers each row. We’ll use these later.</p>
+<p>What about if you want to access a single column? The way to do this is to pass the column name as a string (meaning in quotes) to the DataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    22.0
+1    38.0
+2    26.0
+3    35.0
+4    35.0
+Name: Age, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>See how printing a single column looks different from printing multiple columns? That’s because Pandas calls something with <em>a single column</em> a <code class="docutils literal notranslate"><span class="pre">Series</span></code>, and something with multiple columns a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. In reality, they’re not that different. But it’s helpful to know the terms in case you see people mentioning <code class="docutils literal notranslate"><span class="pre">Series</span></code> when you’re Googling.</p>
+<p>If you want to access <em>multiple</em> columns, we need to pass those columns as a <code class="docutils literal notranslate"><span class="pre">list</span></code>. We’ll pass to the DataFrame a <code class="docutils literal notranslate"><span class="pre">list</span></code> of the columns we’re looking for. Remember that to access a column in Pandas we write <code class="docutils literal notranslate"><span class="pre">df[column_I_want]</span></code>. Since our columns are a list, they’ll have brackets around them. This means we end up with double-brackets, like <code class="docutils literal notranslate"><span class="pre">df[[column1,</span> <span class="pre">column2,</span> <span class="pre">column3]]</span></code>.</p>
+<p>Again, we <em>could</em> print everything we get back by typing <code class="docutils literal notranslate"><span class="pre">df[['Survived',</span> <span class="pre">'Age']]</span></code>, but we probably just want a quick peek at the data, not to see the <em>entire</em> list of values. So I’ll just look at the <code class="docutils literal notranslate"><span class="pre">.head()</span></code> of the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Survived&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Survived</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>22.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>38.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>26.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>35.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>35.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>So far we’ve just accessed <em>columns</em>, so what about <em>rows</em>? Rows are accessed slightly differently. You use the <code class="docutils literal notranslate"><span class="pre">.iloc</span></code> command. Here “loc” refers to “location”, and “i” refers to integer. So we’ll access the row location by giving it an integer. As in everything in Python, we start at zero. So the first row we would access as <code class="docutils literal notranslate"><span class="pre">df.iloc[0]</span></code>, and the tenth row would be <code class="docutils literal notranslate"><span class="pre">df.iloc[9]</span></code>. Note that Pandas makes this easier for you by printing the index of each row as the first column (as discussed above). Let’s try it below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PassengerId                          1
+Survived                             0
+Pclass                               3
+Name           Braund, Mr. Owen Harris
+Sex                               male
+Age                                 22
+SibSp                                1
+Parch                                0
+Ticket                       A/5 21171
+Fare                              7.25
+Cabin                              NaN
+Embarked                             S
+Name: 0, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sure enough, if we look at when we first loaded the data, this Mr. Owen Harris Braund is indeed the first person listed, and has an <code class="docutils literal notranslate"><span class="pre">index</span></code> of zero.</p>
+<p>We previously saw how to access multiple <em>columns</em>, so how do we access multiple <em>rows</em>? You can do it similar to how we accessed multiple columns, by passing a list of the row integers we want.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Moran, Mr. James</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>330877</td>
+      <td>8.4583</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>However, suppose we want to access row 0 through 10000. Clearly we don’t want to type <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">...,</span> <span class="pre">10000]</span></code>. Instead, we can use <strong>slicing</strong>. Slicing is a shortcut way to say “give me everything between these two numbers”. We “slice” by using a colon.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>For reasons we won’t go into now, Python decides that when you type <code class="docutils literal notranslate"><span class="pre">0:5</span></code>, you <em>don’t</em> want <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5]</span></code>, instead you must want <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4]</span></code> (so starting at 0, but ending just <em>before</em> 5). So the command above gave us the first five rows. Here’s another simple one.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>10</th>
+      <td>11</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Sandstrom, Miss. Marguerite Rut</td>
+      <td>female</td>
+      <td>4.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>PP 9549</td>
+      <td>16.7000</td>
+      <td>G6</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Bonnell, Miss. Elizabeth</td>
+      <td>female</td>
+      <td>58.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>113783</td>
+      <td>26.5500</td>
+      <td>C103</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>13</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Saundercock, Mr. William Henry</td>
+      <td>male</td>
+      <td>20.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>A/5. 2151</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>14</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Andersson, Mr. Anders Johan</td>
+      <td>male</td>
+      <td>39.0</td>
+      <td>1</td>
+      <td>5</td>
+      <td>347082</td>
+      <td>31.2750</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>15</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Vestrom, Miss. Hulda Amanda Adolfina</td>
+      <td>female</td>
+      <td>14.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>350406</td>
+      <td>7.8542</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>16</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Hewlett, Mrs. (Mary D Kingcome)</td>
+      <td>female</td>
+      <td>55.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>248706</td>
+      <td>16.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>17</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Rice, Master. Eugene</td>
+      <td>male</td>
+      <td>2.0</td>
+      <td>4</td>
+      <td>1</td>
+      <td>382652</td>
+      <td>29.1250</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>18</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Williams, Mr. Charles Eugene</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>244373</td>
+      <td>13.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>19</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Vander Planke, Mrs. Julius (Emelia Maria Vande...</td>
+      <td>female</td>
+      <td>31.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>345763</td>
+      <td>18.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>20</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Masselmani, Mrs. Fatima</td>
+      <td>female</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2649</td>
+      <td>7.2250</td>
+      <td>NaN</td>
+      <td>C</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>You can also tell it to skip rows (like skip every other row, or just take every fifth row) by including that number at the end. So to get every fifth row between rows 0 and 20 you would type:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Moran, Mr. James</td>
+      <td>male</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>330877</td>
+      <td>8.4583</td>
+      <td>NaN</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Sandstrom, Miss. Marguerite Rut</td>
+      <td>female</td>
+      <td>4.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>PP 9549</td>
+      <td>16.7000</td>
+      <td>G6</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>16</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Hewlett, Mrs. (Mary D Kingcome)</td>
+      <td>female</td>
+      <td>55.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>248706</td>
+      <td>16.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="describing-the-data-numerically-a-id-data-numerically-a">
+<h2>Describing the data numerically <a id="data_numerically"></a><a class="headerlink" href="#describing-the-data-numerically-a-id-data-numerically-a" title="Permalink to this headline">¶</a></h2>
+<p>Okay, we’ve loaded our data, now let’s start examining it. We probably want to answer questions like:</p>
+<ul class="simple">
+<li><p>How many people survived? How many died?</p></li>
+<li><p>Who is the oldest and youngest person on board? The average age?</p></li>
+<li><p>For the people who are first class (<code class="docutils literal notranslate"><span class="pre">Pclass==1</span></code>), what percentage survived? What about for second and third class?</p></li>
+</ul>
+<p>We’ll address each of these separately below.</p>
+<div class="section" id="value-counts">
+<h3>Value counts<a class="headerlink" href="#value-counts" title="Permalink to this headline">¶</a></h3>
+<p>“Value counts” refers to counting how many different values appear in a column. So this could be used to answer the question of “How many people survived/died?”, since I’m just counting how many 1’s (survived) and 0’s (died) appear in the <code class="docutils literal notranslate"><span class="pre">Survived</span></code> column. To do a value count, just select the column you want from your DataFrame (using what you learned above), and tell it to run the <code class="docutils literal notranslate"><span class="pre">.value_counts()</span></code> command.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    549
+1    342
+Name: Survived, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that 549 people died, and 342 survived. Try it on your own for several other columns.</p>
+</div>
+<div class="section" id="basic-statistics">
+<h3>Basic statistics<a class="headerlink" href="#basic-statistics" title="Permalink to this headline">¶</a></h3>
+<p>Say you want to compute some basic statistics on a column, such as min/max/average/median/etc. In general, Pandas makes this very simple:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.42
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>80.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29.69911764705882
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>28.0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="analyzing-subsets-of-data-a-id-subset-data-a">
+<h2>Analyzing subsets of data <a id="subset_data"></a><a class="headerlink" href="#analyzing-subsets-of-data-a-id-subset-data-a" title="Permalink to this headline">¶</a></h2>
+<p>The last question about analyzing individual passenger classes is a little different. Up to this point we’ve just been taking an <em>entire column</em> (like the <code class="docutils literal notranslate"><span class="pre">Age</span></code> column) and finding something about it (<code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">median</span></code>, <code class="docutils literal notranslate"><span class="pre">value_counts</span></code>, etc). But what about if we just want a <em>subset</em> of the column, such as the first class passengers? To do this, you need to tell Pandas the <em>condition</em> you want satisfied. If we want first class passengers, we want the column <code class="docutils literal notranslate"><span class="pre">Pclass</span></code> to be equal to 1. Remember that in Python, to <em>test equality</em> (i.e. to check if something is or is not equal to something else) you use double equals signs <code class="docutils literal notranslate"><span class="pre">==</span></code>. So if I want to check for <code class="docutils literal notranslate"><span class="pre">Pclass</span></code> equal to 1, I would do <code class="docutils literal notranslate"><span class="pre">Pclass==1</span></code>. Let’s see what happens if we try that.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      False
+1       True
+2      False
+3       True
+4      False
+       ...  
+886    False
+887     True
+888    False
+889     True
+890    False
+Name: Pclass, Length: 891, dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hmm, it looks like it’s telling us <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> for whether each passenger was first class. That’s not quite what I wanted, I just wanted the first class passengers. But that’s okay, we’re mostly there. Instead, what we do is say “DataFrame, look inside yourself and find the rows where <code class="docutils literal notranslate"><span class="pre">Pclass==1</span></code>”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>0</td>
+      <td>1</td>
+      <td>McCarthy, Mr. Timothy J</td>
+      <td>male</td>
+      <td>54.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>17463</td>
+      <td>51.8625</td>
+      <td>E46</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Bonnell, Miss. Elizabeth</td>
+      <td>female</td>
+      <td>58.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>113783</td>
+      <td>26.5500</td>
+      <td>C103</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>24</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Sloper, Mr. William Thompson</td>
+      <td>male</td>
+      <td>28.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>113788</td>
+      <td>35.5000</td>
+      <td>A6</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now we’ve just got the first class passengers! Let’s do a value count on just those passengers to see how many survived. We need to tell Pandas “Take this subset of the passengers which are first class, look at the <code class="docutils literal notranslate"><span class="pre">Survived</span></code> column, and do a <code class="docutils literal notranslate"><span class="pre">value_counts()</span></code>.”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1    136
+0     80
+Name: Survived, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is good, but I’m probably more interested in <em>percentages</em> than in raw numbers. To find out how to do this, Google “pandas value counts percentage”. See if you can find the answer on your own. After you’ve done that, try comparing survival rates for second and third class passengers, as well as for all passengers regardless of class.</p>
+</div>
+<div class="section" id="finding-missing-data-and-dealing-with-it-a-id-missing-data-a">
+<h2>Finding missing data (and dealing with it) <a id="missing_data"></a><a class="headerlink" href="#finding-missing-data-and-dealing-with-it-a-id-missing-data-a" title="Permalink to this headline">¶</a></h2>
+<p>It’s very common that in a dataset, some of the data will be missing. What do we mean by “missing”? Sometimes it’s just a blank cell in the spreadsheet, sometimes it’s represented by <code class="docutils literal notranslate"><span class="pre">NaN</span></code>, which stands for “Not a number”, and is Python speak for “I don’t have anything useful to put here”. There is also a <code class="docutils literal notranslate"><span class="pre">None</span></code> object in Python, which could potentially be in a cell. The cell could also have an empty string <code class="docutils literal notranslate"><span class="pre">''</span></code>, or a bunch of spaces <code class="docutils literal notranslate"><span class="pre">'</span>&#160;&#160; <span class="pre">'</span></code>, or a zero where it doesn’t make sense (like name), or <span class="math notranslate nohighlight">\(\pm\infty\)</span>, or one of many, many other things that could go wrong! This gives you some idea why finding and dealing with missing data is not simple. The general rule of thumb is that cleaning and prepping your data is about 80% of your work, while analyzing and utilizing it is only 20%.</p>
+<p>Let’s start by finding <code class="docutils literal notranslate"><span class="pre">None</span></code>s and <code class="docutils literal notranslate"><span class="pre">NaN</span></code>s. Pandas actually has a nice <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.isna.html">helper function for this</a> called <code class="docutils literal notranslate"><span class="pre">isna()</span></code>. It looks for both <code class="docutils literal notranslate"><span class="pre">NaN</span></code> and <code class="docutils literal notranslate"><span class="pre">None</span></code> values. It <em>does not</em> look for spaces, zeros where you don’t want them, etc. Let’s try it with the <code class="docutils literal notranslate"><span class="pre">Cabin</span></code> column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Cabin&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0       True
+1      False
+2       True
+3      False
+4       True
+       ...  
+886     True
+887    False
+888     True
+889    False
+890     True
+Name: Cabin, Length: 891, dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hmm, that’s not quite what we wanted. It’s saying whether each row is or is not <code class="docutils literal notranslate"><span class="pre">NaN</span></code>/<code class="docutils literal notranslate"><span class="pre">None</span></code>. In a way that should look similar to what we had above with <code class="docutils literal notranslate"><span class="pre">df['Pclass'==1]</span></code>. We need to think about what our goal is. Is it just to <em>find</em> these values, to <em>drop rows with them</em>, or to <em>fix them</em>? Let’s start with the first, just counting them.</p>
+<p>The simplest way to count them is to see how many of the rows evalued to <code class="docutils literal notranslate"><span class="pre">True</span></code> when we did <code class="docutils literal notranslate"><span class="pre">.isna()</span></code>. A fantastically simple way to do this is below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Cabin&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>687
+</pre></div>
+</div>
+</div>
+</div>
+<p>What’s going on here? The <code class="docutils literal notranslate"><span class="pre">.isna()</span></code> part is giving us the <code class="docutils literal notranslate"><span class="pre">True</span></code>/<code class="docutils literal notranslate"><span class="pre">False</span></code> values, and <code class="docutils literal notranslate"><span class="pre">.sum()</span></code> is adding them up. But how do we add <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code>? These are what are called “boolean values”, which mean that can be interpreted as either being 1 or 0. By default, <code class="docutils literal notranslate"><span class="pre">True</span></code> is mapped to 1, and <code class="docutils literal notranslate"><span class="pre">False</span></code> is mapped to 0. So when you call <code class="docutils literal notranslate"><span class="pre">.sum()</span></code>, it’s adding up 1 (<code class="docutils literal notranslate"><span class="pre">True</span></code>) + 0 (<code class="docutils literal notranslate"><span class="pre">False</span></code>) + 1 (<code class="docutils literal notranslate"><span class="pre">True</span></code>) + … and so forth. So the sum is exactly how many <code class="docutils literal notranslate"><span class="pre">NaN</span></code>/<code class="docutils literal notranslate"><span class="pre">None</span></code> values there are in that column!</p>
+<p>How did I figure out this trick? Googling! I Googled “Pandas count number of nan none in column”. The <a class="reference external" href="https://stackoverflow.com/questions/26266362/how-to-count-the-nan-values-in-a-column-in-pandas-dataframe/55608360">first result</a> gave me a solution, which is what I used. You should get used to Googling for how to do things in programming. No human knows every command and trick, but the internet does! So use it to your advantage.</p>
+<p>With that, let’s count the number of <code class="docutils literal notranslate"><span class="pre">NaN</span></code>/<code class="docutils literal notranslate"><span class="pre">None</span></code> values are in each row. I’ll use a simple <code class="docutils literal notranslate"><span class="pre">for</span></code>-loop to make this easier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PassengerId: 0
+Survived: 0
+Pclass: 0
+Name: 0
+Sex: 0
+Age: 177
+SibSp: 0
+Parch: 0
+Ticket: 0
+Fare: 0
+Cabin: 687
+Embarked: 2
+</pre></div>
+</div>
+</div>
+</div>
+<p>So it looks like most columns are pretty good, but some do indeed have a lot of missing values. What <em>percentage</em> of the values are missing? How about we divide the number of missing values by the number of rows. To get the shape of a DataFrame, use the <code class="docutils literal notranslate"><span class="pre">.shape</span></code> attribute.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(891, 12)
+</pre></div>
+</div>
+</div>
+</div>
+<p>This says there are 891 rows (rows always come first, just like in a matrix) and 12 columns. Since we only care about rows, we’ll grab the first part of this tuple by using <code class="docutils literal notranslate"><span class="pre">df.shape[0]</span></code> (remember that everything in Python is zero-indexed, so the <em>first</em> element in a tuple is referred to as the zeroth-element). Let’s alter our <code class="docutils literal notranslate"><span class="pre">for</span></code>-loop above to print this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="mi">100</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PassengerId: 0 (0.0%)
+Survived: 0 (0.0%)
+Pclass: 0 (0.0%)
+Name: 0 (0.0%)
+Sex: 0 (0.0%)
+Age: 177 (19.865319865319865%)
+SibSp: 0 (0.0%)
+Parch: 0 (0.0%)
+Ticket: 0 (0.0%)
+Fare: 0 (0.0%)
+Cabin: 687 (77.10437710437711%)
+Embarked: 2 (0.2244668911335578%)
+</pre></div>
+</div>
+</div>
+</div>
+<p>How should we handle missing data? One way is just to ignore rows with missing data. We can do this by selecting rows where <code class="docutils literal notranslate"><span class="pre">.isna()</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>. Pandas has a helper function to do this, called <code class="docutils literal notranslate"><span class="pre">.dropna()</span></code>. By default it drops any row with at least one <code class="docutils literal notranslate"><span class="pre">NaN</span></code>/<code class="docutils literal notranslate"><span class="pre">None</span></code> value. But if you want more flexibility, you can set <code class="docutils literal notranslate"><span class="pre">.dropna(thresh=3)</span></code> (for instance) to only drop rows with <em>three</em> <code class="docutils literal notranslate"><span class="pre">NaN</span></code>/<code class="docutils literal notranslate"><span class="pre">None</span></code> values. It’s good practice to always keep your original data intact. So once we drop the rows, we’ll assign this to a new DataFrame called <code class="docutils literal notranslate"><span class="pre">df_trimmed</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_trimmed</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_trimmed</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(183, 12)
+</pre></div>
+</div>
+</div>
+</div>
+<p>How do we feel about this? We went from having at last <em>some</em> information on 891 passengers, to having <em>all</em> information on 183 passengers. This seems problematic, as I’ve thrown away a bunch of my data. Moreover, it seems like the column that most often has missing data is the <code class="docutils literal notranslate"><span class="pre">Cabin</span></code> column. Looking at that column, it seems like it’s basically the room number for the person. I don’t feel like that’s so important, so maybe I don’t need to worry about missing values there. Let’s instead focus on the missing column which seems the most useful, which I feel is <code class="docutils literal notranslate"><span class="pre">Age</span></code>.</p>
+<p>Rather than dropping rows with a missing <code class="docutils literal notranslate"><span class="pre">Age</span></code>, how about we fill in an age. This may seem strange, as I’m basically just making up an age for that person. However, soon we’ll start building maching learning models, which use the data we have to make predictions about who will survive and die. For these models to work, they <em>need</em> to have data. If a row has a <code class="docutils literal notranslate"><span class="pre">NaN</span></code>/<code class="docutils literal notranslate"><span class="pre">None</span></code>, the model will throw an error and refuse to run. So it’s better to have <em>something</em> so that it at least runs, than to have nothing.</p>
+<p>The way to fill missing data is to use the Pandas helper function <code class="docutils literal notranslate"><span class="pre">.fillna()</span></code> (see a pattern here? Pandas has tons of helper functions. So before you try to write something from scratch, try Googling first!). All that <code class="docutils literal notranslate"><span class="pre">.fillna()</span></code> needs is an argument telling it <em>what</em> to fill in to the missing values. We <em>could</em> do something simple like filling in zeros (<code class="docutils literal notranslate"><span class="pre">.fillna(0)</span></code>), or 999, or -1, but it’s generally best to not introduce extreme/unrealistic values (no one on board had an age of -1. Also, an age of 999 would skew the mean age, if that was something we decided to calculate). So good practice is to fill numerical columns with the median value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cleaned</span> <span class="o">=</span> <span class="n">df</span>
+<span class="n">df_cleaned</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_cleaned</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">df_cleaned</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s inspect our data and do another check for missing values to see where we’re at.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_cleaned</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">df_cleaned</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="mi">100</span> <span class="o">*</span> <span class="n">df_cleaned</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">df_cleaned</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PassengerId: 0 (0.0%)
+Survived: 0 (0.0%)
+Pclass: 0 (0.0%)
+Name: 0 (0.0%)
+Sex: 0 (0.0%)
+Age: 0 (0.0%)
+SibSp: 0 (0.0%)
+Parch: 0 (0.0%)
+Ticket: 0 (0.0%)
+Fare: 0 (0.0%)
+Cabin: 687 (77.10437710437711%)
+Embarked: 2 (0.2244668911335578%)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cleaned</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Looking good!</p>
+<p>What about other cases, where the data is not what you would expect (numbers for <code class="docutils literal notranslate"><span class="pre">Name</span></code>, words for <code class="docutils literal notranslate"><span class="pre">Fare</span></code>, etc.)? One simple way is to look at the data type for each column. Pandas forces all values in a column to be the same type (<code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">object</span></code>, etc.). So if a single value in the <code class="docutils literal notranslate"><span class="pre">Fare</span></code> column can’t be described by a <code class="docutils literal notranslate"><span class="pre">float</span></code> (for example, it was a string ‘$123.16’), then Pandas will force that whole column to be strings (which Pandas calls an <code class="docutils literal notranslate"><span class="pre">object</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cleaned</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PassengerId      int64
+Survived         int64
+Pclass           int64
+Name            object
+Sex             object
+Age            float64
+SibSp            int64
+Parch            int64
+Ticket          object
+Fare           float64
+Cabin           object
+Embarked        object
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>A quick glance down the list looks good for the most part, but there is one weird one. <code class="docutils literal notranslate"><span class="pre">Age</span></code> is a float (decimal). Presumably all ages are integers, so we could consider changing that. The way to tell Pandas to change the column data type is using the <code class="docutils literal notranslate"><span class="pre">.astype()</span></code> helper function. As an argument, pass what type you would like. We’ll use <code class="docutils literal notranslate"><span class="pre">int</span></code> as the type.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cleaned</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_cleaned</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cleaned</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PassengerId      int64
+Survived         int64
+Pclass           int64
+Name            object
+Sex             object
+Age              int64
+SibSp            int64
+Parch            int64
+Ticket          object
+Fare           float64
+Cabin           object
+Embarked        object
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_cleaned</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="working-with-series-a-id-series-a">
+<h2>Working with Series <a id="series"></a><a class="headerlink" href="#working-with-series-a-id-series-a" title="Permalink to this headline">¶</a></h2>
+<p>In Pandas, a Series is just a DataFrame with only one column. Unfortunately, this just presents a headache. There will be times when you do something which would work perfectly well with a DataFrame, but it will fail because you won’t have realized that you only have one column and thus a Series!</p>
+<p>Up to this point we have gotten our data by loading it from a CSV file. However, it’s sometimes helpful to just make some quick, fake data to deal with. The easiest way to do this is to use the Pandas command <code class="docutils literal notranslate"><span class="pre">DataFrame()</span></code> and give it a dictionary. The dictionary should have the keys being the column names, and the values being a list of whatever values should be in that column. Here is an example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;math_course_number&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2413</span><span class="p">,</span> <span class="mi">3320</span><span class="p">,</span> <span class="mi">3439</span><span class="p">],</span>
+                  <span class="s1">&#39;math_course_name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Calculus I&#39;</span><span class="p">,</span> <span class="s1">&#39;Applied Statistics&#39;</span><span class="p">,</span> <span class="s1">&#39;Introduction to Data Science&#39;</span><span class="p">]})</span>
+
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>math_course_number</th>
+      <th>math_course_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2413</td>
+      <td>Calculus I</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3320</td>
+      <td>Applied Statistics</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3439</td>
+      <td>Introduction to Data Science</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This is a DataFrame. You can tell because it looks like one (you’ll see what a Series looks like in a second), or by using the <code class="docutils literal notranslate"><span class="pre">type()</span></code> Python function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.frame.DataFrame
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s select just a single column and see what we get.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math_course_number</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;math_course_number&#39;</span><span class="p">]</span>
+
+<span class="n">math_course_number</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    2413
+1    3320
+2    3439
+Name: math_course_number, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>This looks different! It doesn’t have the nice pretty table-style look to it. That’s because this isn’t a DataFrame, it’s a Series!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">math_course_number</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.series.Series
+</pre></div>
+</div>
+</div>
+</div>
+<p>Some things work just as well using a Series as it does a DataFrame. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math_course_number</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    2413
+1    3320
+2    3439
+Name: math_course_number, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math_course_number</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    2414
+1    3321
+2    3440
+Name: math_course_number, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, some things don’t!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># An error is coming...</span>
+<span class="n">math_course_number</span><span class="p">[</span><span class="s1">&#39;math_course_number&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">93</span><span class="o">-</span><span class="n">a55044310104</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># An error is coming...</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">math_course_number</span><span class="p">[</span><span class="s1">&#39;math_course_number&#39;</span><span class="p">]</span>
+
+<span class="nn">~/.virtualenvs/jupyter/lib/python3.8/site-packages/pandas/core/series.py</span> in <span class="ni">__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">880</span> 
+<span class="g g-Whitespace">    </span><span class="mi">881</span>         <span class="k">elif</span> <span class="n">key_is_scalar</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">882</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_value</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">883</span> 
+<span class="g g-Whitespace">    </span><span class="mi">884</span>         <span class="k">if</span> <span class="p">(</span>
+
+<span class="nn">~/.virtualenvs/jupyter/lib/python3.8/site-packages/pandas/core/series.py</span> in <span class="ni">_get_value</span><span class="nt">(self, label, takeable)</span>
+<span class="g g-Whitespace">    </span><span class="mi">989</span> 
+<span class="g g-Whitespace">    </span><span class="mi">990</span>         <span class="c1"># Similar to Index.get_value, but we do not fall back to positional</span>
+<span class="ne">--&gt; </span><span class="mi">991</span>         <span class="n">loc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">992</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">_get_values_for_loc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">993</span> 
+
+<span class="nn">~/.virtualenvs/jupyter/lib/python3.8/site-packages/pandas/core/indexes/range.py</span> in <span class="ni">get_loc</span><span class="nt">(self, key, method, tolerance)</span>
+<span class="g g-Whitespace">    </span><span class="mi">352</span>                 <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">353</span>                     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
+<span class="ne">--&gt; </span><span class="mi">354</span>             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">355</span>         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="n">tolerance</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">356</span> 
+
+<span class="ne">KeyError</span>: &#39;math_course_number&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Series don’t give the columns names, so you can’t access them by name anymore. In general, it’s often just easiest to convert a Series back to a DataFrame, then you are always working with the same objects. There are (at least) two ways to do this:</p>
+<ol class="simple">
+<li><p>Use the Pandas <code class="docutils literal notranslate"><span class="pre">.to_frame()</span></code> function</p></li>
+<li><p>Use the Pandas <code class="docutils literal notranslate"><span class="pre">.reset_index()</span></code> function</p></li>
+</ol>
+<p>These two do different things, so let’s briefly talk about each.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">.to_frame()</span></code> method simply turns a Series into a DataFrame, that’s it. Here’s an example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math_course_number_df</span> <span class="o">=</span> <span class="n">math_course_number</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+
+<span class="n">math_course_number_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>math_course_number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2413</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3320</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3439</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now it looks like (and is!) a DataFrame again!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">math_course_number_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.frame.DataFrame
+</pre></div>
+</div>
+</div>
+</div>
+<p>The only option you have with <code class="docutils literal notranslate"><span class="pre">.to_frame()</span></code> is that you can specify the column name. If, instead of ‘math_course_number’ you wanted something else, you could do that.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math_course_number_df</span> <span class="o">=</span> <span class="n">math_course_number</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;course_number&#39;</span><span class="p">)</span>
+
+<span class="n">math_course_number_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>course_number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2413</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3320</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3439</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now let’s talk about <code class="docutils literal notranslate"><span class="pre">.reset_index()</span></code>. What this function does is it makes the index (the number on the left of the Series/DataFrame) become a new column. Here’s an example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math_course_number</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    2413
+1    3320
+2    3439
+Name: math_course_number, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math_course_number</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>math_course_number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>2413</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>3320</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>3439</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>You can see that we have a new column called “index” which has the numbers on the left. This can often be extremely useful. You will run into situations where you have an index having numbers you want to use, but since they’re not a column you can’t easily access them. In that case, use <code class="docutils literal notranslate"><span class="pre">.reset_index()</span></code> to make them into a column.</p>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<p>While you can use these to get you started, really the best thing you can do is to just mess around with the data and come up with your own questions. Then start exploring those questions. Undoubtedly you will run into things you can’t figure out. Just Google and see what you can come up with. Patience and perserverance are key!</p>
+<ol class="simple">
+<li><p>For each passenger class (<code class="docutils literal notranslate"><span class="pre">Pclass</span></code>), what are the cheapest, most expensive, mean and median prices?</p></li>
+<li><p>What is the average age for men and the average age for women?</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">SibSp</span></code> column counts how many siblings and spouses are on board for that person (so if you and your sister on the ship together, then this would be 1, because you have one sibling or spouse). Create a new DataFrame containing only the people with a sibling or spouse on board.</p></li>
+<li><p>The cabin column is probably are not useful in any way, especially with so many missing values. Drop that column from the data (Google how to do it!).</p></li>
+<li><p>What patterns do you see about survival rates among passengers in different classes? We looked at just first-class passengers, but what about second and third class?</p></li>
+<li><p>We saw above that about 63% of first-class passengers survived, this is far better than for second or third class passengers. But can you do better? What about first-class females? Or second-class children? Can you find some subset of the people with a very strong survival rate? What about a high death rate?</p></li>
+<li><p>So far we’ve been asking about the relationship between just two variables: <code class="docutils literal notranslate"><span class="pre">Age</span></code> and <code class="docutils literal notranslate"><span class="pre">Survived</span></code>, <code class="docutils literal notranslate"><span class="pre">Embarked</span></code> and something else, etc. How would you go about exploring the relationship between <em>three or more</em> variables? Perhaps <code class="docutils literal notranslate"><span class="pre">Survived</span></code> is dependent on <code class="docutils literal notranslate"><span class="pre">Age</span></code>, <code class="docutils literal notranslate"><span class="pre">Fare</span></code>, <code class="docutils literal notranslate"><span class="pre">Sex</span></code>, <code class="docutils literal notranslate"><span class="pre">SibSp</span></code> and <code class="docutils literal notranslate"><span class="pre">Parch</span></code>. How could you explore this?</p></li>
+<li><p>We described “missing data” data with a <code class="docutils literal notranslate"><span class="pre">None</span></code> value. However, that’s not the only way for data to be missing. An empty string <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> would also be “missing”. Finally, while data may not be missing per-se, it can still be a value you don’t want, such as a <code class="docutils literal notranslate"><span class="pre">Sex</span></code> of “unknown”. Checking each column to see if there are any values that you don’t want. Did you find any?</p></li>
+</ol>
+</div>
+<div class="section" id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<p>Where are some places you can turn when you have questions? Google is obviously one of them, but here are some other sites I’ve found especially useful:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://chrisalbon.com/#python">Chris Albon</a> - He has very clear explanations for lots of different things. He pretty much always starts by creating a DataFrame from scratch, and then works through simple examples. A great first resource if Google isn’t working for you.</p></li>
+<li><p><a class="reference external" href="https://machinelearningmastery.com/start-here/">Machine Learning Mastery</a> - A site covering more advanced topics, but still in a very simple, readable format.</p></li>
+<li><p><a class="reference external" href="https://www.kaggle.com/kernels">Kaggle kernels</a> - “Kernels” is Kaggle’s word for Jupyter notebooks. They host notebooks on their website, and people will build them to accomplish various tasks, and then share them with the community. Many of them are like this notebook, where they’re tutorials meant to take you from start-to-finish on a task. Less useful for answering a quick “how do I…” question, but highly useful for finding an introduction to a new topic.</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='right-next' id="next-link" href="ch_02.html" title="next page">Plotting and grouping data</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
