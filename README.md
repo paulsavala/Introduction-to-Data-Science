@@ -4,6 +4,8 @@ These are materials for an introductory course in data science using Python, Pan
 
 [View the textbook](https://paulsavala.github.io/Introduction-to-Data-Science/ch_01.html)
 
+![Textbook image](textbook_example.png)
+
 ## Textbook
 
 The [textbook](https://paulsavala.github.io/Introduction-to-Data-Science/ch_01.html) is written entirely in Jupyter notebooks. This allows students to download the notebook and work with everything interactively. The textbook has the following chapters:
