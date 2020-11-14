@@ -4,7 +4,7 @@ These are materials for an introductory course in data science using Python, Pan
 
 [Explore the textbook online](https://paulsavala.github.io/Introduction-to-Data-Science/ch_01.html)
 
-[![Textbook image][textbook_example.png]][https://paulsavala.github.io/Introduction-to-Data-Science/ch_01.html]
+[![Textbook image](textbook_example.png)](https://paulsavala.github.io/Introduction-to-Data-Science/ch_01.html)
 
 ## Textbook
 
