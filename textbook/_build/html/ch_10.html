@@ -1,0 +1,1893 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ensemble tree models &#8212; Introduction to Data Science</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Working with large datasets" href="ch_11.html" />
+    <link rel="prev" title="Improving your model" href="ch_09.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_01.html">
+   First steps with Pandas and Jupyter notebooks
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_02.html">
+   Plotting and grouping data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_03.html">
+   Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_04.html">
+   Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_05.html">
+   Training models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_06.html">
+   Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_07.html">
+   Nearest neighbors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_08.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_09.html">
+   Improving your model
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Ensemble tree models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_11.html">
+   Working with large datasets
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/ch_10.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/ch_10.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-loading">
+   Data loading
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-ensemble-a-id-why-ensemble-a">
+   Why ensemble?
+   <a id="why_ensemble">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#random-forests-a-id-random-forests-a">
+   Random forests
+   <a id="random_forests">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gradient-boosting-a-id-gradient-boosting-a">
+   Gradient boosting
+   <a id="gradient_boosting">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mathematics-of-gradient-boosting-a-id-math-boosting-a">
+     Mathematics of gradient boosting
+     <a id="math_boosting">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#xgboost-a-id-xgboost-a">
+   XGBoost
+   <a id="xgboost">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-engineering-a-id-feature-engineering-a">
+   Feature engineering
+   <a id="feature_engineering">
+   </a>
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="ensemble-tree-models">
+<h1>Ensemble tree models<a class="headerlink" href="#ensemble-tree-models" title="Permalink to this headline">¶</a></h1>
+<p>Last week we saw how ensembling models can lead to better results than a single model. We did this by hand by creating three different models and having them “vote” on the result. Ensembled models are some of the most powerful models out there, and regularly win <a class="reference external" href="https://www.kaggle.com/competitions">Kaggle competitions</a>. This week we will discuss some models which themselves are ensembles, meaning the model is actually a collection of many different models.</p>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">plot_confusion_matrix</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
+<span class="kn">from</span> <span class="nn">xgboost.sklearn</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-loading">
+<h2>Data loading<a class="headerlink" href="#data-loading" title="Permalink to this headline">¶</a></h2>
+<p>This week we’ll continue working with the flight delay prediction dataset. That way we can compare the results we get from these ensemble models to the results from simple models and “hand-ensembled” models. We’ll load the saved cleaned data from last wek.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/flights_jan_2019_cleaned.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>day_of_month</th>
+      <th>day_of_week</th>
+      <th>airline</th>
+      <th>origin</th>
+      <th>dest</th>
+      <th>dep_del15</th>
+      <th>arr_del15</th>
+      <th>cancelled</th>
+      <th>diverted</th>
+      <th>distance</th>
+      <th>dep_hour</th>
+      <th>arr_hour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>128</td>
+      <td>19</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>300.0</td>
+      <td>6.016667</td>
+      <td>7.366667</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>225</td>
+      <td>80</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>596.0</td>
+      <td>13.983333</td>
+      <td>16.550000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>95</td>
+      <td>80</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>229.0</td>
+      <td>12.250000</td>
+      <td>13.483333</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>325</td>
+      <td>19</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>223.0</td>
+      <td>15.350000</td>
+      <td>16.416667</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>2</td>
+      <td>20363</td>
+      <td>19</td>
+      <td>120</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>579.0</td>
+      <td>18.783333</td>
+      <td>19.666667</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">X_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;day_of_month&#39;</span><span class="p">,</span> <span class="s1">&#39;day_of_week&#39;</span><span class="p">,</span> <span class="s1">&#39;airline&#39;</span><span class="p">,</span> <span class="s1">&#39;origin&#39;</span><span class="p">,</span> <span class="s1">&#39;dest&#39;</span><span class="p">,</span> <span class="s1">&#39;dep_del15&#39;</span><span class="p">,</span> <span class="s1">&#39;cancelled&#39;</span><span class="p">,</span> <span class="s1">&#39;diverted&#39;</span><span class="p">,</span> <span class="s1">&#39;dep_hour&#39;</span><span class="p">,</span> <span class="s1">&#39;arr_hour&#39;</span><span class="p">]</span>
+<span class="n">y_col</span> <span class="o">=</span> <span class="s1">&#39;arr_del15&#39;</span>
+
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">X_cols</span><span class="p">]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">]</span>
+
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="n">X_cols</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="why-ensemble-a-id-why-ensemble-a">
+<h2>Why ensemble? <a id="why_ensemble"></a><a class="headerlink" href="#why-ensemble-a-id-why-ensemble-a" title="Permalink to this headline">¶</a></h2>
+<p>We saw last week that ensembling can lead to better results, but why? What is about combining models that causes the results to be better? After all, how do we know they won’t come to a census on the <em>wrong</em> prediction?</p>
+<p>The general idea is what is called “bias-variance tradeoff”. In machine learning, no model will make perfect predictions (at least for any realistic case). The error it makes can be broken down into three components:</p>
+<p><strong>Error = Bias + Variance + Noise</strong></p>
+<p><strong>Bias</strong> means the way in which your models predictions are influenced by the model chosen. For instance, linear regression will always predict a line. Therefore, if your data is not a perfect line, linear regression will always have error when attempting to predict it. Since this error is due to the assumptions of your model (and how they don’t perfectly match your match), we call this “bias”. You can think of it as being analogous to how humans have bias. We are biased in certain directions largely based on our life experiences. You may be biased against smoking because you grew up hearing smoking was bad, and maybe saw a family member who died early from smoking. However, if you took someone who had no such experience, they may not be biased against smokers.</p>
+<p><strong>Variance</strong> means how much the predictions change based on the input to the model. For instance, suppose you wanted to model the salary of a person based on their education. If you took one hundred random people and trained your model with them you would get a certain result. But what about if you changed your data and picked 100 new people. Since their educations are likely different, your model would be different. If your model could change drastically (such as how linear regression does with outliers) then we would say it has high variance.</p>
+<p><strong>Noise</strong> simply means noise in the data. Essentially no data follows any perfect pattern, and even the best model will still have slight errors, simply because of this. Noise is unavoidable in the data.</p>
+<p>Bias and variance can also change with changing the hyperparameters of a model. For instance, suppose you had a decision tree with a maximum depth of 3. This is a simple model which can only make <span class="math notranslate nohighlight">\(2^3\)</span> decision (each leaf splits into two leaves three times). Therefore, it’s not going to fit most data perfectly due to this rigid structure, and thus it has high bias. However, because there are so few decisions being made, changing the data slightly isn’t going to drastically alter the results, and thus the variance is low. However, if we change it to have depth 200, then the exact opposite is true. It now can fit the data extremely well due to having so many decision rules. However, all these rules mean even small changes to the data can result in big prediction changes, and thus the variance is high.</p>
+<p><strong>Rule of thumb:</strong> The more complex and nuanced a model is, the higher the bias and the lower the variance. The simpler a model is, the higher the variance and the lower the bias.</p>
+<p>When we ensemble models we are attempting to reduce bias and/or variance. For example, if you ensemble a linear model, a decision tree and a nearest neighbors model, these all have different structures. Therefore, even if our data was not linear (and thus couldn’t be fit well by the linear regression model), it may still be fit well by the other models. Therefore, by ensembling we would be effectively reducing the bias. Similarly, if we have a high variance model like a deep decision tree, we can reduce the variance by ensembling it with a simpler, lower variance model.</p>
+</div>
+<div class="section" id="random-forests-a-id-random-forests-a">
+<h2>Random forests <a id="random_forests"></a><a class="headerlink" href="#random-forests-a-id-random-forests-a" title="Permalink to this headline">¶</a></h2>
+<p>The first ensemble model we’ll learn is called random forests. Random forests are simply a collection of decision trees, each fitted on slightly different data, and then taken together to average their predictions. For a regression problem this means the prediction is literally the average of the predicted values. For a classification problem the probabilities predicted are averaged, and a class is chosen based on the resulting average probability. Regardless, the point is to address the problem discussed above: simple decision trees are too simple to fit the data well, but complex trees are too deep to produce reliable predictions. By averaging many deep trees we hope that the mistakes will “cancel each other out.” Let’s jump right into building random forests. Note that at the top of this notebook we imported <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code> from <code class="docutils literal notranslate"><span class="pre">sklearn.ensemble</span></code>. There is also a <code class="docutils literal notranslate"><span class="pre">RandomForestRegressor</span></code> for regression problems.</p>
+<p>Random forests have almost all of the same hyperparameters as decision trees…because they are decision trees, just lots of them! So the main difference is choosing how many decision trees should be made, which is the parameter <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>. This is another hyperparameter, and thus should be determined using grid search and cross validation like we did last week. The default value in sklearn is 100, which shows you just how many trees are considered a “default”. In addition, you have the option to have each tree only work with a subset of the columns. This is controlled by <code class="docutils literal notranslate"><span class="pre">max_features</span></code>, which tells it how many columns it should use. The point of all of this randomness (random selection of columns, 100 different tree, random selection of rows) is to create trees which come to different conclusions. Then we can take those conclusions and look at them “on average” to make a final prediction.</p>
+<p>Random forests are slow to train because they involve building many trees. Therefore, we will just train a single one with guesses at the hyperparameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rf_clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">min_samples_split</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">rf_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">rf_clf</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x7f9ed2c27eb8&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_10_9_1.png" src="_images/ch_10_9_1.png" />
+</div>
+</div>
+<p>What an improvement over last week! If you recall, last week we also had 95%+ accuracy on non-delayed flights, but we struggled greaty on flights that were delayed. However, this new random forest model does very well on both classes. Getting 75% accuracy on delayed flights is fantastic, and could likely be improved further through hyperparameter tuning.</p>
+</div>
+<div class="section" id="gradient-boosting-a-id-gradient-boosting-a">
+<h2>Gradient boosting <a id="gradient_boosting"></a><a class="headerlink" href="#gradient-boosting-a-id-gradient-boosting-a" title="Permalink to this headline">¶</a></h2>
+<p>Gradient boosting is another form of ensembling, however we talk about gradient boosting on its own for two reasons. The first is that it works in a fundamentally different way than random forests. While random forests randomly creates trees and hopes that in combination they will make good predictions, <strong>gradient boosting</strong> constructs trees by learning from the mistakes of previous trees (we go more into this below). The second reason is that implementations of gradient boosting in Python (the most famous being <a class="reference external" href="https://xgboost.readthedocs.io/en/latest/tutorials/model.html">XGBoost</a>) have won numerous data science competitions. If you have tabular data (meaning data best represented by tables, including all datasets we have seen in this class, but <em>not</em> things like images, audio or long text) and want to perform classification or regression, gradient boosting is likely the state of the art. If you are building a serious prediction model to work with complex data, it would be expected that you have tried using a gradient boosting model. Failure to do so would be leaving your most powerful tool in the toolbox.</p>
+<div class="section" id="mathematics-of-gradient-boosting-a-id-math-boosting-a">
+<h3>Mathematics of gradient boosting <a id="math_boosting"></a><a class="headerlink" href="#mathematics-of-gradient-boosting-a-id-math-boosting-a" title="Permalink to this headline">¶</a></h3>
+<p>Let’s start by discussing the mathematics of gradient boosting, as without an understanding of the underlying mechanics you can never truly understand why it matters and how it works.</p>
+<p>In general, gradient boosting follows these steps:</p>
+<ol class="simple">
+<li><p>Start with an initial tree model</p></li>
+<li><p>Find where the existing model makes incorrect predictions</p></li>
+<li><p>Create a new tree which “fixes” those incorrect predictions as best as possible</p></li>
+<li><p>Set the new model to be the existing tree plus this newly created one</p></li>
+<li><p>Repeat steps 2 through 4 as many times as you like.</p></li>
+</ol>
+<p>Let’s go into each of these steps in detail.</p>
+<p><strong>1. Start with an initial tree model</strong>:
+This is exactly what it sounds like. Our initial tree is just a decision tree like we have already seen.</p>
+<p><strong>2. Find where the existing model makes incorrect predictions</strong>:
+Recall that we measure how well our model is doing by a <em>loss function</em>. We have often used mean squared error (MSE) as the loss function for regression problems, and cross entropy as the loss function for classification problems. The loss function returns a large value if the predictions are way off, and a small value if the predictions are close to being correct.</p>
+<p>Let’s play a game. Suppose you have the following points and want to fit a decision tree to them:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f9e9f19ed30&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_10_14_1.png" src="_images/ch_10_14_1.png" />
+</div>
+</div>
+<p>Let’s fit a decision tree.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_reg_1</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">dt_reg_1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span> <span class="c1"># Try removing the reshape and see what the error tells you</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DecisionTreeRegressor(ccp_alpha=0.0, criterion=&#39;mse&#39;, max_depth=3,
+                      max_features=None, max_leaf_nodes=None,
+                      min_impurity_decrease=0.0, min_impurity_split=None,
+                      min_samples_leaf=1, min_samples_split=2,
+                      min_weight_fraction_leaf=0.0, presort=&#39;deprecated&#39;,
+                      random_state=None, splitter=&#39;best&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred_1</span> <span class="o">=</span> <span class="n">dt_reg_1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual points&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pred_1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predictions&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_10_18_0.png" src="_images/ch_10_18_0.png" />
+</div>
+</div>
+<p>Clearly, these predictions aren’t perfect. So, you hand your decision tree and all the points to your neighbor. Their job is now to build a new decision tree <em>which will be added to your tree</em> to make the model better. So if your decision tree is <span class="math notranslate nohighlight">\(f_1(x)\)</span>, then they need to come up with a tree <span class="math notranslate nohighlight">\(f_2(x)\)</span> so that <span class="math notranslate nohighlight">\(f_1(x) + f_2(x)\)</span> fits the data better than just <span class="math notranslate nohighlight">\(f_1(x)\)</span> alone. How can they do this? Well, they can build a tree based on where your model made mistakes. For instance, your model is wrong whenever <span class="math notranslate nohighlight">\(f_1(x) \neq y\)</span>, or equivalently, where <span class="math notranslate nohighlight">\(y - f_1(x) \neq 0\)</span>. So let’s fit a new tree to <span class="math notranslate nohighlight">\(y - f_1(x)\)</span>, and call that <span class="math notranslate nohighlight">\(f_2(x)\)</span>. Why is this an improvement? Because taking <span class="math notranslate nohighlight">\(f_2(x) \approx y - f_1(x)\)</span>, and thus <span class="math notranslate nohighlight">\(f_1(x) + f_2(x) \approx y\)</span>. Let’s try it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># y - f_1(x), since f_1(x) is the predictions from the first model</span>
+<span class="n">y_residual_2</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_pred_1</span>
+
+<span class="c1"># fit a new tree to y - f_1(x)</span>
+<span class="n">dt_reg_2</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">dt_reg_2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_residual_2</span><span class="p">)</span>
+
+<span class="c1"># Make predictions again</span>
+<span class="n">y_pred_2</span> <span class="o">=</span> <span class="n">dt_reg_2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Set my new predictions (i.e. model) to be the old predictions plus the new ones</span>
+<span class="n">new_preds_2</span> <span class="o">=</span> <span class="n">y_pred_1</span> <span class="o">+</span> <span class="n">y_pred_2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual points&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pred_1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predictions (tree 1)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">new_preds_2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predictions (tree 2)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_10_21_0.png" src="_images/ch_10_21_0.png" />
+</div>
+</div>
+<p>An improvement! Let’s do it once more.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># y - f_1(x), since f_1(x) is the predictions from the first model</span>
+<span class="n">y_residual_3</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">new_preds_2</span>
+
+<span class="c1"># fit a new tree to y - f_1(x)</span>
+<span class="n">dt_reg_3</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">dt_reg_3</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_residual_3</span><span class="p">)</span>
+
+<span class="c1"># Make predictions again</span>
+<span class="n">y_pred_3</span> <span class="o">=</span> <span class="n">dt_reg_3</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Set my new predictions (i.e. model) to be the old predictions plus the new ones</span>
+<span class="n">new_preds_3</span> <span class="o">=</span> <span class="n">y_pred_1</span> <span class="o">+</span> <span class="n">y_pred_2</span> <span class="o">+</span> <span class="n">y_pred_3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual points&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pred_1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predictions (tree 1)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.33</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">new_preds_2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predictions (tree 2)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.67</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">new_preds_3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predictions&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_10_24_0.png" src="_images/ch_10_24_0.png" />
+</div>
+</div>
+<p>Let’s plot the predictions from just the first tree, along with the predictions from these three trees added together to make it clear how our model hsa changed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual points&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pred_1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tree 1 predictions&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">new_preds</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tree 1 + 2 + 3 predictions&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x137a9b940&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_10_26_1.png" src="_images/ch_10_26_1.png" />
+</div>
+</div>
+<p>We can see that the combined trees make a more detailed model. This is precisely the process that gradient boosting takes.</p>
+</div>
+</div>
+<div class="section" id="xgboost-a-id-xgboost-a">
+<h2>XGBoost <a id="xgboost"></a><a class="headerlink" href="#xgboost-a-id-xgboost-a" title="Permalink to this headline">¶</a></h2>
+<p>There are several different implementations of gradient boosting, each with their own nuances. However, by far the most popular is XGBoost. We will continue with predicting flight delays, but this time using XGBoost.</p>
+<p>While XGBoost is powerful, it has <a class="reference external" href="https://xgboost.readthedocs.io/en/latest/python/python_api.html#module-xgboost.sklearn">many, many different hyperparameters</a>. Unless you are willing to let your model run for very, very long, it is infeasible to tune all of them using grid search cross validation. Therefore, we will typically restrict ourselves to just a few:</p>
+<ul class="simple">
+<li><p><strong>n_estimators:</strong> The same as for random forest. It’s how many trees to build.</p></li>
+<li><p><strong>max_depth:</strong> How deep each tree should be built.</p></li>
+<li><p><strong>learning_rate:</strong> Gradient descent determines how much it should change each tree by using a learning rate. A large leraning rate (a value near 1) means it may make too big of jumps. A smaller value (0.0001 or smaller, for example) may make it learn too slowly.</p></li>
+</ul>
+<p>These are a great starting point for hyperparameter tuning. However, if you are trying to really improve your model, it is worth your time to learn about other hyperparameters and tune those as well.</p>
+<p>Using XGBoost is just the same as anything else in sklearn, we instantiate it with our hyperparameters, fit it, and make predictions with it. However, note that it is <em>not</em> included in sklearn. We had to import it instead from <code class="docutils literal notranslate"><span class="pre">xgboost.sklearn</span></code>. Due to grid search taking so long, we will just train one model with guesses at the hyperparameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_clf</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">xgb_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">xgb_clf</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x12a64b790&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_10_29_1.png" src="_images/ch_10_29_1.png" />
+</div>
+</div>
+<p>Not bad! We maintain our very good accuracy on non-delayed flights, and bump up our accuracy on delayed flights to 69%. This is a big improvement over anything we got last week. However, it’s actually still not as good as the random forest model we trained above. Ensemble models are highly influenced by hyperparameter choices. Therefore it’s very possible that both models could be improved significantly through hyperparameter tuning.</p>
+</div>
+<div class="section" id="feature-engineering-a-id-feature-engineering-a">
+<h2>Feature engineering <a id="feature_engineering"></a><a class="headerlink" href="#feature-engineering-a-id-feature-engineering-a" title="Permalink to this headline">¶</a></h2>
+<p>Along with ensembling, feature engineering is one of the most important techniques in designing highly effective machine learning models. By <strong>feature engineering</strong> we mean creating new columns (features) by modifying the original data. This can take many forms. We will explore this using the LA Marathon dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">drive_dir</span> <span class="o">+</span> <span class="s1">&#39;data/2016_la_marathon.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>div_place</th>
+      <th>name</th>
+      <th>bib</th>
+      <th>age</th>
+      <th>place</th>
+      <th>gender_place</th>
+      <th>5k_split</th>
+      <th>10k_split</th>
+      <th>15k_split</th>
+      <th>20k_split</th>
+      <th>25k_split</th>
+      <th>30k_split</th>
+      <th>35k_split</th>
+      <th>40k_split</th>
+      <th>clock_time</th>
+      <th>net_time</th>
+      <th>hometown</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>SAUL VISCARRA</td>
+      <td>40402</td>
+      <td>15</td>
+      <td>382</td>
+      <td>352</td>
+      <td>22:28</td>
+      <td>44:00</td>
+      <td>1:04:56</td>
+      <td>1:26:24</td>
+      <td>1:48:24</td>
+      <td>2:11:32</td>
+      <td>2:37:42</td>
+      <td>3:01:56</td>
+      <td>3:22:41</td>
+      <td>3:11:51</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>FERNANDO GOMEZ</td>
+      <td>40504</td>
+      <td>15</td>
+      <td>560</td>
+      <td>504</td>
+      <td>22:37</td>
+      <td>45:17</td>
+      <td>1:07:50</td>
+      <td>1:31:42</td>
+      <td>1:55:46</td>
+      <td>2:19:58</td>
+      <td>2:44:35</td>
+      <td>3:09:32</td>
+      <td>3:23:09</td>
+      <td>3:18:54</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>MARCOS GONZALEZ</td>
+      <td>40882</td>
+      <td>15</td>
+      <td>1042</td>
+      <td>881</td>
+      <td>24:08</td>
+      <td>47:44</td>
+      <td>1:10:34</td>
+      <td>1:34:10</td>
+      <td>1:58:40</td>
+      <td>2:23:37</td>
+      <td>2:54:01</td>
+      <td>3:23:20</td>
+      <td>3:43:35</td>
+      <td>3:31:59</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>LUIS MORALES</td>
+      <td>42286</td>
+      <td>13</td>
+      <td>1294</td>
+      <td>1076</td>
+      <td>22:50</td>
+      <td>46:21</td>
+      <td>1:11:07</td>
+      <td>1:34:42</td>
+      <td>1:58:49</td>
+      <td>2:24:17</td>
+      <td>2:54:27</td>
+      <td>3:26:22</td>
+      <td>3:41:55</td>
+      <td>3:37:24</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>PETER CASTANO</td>
+      <td>20099</td>
+      <td>15</td>
+      <td>1413</td>
+      <td>1166</td>
+      <td>26:13</td>
+      <td>53:12</td>
+      <td>1:19:36</td>
+      <td>1:45:47</td>
+      <td>2:11:53</td>
+      <td>2:38:18</td>
+      <td>3:03:38</td>
+      <td>3:29:46</td>
+      <td>3:45:48</td>
+      <td>3:39:31</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We will attempt to build a model to predict the overall place the person got (in the <code class="docutils literal notranslate"><span class="pre">place</span></code> column). Let’s quickly do some cleaning. The most important thing is to change the times so that they’re actual numbers (right now they’re strings). We’ll convert each one to minutes, so that it shows how many minutes it took them to get to 5k, 10k, etc. We’ll do this by writing a custom function to parse the time, and using the Pandas <code class="docutils literal notranslate"><span class="pre">.apply()</span></code> function to apply the function to every row.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">split_to_min</span><span class="p">(</span><span class="n">split_str</span><span class="p">):</span>
+    <span class="c1"># Some data has problems and can&#39;t be converted to numbers. So if that happens we&#39;ll note it and move on.</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">split_list</span> <span class="o">=</span> <span class="n">split_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+        <span class="c1"># Depending on how fast/slow the person it, their split could just be of the form mm:ss (minutes:seconds), or it</span>
+        <span class="c1"># could involve hours, like hh:mm:ss. We&#39;ll check how many things appeared when splitting to find out.</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">split_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span> <span class="c1"># Only mm:ss</span>
+            <span class="n">minutes</span><span class="p">,</span> <span class="n">seconds</span> <span class="o">=</span> <span class="n">split_list</span>
+            <span class="n">hours</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># Must have all three</span>
+            <span class="n">hours</span><span class="p">,</span> <span class="n">minutes</span><span class="p">,</span> <span class="n">seconds</span> <span class="o">=</span> <span class="n">split_list</span>
+        <span class="c1"># We&#39;ll convert everything to minutes. </span>
+        <span class="n">hours</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">hours</span><span class="p">)</span> <span class="o">*</span> <span class="mi">60</span>
+        <span class="n">minutes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span>
+        <span class="n">seconds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span> <span class="o">/</span> <span class="mi">60</span>
+        <span class="n">split_min</span> <span class="o">=</span> <span class="n">hours</span> <span class="o">+</span> <span class="n">minutes</span> <span class="o">+</span> <span class="n">seconds</span>
+        <span class="k">return</span> <span class="n">split_min</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">split_cols</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">k_split&#39;</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">5</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;clock_time&#39;</span><span class="p">,</span> <span class="s1">&#39;net_time&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">split_cols</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;5k_split&#39;,
+ &#39;10k_split&#39;,
+ &#39;15k_split&#39;,
+ &#39;20k_split&#39;,
+ &#39;25k_split&#39;,
+ &#39;30k_split&#39;,
+ &#39;35k_split&#39;,
+ &#39;40k_split&#39;,
+ &#39;clock_time&#39;,
+ &#39;net_time&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">split_cols</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">split_to_min</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>div_place</th>
+      <th>name</th>
+      <th>bib</th>
+      <th>age</th>
+      <th>place</th>
+      <th>gender_place</th>
+      <th>5k_split</th>
+      <th>10k_split</th>
+      <th>15k_split</th>
+      <th>20k_split</th>
+      <th>25k_split</th>
+      <th>30k_split</th>
+      <th>35k_split</th>
+      <th>40k_split</th>
+      <th>clock_time</th>
+      <th>net_time</th>
+      <th>hometown</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>SAUL VISCARRA</td>
+      <td>40402</td>
+      <td>15</td>
+      <td>382</td>
+      <td>352</td>
+      <td>22.466667</td>
+      <td>44.000000</td>
+      <td>64.933333</td>
+      <td>86.400000</td>
+      <td>108.400000</td>
+      <td>131.533333</td>
+      <td>157.700000</td>
+      <td>181.933333</td>
+      <td>202.683333</td>
+      <td>191.850000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>FERNANDO GOMEZ</td>
+      <td>40504</td>
+      <td>15</td>
+      <td>560</td>
+      <td>504</td>
+      <td>22.616667</td>
+      <td>45.283333</td>
+      <td>67.833333</td>
+      <td>91.700000</td>
+      <td>115.766667</td>
+      <td>139.966667</td>
+      <td>164.583333</td>
+      <td>189.533333</td>
+      <td>203.150000</td>
+      <td>198.900000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>MARCOS GONZALEZ</td>
+      <td>40882</td>
+      <td>15</td>
+      <td>1042</td>
+      <td>881</td>
+      <td>24.133333</td>
+      <td>47.733333</td>
+      <td>70.566667</td>
+      <td>94.166667</td>
+      <td>118.666667</td>
+      <td>143.616667</td>
+      <td>174.016667</td>
+      <td>203.333333</td>
+      <td>223.583333</td>
+      <td>211.983333</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>LUIS MORALES</td>
+      <td>42286</td>
+      <td>13</td>
+      <td>1294</td>
+      <td>1076</td>
+      <td>22.833333</td>
+      <td>46.350000</td>
+      <td>71.116667</td>
+      <td>94.700000</td>
+      <td>118.816667</td>
+      <td>144.283333</td>
+      <td>174.450000</td>
+      <td>206.366667</td>
+      <td>221.916667</td>
+      <td>217.400000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>PETER CASTANO</td>
+      <td>20099</td>
+      <td>15</td>
+      <td>1413</td>
+      <td>1166</td>
+      <td>26.216667</td>
+      <td>53.200000</td>
+      <td>79.600000</td>
+      <td>105.783333</td>
+      <td>131.883333</td>
+      <td>158.300000</td>
+      <td>183.633333</td>
+      <td>209.766667</td>
+      <td>225.800000</td>
+      <td>219.516667</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>div_place           0
+name                0
+bib                 0
+age                 0
+place               0
+gender_place        0
+5k_split          825
+10k_split         162
+15k_split         101
+20k_split          91
+25k_split          73
+30k_split         140
+35k_split          95
+40k_split         161
+clock_time          1
+net_time            0
+hometown        11499
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s just drop missing values for anything except <code class="docutils literal notranslate"><span class="pre">hometown</span></code>, which we don’t really care about anyway. We’ll also drop their name and their place in their division, along with their place in their gender (since knowing what place they got in their division/gender is perhaps “cheating”). Finally, if we know how long it took them to get to the 40k mark (which is just two kilometers short of the finish line) then we could obviously predict their place, since they’ve almost finished the race! So we’ll only keep the first half (20km).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;hometown&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;div_place&#39;</span><span class="p">,</span> <span class="s1">&#39;gender_place&#39;</span><span class="p">,</span> <span class="s1">&#39;25k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;30k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;35k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;40k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;clock_time&#39;</span><span class="p">,</span> <span class="s1">&#39;net_time&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bib</th>
+      <th>age</th>
+      <th>place</th>
+      <th>5k_split</th>
+      <th>10k_split</th>
+      <th>15k_split</th>
+      <th>20k_split</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>40402</td>
+      <td>15</td>
+      <td>382</td>
+      <td>22.466667</td>
+      <td>44.000000</td>
+      <td>64.933333</td>
+      <td>86.400000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>40504</td>
+      <td>15</td>
+      <td>560</td>
+      <td>22.616667</td>
+      <td>45.283333</td>
+      <td>67.833333</td>
+      <td>91.700000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>40882</td>
+      <td>15</td>
+      <td>1042</td>
+      <td>24.133333</td>
+      <td>47.733333</td>
+      <td>70.566667</td>
+      <td>94.166667</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>42286</td>
+      <td>13</td>
+      <td>1294</td>
+      <td>22.833333</td>
+      <td>46.350000</td>
+      <td>71.116667</td>
+      <td>94.700000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20099</td>
+      <td>15</td>
+      <td>1413</td>
+      <td>26.216667</td>
+      <td>53.200000</td>
+      <td>79.600000</td>
+      <td>105.783333</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bib            int64
+age            int64
+place          int64
+5k_split     float64
+10k_split    float64
+15k_split    float64
+20k_split    float64
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Everything looks good, let’s get started.</p>
+<p>A good idea is to first train a model on the original data <em>before</em> you start doing feature engineering. We saw that the more advanced ensemble models have results that vary greatly depending on the hyperparameters chosen. Since it is very slow to do a grid search and find these hyperparameters, we’ll just use a plain decision tree as our baseline model. Once we think we’ve engineering some features that seem useful (based on the results of the decision tree), we can then try a more advanced model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">X_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bib&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;5k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;10k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;15k_split&#39;</span><span class="p">,</span> <span class="s1">&#39;20k_split&#39;</span><span class="p">]</span>
+<span class="n">y_col</span> <span class="o">=</span> <span class="s1">&#39;place&#39;</span>
+
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">X_cols</span><span class="p">]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">]</span>
+
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="n">X_cols</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_baseline</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="n">dt_baseline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R^2 = </span><span class="si">{</span><span class="n">dt_baseline</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R^2 = 0.8327
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not a bad R^2 value! Let’s try to beat it by engineering some new features.</p>
+<p>Feature engineering typically follows two steps:</p>
+<ol class="simple">
+<li><p>Think about what features your data doesn’t yet have, and which might be useful.</p></li>
+<li><p>Create those features, train a new model with them, and see if things improve.</p></li>
+</ol>
+<p>This process is then repeated over and over.</p>
+<p>Let’s start with thinking about how runners speed changes throughout the race. Presumably, most runners start fast and then slow down as they get tired. But what about the elite runners? Do they do this as well? We’ll start by comparing their time to complete the first 5k, versus how long it took them to go from 15k to 20k. We’ll then create a new column which is whether how much faster/slower this was than their first 5k.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;last_5k_minus_first_5k&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;20k_split&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;15k_split&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;5k_split&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bib</th>
+      <th>age</th>
+      <th>place</th>
+      <th>5k_split</th>
+      <th>10k_split</th>
+      <th>15k_split</th>
+      <th>20k_split</th>
+      <th>last_5k_minus_first_5k</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>40402</td>
+      <td>15</td>
+      <td>382</td>
+      <td>22.466667</td>
+      <td>44.000000</td>
+      <td>64.933333</td>
+      <td>86.400000</td>
+      <td>-1.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>40504</td>
+      <td>15</td>
+      <td>560</td>
+      <td>22.616667</td>
+      <td>45.283333</td>
+      <td>67.833333</td>
+      <td>91.700000</td>
+      <td>1.250000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>40882</td>
+      <td>15</td>
+      <td>1042</td>
+      <td>24.133333</td>
+      <td>47.733333</td>
+      <td>70.566667</td>
+      <td>94.166667</td>
+      <td>-0.533333</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>42286</td>
+      <td>13</td>
+      <td>1294</td>
+      <td>22.833333</td>
+      <td>46.350000</td>
+      <td>71.116667</td>
+      <td>94.700000</td>
+      <td>0.750000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20099</td>
+      <td>15</td>
+      <td>1413</td>
+      <td>26.216667</td>
+      <td>53.200000</td>
+      <td>79.600000</td>
+      <td>105.783333</td>
+      <td>-0.033333</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;place&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;last_5k_minus_first_5k&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x12a8cbc10&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_10_51_1.png" src="_images/ch_10_51_1.png" />
+</div>
+</div>
+<p>So it looks like there is indeed a general positive trend, where people who did very well (low placing) had <code class="docutils literal notranslate"><span class="pre">first_5k_vs_last_5k</span></code> being close to 0, and people who finished lower had a positive value (a positive value means their last 5k was slower than their first 5k). Before we go any further, let’s just train a model by including this new column and seeing how our results change. Note that our training and testing dataframes don’t have this new column (we just created them on the original data). So let’s create it there first.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">last_5k_minus_first_5k_col</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;last_5k_minus_first_5k&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;20k_split&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;15k_split&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;5k_split&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">last_5k_minus_first_5k_col</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">last_5k_minus_first_5k_col</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-276-37485025437d&gt;:2: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df[&#39;last_5k_minus_first_5k&#39;] = (df[&#39;20k_split&#39;] - df[&#39;15k_split&#39;]) - df[&#39;5k_split&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_fe1</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="n">dt_fe1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R^2 = </span><span class="si">{</span><span class="n">dt_fe1</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R^2 = 0.8405
+</pre></div>
+</div>
+</div>
+</div>
+<p>A slight improvement! We did this for the first versus last 5k. But what about if we created new columns which showed how their current 5k time compared to their previous 5k time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">this_5k_minus_prev_5k_col</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;10k_vs_5k&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;10k_split&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;5k_split&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;5k_split&#39;</span><span class="p">]</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;15k_vs_10k&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;15k_split&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;10k_split&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;10k_split&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;5k_split&#39;</span><span class="p">])</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;20k_vs_15k&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;20k_split&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;15k_split&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;15k_split&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;10k_split&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">this_5k_minus_prev_5k_col</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">this_5k_minus_prev_5k_col</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_fe2</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="n">dt_fe2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R^2 = </span><span class="si">{</span><span class="n">dt_fe2</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R^2 = 0.8406
+</pre></div>
+</div>
+</div>
+</div>
+<p>A very, very slight improvement. One potential reason for this is simply that our model has more columns to consider, but we’re not allowing the tree to be any more complex (deeper, for instance). Perhaps if we increased the depth our score might improve. Let’s try it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_fe2_deeper</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="n">dt_fe2_deeper</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R^2 = </span><span class="si">{</span><span class="n">dt_fe2_deeper</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R^2 = 0.8406
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nope, that didn’t help. So maybe those extra columns are actually not that useful. Let’s get rid of them so that we don’t include columns which aren’t contributing much.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bib</th>
+      <th>age</th>
+      <th>5k_split</th>
+      <th>10k_split</th>
+      <th>15k_split</th>
+      <th>20k_split</th>
+      <th>last_5k_minus_first_5k</th>
+      <th>10k_vs_5k</th>
+      <th>15k_vs_10k</th>
+      <th>20k_vs_15k</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>11206</th>
+      <td>3168</td>
+      <td>67</td>
+      <td>27.183333</td>
+      <td>55.500000</td>
+      <td>83.133333</td>
+      <td>110.450000</td>
+      <td>0.133333</td>
+      <td>1.133333</td>
+      <td>-0.683333</td>
+      <td>-3.166667e-01</td>
+    </tr>
+    <tr>
+      <th>6798</th>
+      <td>22198</td>
+      <td>41</td>
+      <td>25.283333</td>
+      <td>50.166667</td>
+      <td>74.283333</td>
+      <td>98.916667</td>
+      <td>-0.650000</td>
+      <td>-0.400000</td>
+      <td>-0.766667</td>
+      <td>5.166667e-01</td>
+    </tr>
+    <tr>
+      <th>9190</th>
+      <td>23994</td>
+      <td>49</td>
+      <td>50.766667</td>
+      <td>97.916667</td>
+      <td>142.316667</td>
+      <td>189.216667</td>
+      <td>-3.866667</td>
+      <td>-3.616667</td>
+      <td>-2.750000</td>
+      <td>2.500000e+00</td>
+    </tr>
+    <tr>
+      <th>2501</th>
+      <td>11962</td>
+      <td>29</td>
+      <td>25.200000</td>
+      <td>49.683333</td>
+      <td>73.000000</td>
+      <td>96.316667</td>
+      <td>-1.883333</td>
+      <td>-0.716667</td>
+      <td>-1.166667</td>
+      <td>-7.105427e-15</td>
+    </tr>
+    <tr>
+      <th>4289</th>
+      <td>6146</td>
+      <td>31</td>
+      <td>25.766667</td>
+      <td>52.266667</td>
+      <td>78.616667</td>
+      <td>105.183333</td>
+      <td>0.800000</td>
+      <td>0.733333</td>
+      <td>-0.150000</td>
+      <td>2.166667e-01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;10k_vs_5k&#39;</span><span class="p">,</span> <span class="s1">&#39;15k_vs_10k&#39;</span><span class="p">,</span> <span class="s1">&#39;20k_vs_15k&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;10k_vs_5k&#39;</span><span class="p">,</span> <span class="s1">&#39;15k_vs_10k&#39;</span><span class="p">,</span> <span class="s1">&#39;20k_vs_15k&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bib</th>
+      <th>age</th>
+      <th>5k_split</th>
+      <th>10k_split</th>
+      <th>15k_split</th>
+      <th>20k_split</th>
+      <th>last_5k_minus_first_5k</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>11206</th>
+      <td>3168</td>
+      <td>67</td>
+      <td>27.183333</td>
+      <td>55.500000</td>
+      <td>83.133333</td>
+      <td>110.450000</td>
+      <td>0.133333</td>
+    </tr>
+    <tr>
+      <th>6798</th>
+      <td>22198</td>
+      <td>41</td>
+      <td>25.283333</td>
+      <td>50.166667</td>
+      <td>74.283333</td>
+      <td>98.916667</td>
+      <td>-0.650000</td>
+    </tr>
+    <tr>
+      <th>9190</th>
+      <td>23994</td>
+      <td>49</td>
+      <td>50.766667</td>
+      <td>97.916667</td>
+      <td>142.316667</td>
+      <td>189.216667</td>
+      <td>-3.866667</td>
+    </tr>
+    <tr>
+      <th>2501</th>
+      <td>11962</td>
+      <td>29</td>
+      <td>25.200000</td>
+      <td>49.683333</td>
+      <td>73.000000</td>
+      <td>96.316667</td>
+      <td>-1.883333</td>
+    </tr>
+    <tr>
+      <th>4289</th>
+      <td>6146</td>
+      <td>31</td>
+      <td>25.766667</td>
+      <td>52.266667</td>
+      <td>78.616667</td>
+      <td>105.183333</td>
+      <td>0.800000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>What about comparing each runner’s time to the average time to that mark? So for instance, if the average runner takes 40 minutes to get to the 5k mark, how much slower or faster is each runner? In fact, there’s no reason to do this for just time, we can also do it for age and bib number. Let’s see if those new features are useful.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">value_vs_mean</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">new_col_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">_vs_mean&#39;</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">new_col_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">value_vs_mean</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">value_vs_mean</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_fe3</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="n">dt_fe3</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R^2 = </span><span class="si">{</span><span class="n">dt_fe3</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R^2 = 0.8411
+</pre></div>
+</div>
+</div>
+</div>
+<p>Again, a slight improvement.</p>
+<p>When you start adding more and more features, your models need to be more and more complex to handle them properly. Therefore, it is to your advantage to only include features which are actually improving the model. How can you determine this? One way would be to add columns one at a time and see how things change. However, this is highly time consuming. Another more efficient way is to ask the model to tell you! Most models keep track of “feature importances”, which are measure the model uses to determine how useful a feature is. For a tree, this is stored in the <code class="docutils literal notranslate"><span class="pre">.feature_importances_</span></code> attribute.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_fe3</span><span class="o">.</span><span class="n">feature_importances_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([7.25661052e-04, 6.41068604e-04, 7.38459485e-05, 1.12079260e-03,
+       9.84246838e-05, 8.28753967e-01, 2.20368148e-02, 4.78292268e-04,
+       2.85487107e-04, 1.30575962e-03, 2.88408609e-04, 2.22836673e-04,
+       1.31116001e-01, 1.28526395e-02])
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is returning the feature importance for each column. They are returned in the same order as the columns. So we can print this more nicely if we print the columns at the same time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">dt_fe3</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bib: 0.0007
+age: 0.0006
+5k_split: 0.0001
+10k_split: 0.0011
+15k_split: 0.0001
+20k_split: 0.8288
+last_5k_minus_first_5k: 0.0220
+bib_vs_mean: 0.0005
+age_vs_mean: 0.0003
+5k_split_vs_mean: 0.0013
+10k_split_vs_mean: 0.0003
+15k_split_vs_mean: 0.0002
+20k_split_vs_mean: 0.1311
+last_5k_minus_first_5k_vs_mean: 0.0129
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">dt_fe3</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">270</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Feature importance&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="mi">6</span><span class="n">d924ddf25af</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">dt_fe3</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">270</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Feature importance&#39;</span><span class="p">);</span>
+
+<span class="ne">NameError</span>: name &#39;X_train&#39; is not defined
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 864x576 with 0 Axes&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>So  by far the most important columns are those related to the 20k mark. That makes sense, as it’s the farthest into the race that we have info on. Interestingly enough, the only other column whose bar you can even see is <code class="docutils literal notranslate"><span class="pre">5k_split_vs_mean</span></code>, so that’s useful as well. Let’s try dropping all columns with a feature importance less than 0.001 and see where that leaves us.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols_to_keep</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="n">dt_fe3</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.001</span><span class="p">:</span>
+        <span class="n">cols_to_keep</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols_to_keep</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;10k_split&#39;,
+ &#39;20k_split&#39;,
+ &#39;last_5k_minus_first_5k&#39;,
+ &#39;5k_split_vs_mean&#39;,
+ &#39;20k_split_vs_mean&#39;,
+ &#39;last_5k_minus_first_5k_vs_mean&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="n">cols_to_keep</span><span class="p">]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="n">cols_to_keep</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_fe3_trimmed</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="n">dt_fe3_trimmed</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R^2 = </span><span class="si">{</span><span class="n">dt_fe3_trimmed</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="n">cols_to_keep</span><span class="p">],</span> <span class="n">y_test</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R^2 = 0.8429
+</pre></div>
+</div>
+</div>
+</div>
+<p>It’s actually a slight improvement! So getting rid of columns with low importance allowed our model to make better decisions with what was left.</p>
+<p>Before we leave, let’s briefly discuss the various forms feature engineering can take:</p>
+<ol class="simple">
+<li><p>Combining information from multiple columns to make a new column (like we did above).</p></li>
+<li><p>Simplifying a column. For example, rather than keeping their actual age, we could break it up into age groups of 5 years.</p></li>
+<li><p>Bringing in new data and combining it with the existing data. For instance, we could look up the average running pace for runners of different ages, and make a column showing how much faster/slower each runner in the data is.</p></li>
+<li><p>Summarizing data. A common example of this is dealing with text data. Models can’t understand text data because it’s not numbers. However, suppose you were trying to determine if an eBay listing was fraudulent. Perhaps fraudulent listings don’t have as much information in them. So, if the data had a column “item description” which was text, you can try creating a column “item description length” which counted up how many characters were in the item description.</p></li>
+</ol>
+<p>In general, feature engineering just requires you to be patient and creative. There’s no magic formula that will yield you interesting and useful features, you just have to play around and try.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="ch_09.html" title="previous page">Improving your model</a>
+    <a class='right-next' id="next-link" href="ch_11.html" title="next page">Working with large datasets</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

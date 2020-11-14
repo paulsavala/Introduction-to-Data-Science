@@ -1,0 +1,2231 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Correlation &#8212; Introduction to Data Science</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Linear regression" href="ch_04.html" />
+    <link rel="prev" title="Plotting and grouping data" href="ch_02.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_01.html">
+   First steps with Pandas and Jupyter notebooks
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_02.html">
+   Plotting and grouping data
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_04.html">
+   Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_05.html">
+   Training models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_06.html">
+   Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_07.html">
+   Nearest neighbors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_08.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_09.html">
+   Improving your model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_10.html">
+   Ensemble tree models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_11.html">
+   Working with large datasets
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/ch_03.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/ch_03.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-correlation-a-id-what-is-correlation-a">
+   What is correlation?
+   <a id="what_is_correlation">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-is-correlation-measured-a-id-measuring-correlation-a">
+     How is correlation measured?
+     <a id="measuring_correlation">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-correlation-does-and-does-not-tell-you-a-id-what-corr-tells-you-a">
+     What correlation does (and does not) tell you
+     <a id="what_corr_tells_you">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiple-correlation-a-id-multiple-correlation-a">
+     Multiple correlation
+     <a id="multiple_correlation">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#joining-multiple-dataframes-a-id-joining-a">
+   Joining multiple DataFrames
+   <a id="joining">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concatenating-data">
+     Concatenating data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#merging">
+     Merging
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercises">
+     Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="correlation">
+<h1>Correlation<a class="headerlink" href="#correlation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># Used for the correlation coefficient</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="what-is-correlation-a-id-what-is-correlation-a">
+<h2>What is correlation? <a id="what_is_correlation"></a><a class="headerlink" href="#what-is-correlation-a-id-what-is-correlation-a" title="Permalink to this headline">¶</a></h2>
+<p>Correlation is defined as “a mutual relationship or connection between two or more things”. We will use correlation in the sense of trying to better understand our data and problems. We will continue working today with the Boston housing prices dataset, <code class="docutils literal notranslate"><span class="pre">boston.csv</span></code>. Suppose you were asked the question “what factors influence the price of a house?” To answer this we would need to know the <em>correlation</em> between house price and other factors. The simplest way to understand correlation is through scatterplots. Let’s draw some scatterplots to get started.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/boston.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Median home value</th>
+      <th>Crime rate</th>
+      <th>% industrial</th>
+      <th>Nitrous Oxide concentration</th>
+      <th>Avg num rooms</th>
+      <th>% built before 1940</th>
+      <th>Distance to downtown</th>
+      <th>Pupil-teacher ratio</th>
+      <th>% below poverty line</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>24000.0</td>
+      <td>0.00632</td>
+      <td>2.31</td>
+      <td>0.538</td>
+      <td>6.575</td>
+      <td>65.2</td>
+      <td>4.0900</td>
+      <td>15.3</td>
+      <td>4.98</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>21600.0</td>
+      <td>0.02731</td>
+      <td>7.07</td>
+      <td>0.469</td>
+      <td>6.421</td>
+      <td>78.9</td>
+      <td>4.9671</td>
+      <td>17.8</td>
+      <td>9.14</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>34700.0</td>
+      <td>0.02729</td>
+      <td>7.07</td>
+      <td>0.469</td>
+      <td>7.185</td>
+      <td>61.1</td>
+      <td>4.9671</td>
+      <td>17.8</td>
+      <td>4.03</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>33400.0</td>
+      <td>0.03237</td>
+      <td>2.18</td>
+      <td>0.458</td>
+      <td>6.998</td>
+      <td>45.8</td>
+      <td>6.0622</td>
+      <td>18.7</td>
+      <td>2.94</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>36200.0</td>
+      <td>0.06905</td>
+      <td>2.18</td>
+      <td>0.458</td>
+      <td>7.147</td>
+      <td>54.2</td>
+      <td>6.0622</td>
+      <td>18.7</td>
+      <td>5.33</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Crime rate&#39;</span><span class="p">,</span> 
+        <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Median home value&#39;</span><span class="p">,</span> 
+        <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> 
+        <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> 
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Crime rate vs house price&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_03_6_0.png" src="_images/ch_03_6_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">% i</span><span class="s1">ndustrial&#39;</span><span class="p">,</span> 
+             <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Median home value&#39;</span><span class="p">,</span> 
+             <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> 
+             <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+             <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Crime rate vs house price&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_03_7_0.png" src="_images/ch_03_7_0.png" />
+</div>
+</div>
+<p>It looks like we’re copying and pasting the same code over and over. This is a good sign that we should write a function!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_scatterplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">)):</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> 
+            <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> 
+            <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> 
+            <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1"> vs </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_scatterplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Nitrous Oxide concentration&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Median home value&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_03_10_0.png" src="_images/ch_03_10_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_scatterplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Avg num rooms&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Median home value&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_03_11_0.png" src="_images/ch_03_11_0.png" />
+</div>
+</div>
+<div class="section" id="how-is-correlation-measured-a-id-measuring-correlation-a">
+<h3>How is correlation measured? <a id="measuring_correlation"></a><a class="headerlink" href="#how-is-correlation-measured-a-id-measuring-correlation-a" title="Permalink to this headline">¶</a></h3>
+<p>This is good, but it’s slow. Also, while we can see that the average number of rooms seems to correlate with the price, what about those in the middle? Both nitrous oxide concentraion and % industrial seem to have a week correlation. Is one better than the other? Scatterplots are great, but they’re just a start. To dig deeper we want to understand <em>what percentage</em> of the y-value (median home value in this case) is explained by knowing the x-value (no2 concentration, % industrial, etc.). This is precisely what the <a class="reference external" href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson correlation coefficient <span class="math notranslate nohighlight">\(R^2\)</span></a> tells us. Pandas has a helper function <code class="docutils literal notranslate"><span class="pre">.corr()</span></code> which computes the correlation coefficients for us.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Median home value</th>
+      <th>Crime rate</th>
+      <th>% industrial</th>
+      <th>Nitrous Oxide concentration</th>
+      <th>Avg num rooms</th>
+      <th>% built before 1940</th>
+      <th>Distance to downtown</th>
+      <th>Pupil-teacher ratio</th>
+      <th>% below poverty line</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Median home value</th>
+      <td>1.000000</td>
+      <td>-0.388305</td>
+      <td>-0.483725</td>
+      <td>-0.427321</td>
+      <td>0.695360</td>
+      <td>-0.376955</td>
+      <td>0.249929</td>
+      <td>-0.507787</td>
+      <td>-0.737663</td>
+    </tr>
+    <tr>
+      <th>Crime rate</th>
+      <td>-0.388305</td>
+      <td>1.000000</td>
+      <td>0.406583</td>
+      <td>0.420972</td>
+      <td>-0.219247</td>
+      <td>0.352734</td>
+      <td>-0.379670</td>
+      <td>0.289946</td>
+      <td>0.455621</td>
+    </tr>
+    <tr>
+      <th>% industrial</th>
+      <td>-0.483725</td>
+      <td>0.406583</td>
+      <td>1.000000</td>
+      <td>0.763651</td>
+      <td>-0.391676</td>
+      <td>0.644779</td>
+      <td>-0.708027</td>
+      <td>0.383248</td>
+      <td>0.603800</td>
+    </tr>
+    <tr>
+      <th>Nitrous Oxide concentration</th>
+      <td>-0.427321</td>
+      <td>0.420972</td>
+      <td>0.763651</td>
+      <td>1.000000</td>
+      <td>-0.302188</td>
+      <td>0.731470</td>
+      <td>-0.769230</td>
+      <td>0.188933</td>
+      <td>0.590879</td>
+    </tr>
+    <tr>
+      <th>Avg num rooms</th>
+      <td>0.695360</td>
+      <td>-0.219247</td>
+      <td>-0.391676</td>
+      <td>-0.302188</td>
+      <td>1.000000</td>
+      <td>-0.240265</td>
+      <td>0.205246</td>
+      <td>-0.355501</td>
+      <td>-0.613808</td>
+    </tr>
+    <tr>
+      <th>% built before 1940</th>
+      <td>-0.376955</td>
+      <td>0.352734</td>
+      <td>0.644779</td>
+      <td>0.731470</td>
+      <td>-0.240265</td>
+      <td>1.000000</td>
+      <td>-0.747881</td>
+      <td>0.261515</td>
+      <td>0.602339</td>
+    </tr>
+    <tr>
+      <th>Distance to downtown</th>
+      <td>0.249929</td>
+      <td>-0.379670</td>
+      <td>-0.708027</td>
+      <td>-0.769230</td>
+      <td>0.205246</td>
+      <td>-0.747881</td>
+      <td>1.000000</td>
+      <td>-0.232471</td>
+      <td>-0.496996</td>
+    </tr>
+    <tr>
+      <th>Pupil-teacher ratio</th>
+      <td>-0.507787</td>
+      <td>0.289946</td>
+      <td>0.383248</td>
+      <td>0.188933</td>
+      <td>-0.355501</td>
+      <td>0.261515</td>
+      <td>-0.232471</td>
+      <td>1.000000</td>
+      <td>0.374044</td>
+    </tr>
+    <tr>
+      <th>% below poverty line</th>
+      <td>-0.737663</td>
+      <td>0.455621</td>
+      <td>0.603800</td>
+      <td>0.590879</td>
+      <td>-0.613808</td>
+      <td>0.602339</td>
+      <td>-0.496996</td>
+      <td>0.374044</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Note that this actually returns <span class="math notranslate nohighlight">\(R\)</span>, not <span class="math notranslate nohighlight">\(R^2\)</span>. We typically look at <span class="math notranslate nohighlight">\(R^2\)</span> because it has a nice interpretation (next paragraph).</p>
+<p>This returns a matrix where the number in each cell is the correlation coefficient for those two columns. For instance, looking at the top row, we see that the correlation coefficient between “Median home value” and “Avg num rooms” is <span class="math notranslate nohighlight">\(0.696^2=0.4844\)</span>, so approximately 48.4% of the variation in the median home value in an area is determined by the number of rooms in that area.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_scatterplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Crime rate&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Median home value&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_03_16_0.png" src="_images/ch_03_16_0.png" />
+</div>
+</div>
+<p>We can see that as the crime rate increases the median home value drops, so the relationship is negative. This makes sense, since increased crime will likely lead to lower home prices.</p>
+<p>What about correlation coefficients that are close to zero? We can see that there seems to be a weak relationship (i.e. small correlation coefficient) between “Pupil-teacher ratio” and “Nitrous Oxide concentration” (basically polution). Let’s see what that looks like.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_scatterplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Pupil-teacher ratio&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Nitrous Oxide concentration&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_03_18_0.png" src="_images/ch_03_18_0.png" />
+</div>
+</div>
+<p>We can see that there’s no obvious relationship, which is what the low <span class="math notranslate nohighlight">\(R^2\)</span> value is suggesting.</p>
+<p>Besides using Pandas, you can also compute the correlation coefficient using numpy. The command for this is <code class="docutils literal notranslate"><span class="pre">.corrcoef(...)</span></code>. The arguments you use are simply the two vectors you want to compute the correlation coefficient between. So for example, let’s compute the correlation coefficient between the <code class="docutils literal notranslate"><span class="pre">pupil_teacher_ratio</span></code> column and the <code class="docutils literal notranslate"><span class="pre">nitrous_oxide_concentration</span></code> column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Median home value</th>
+      <th>Crime rate</th>
+      <th>% industrial</th>
+      <th>Nitrous Oxide concentration</th>
+      <th>Avg num rooms</th>
+      <th>% built before 1940</th>
+      <th>Distance to downtown</th>
+      <th>Pupil-teacher ratio</th>
+      <th>% below poverty line</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>24000.0</td>
+      <td>0.00632</td>
+      <td>2.31</td>
+      <td>0.538</td>
+      <td>6.575</td>
+      <td>65.2</td>
+      <td>4.0900</td>
+      <td>15.3</td>
+      <td>4.98</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>21600.0</td>
+      <td>0.02731</td>
+      <td>7.07</td>
+      <td>0.469</td>
+      <td>6.421</td>
+      <td>78.9</td>
+      <td>4.9671</td>
+      <td>17.8</td>
+      <td>9.14</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>34700.0</td>
+      <td>0.02729</td>
+      <td>7.07</td>
+      <td>0.469</td>
+      <td>7.185</td>
+      <td>61.1</td>
+      <td>4.9671</td>
+      <td>17.8</td>
+      <td>4.03</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>33400.0</td>
+      <td>0.03237</td>
+      <td>2.18</td>
+      <td>0.458</td>
+      <td>6.998</td>
+      <td>45.8</td>
+      <td>6.0622</td>
+      <td>18.7</td>
+      <td>2.94</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>36200.0</td>
+      <td>0.06905</td>
+      <td>2.18</td>
+      <td>0.458</td>
+      <td>7.147</td>
+      <td>54.2</td>
+      <td>6.0622</td>
+      <td>18.7</td>
+      <td>5.33</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pupil-teacher ratio&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Nitrous Oxide concentration&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.        , 0.18893268],
+       [0.18893268, 1.        ]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can see that this returns a matrix, just like Pandas did. What we want are either of those two values that are not on the diagonal. So we’ll access them using <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>, which means “zeroth row, first column”, just like you would normally think of a matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pupil-teacher ratio&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Nitrous Oxide concentration&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.18893267711276704
+</pre></div>
+</div>
+</div>
+</div>
+<p>Just like Pandas, this return <span class="math notranslate nohighlight">\(R\)</span>, not <span class="math notranslate nohighlight">\(R^2\)</span> (Pandas is actually <em>using numpy</em> to do its calculations). So we’ll square it using the Python squaring operator <code class="docutils literal notranslate"><span class="pre">**</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pupil-teacher ratio&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Nitrous Oxide concentration&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.035695556480997086
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="what-correlation-does-and-does-not-tell-you-a-id-what-corr-tells-you-a">
+<h3>What correlation does (and does not) tell you <a id="what_corr_tells_you"></a><a class="headerlink" href="#what-correlation-does-and-does-not-tell-you-a-id-what-corr-tells-you-a" title="Permalink to this headline">¶</a></h3>
+<p>Now that we can measure and visualize correlation, it’s worth thinking about what we learn and don’t learn from it. What we learn is fairly obvious–we can find a relationship between two variables. For example, the scatterplot above shows us (and the associated <span class="math notranslate nohighlight">\(R^2\)</span> value) tells us that as the average number of rooms increase, so does the median home value.</p>
+<p>Some people think of a high <span class="math notranslate nohighlight">\(R^2\)</span> value as meaning that the data is close to a line. This is <em>false</em>. While it is true that an <span class="math notranslate nohighlight">\(R^2\)</span> value of <span class="math notranslate nohighlight">\(\pm 1\)</span> means that the data is a perfect line, any other <span class="math notranslate nohighlight">\(R^2\)</span> value does not necessarily reflect a line. For instance, consider the famous dataset Anscombe’s quartet:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Four different datasets</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">y1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">8.04</span><span class="p">,</span> <span class="mf">6.95</span><span class="p">,</span> <span class="mf">7.58</span><span class="p">,</span> <span class="mf">8.81</span><span class="p">,</span> <span class="mf">8.33</span><span class="p">,</span> <span class="mf">9.96</span><span class="p">,</span> <span class="mf">7.24</span><span class="p">,</span> <span class="mf">4.26</span><span class="p">,</span> <span class="mf">10.84</span><span class="p">,</span> <span class="mf">4.82</span><span class="p">,</span> <span class="mf">5.68</span><span class="p">]</span>
+
+<span class="n">x2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">9.14</span><span class="p">,</span> <span class="mf">8.14</span><span class="p">,</span> <span class="mf">8.74</span><span class="p">,</span> <span class="mf">8.77</span><span class="p">,</span> <span class="mf">9.26</span><span class="p">,</span> <span class="mf">8.10</span><span class="p">,</span> <span class="mf">6.13</span><span class="p">,</span> <span class="mf">3.10</span><span class="p">,</span> <span class="mf">9.13</span><span class="p">,</span> <span class="mf">7.26</span><span class="p">,</span> <span class="mf">4.74</span><span class="p">]</span>
+
+<span class="n">x3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">y3</span> <span class="o">=</span> <span class="p">[</span><span class="mf">7.46</span><span class="p">,</span> <span class="mf">6.77</span><span class="p">,</span> <span class="mf">12.74</span><span class="p">,</span> <span class="mf">7.11</span><span class="p">,</span> <span class="mf">7.81</span><span class="p">,</span> <span class="mf">8.84</span><span class="p">,</span> <span class="mf">6.08</span><span class="p">,</span> <span class="mf">5.39</span><span class="p">,</span> <span class="mf">8.15</span><span class="p">,</span> <span class="mf">6.42</span><span class="p">,</span> <span class="mf">5.73</span><span class="p">]</span>
+
+<span class="n">x4</span> <span class="o">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="n">y4</span> <span class="o">=</span> <span class="p">[</span><span class="mf">6.58</span><span class="p">,</span> <span class="mf">5.76</span><span class="p">,</span> <span class="mf">7.71</span><span class="p">,</span> <span class="mf">8.84</span><span class="p">,</span> <span class="mf">8.47</span><span class="p">,</span> <span class="mf">7.04</span><span class="p">,</span> <span class="mf">5.25</span><span class="p">,</span> <span class="mf">12.50</span><span class="p">,</span> <span class="mf">5.56</span><span class="p">,</span> <span class="mf">7.91</span><span class="p">,</span> <span class="mf">6.89</span><span class="p">]</span>
+
+<span class="c1"># Create a graph with four different axes, one for each dataset</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">((</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">),</span> <span class="p">(</span><span class="n">ax3</span><span class="p">,</span> <span class="n">ax4</span><span class="p">))</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
+
+<span class="c1"># Plot each one and set the title to the be R^2 value</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R^2 = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s1">.3</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R^2 = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.3</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">ax3</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R^2 = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="n">y3</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.3</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">ax4</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x4</span><span class="p">,</span> <span class="n">y4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R^2 = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">x4</span><span class="p">,</span> <span class="n">y4</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.3</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Anscombe&#39;s quartet&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_03_28_0.png" src="_images/ch_03_28_0.png" />
+</div>
+</div>
+<p>You can see that all four datasets have the same (very high) correlation coefficient of approximately 81.6%. However, all but the first one have strange patterns. By looking at the graph you can easily spot the patterns. But if you just rely on the correlation coefficient then you miss this. So in two dimensions you should rely on your <em>eyes</em>, not on a number.</p>
+</div>
+<div class="section" id="multiple-correlation-a-id-multiple-correlation-a">
+<h3>Multiple correlation  <a id="multiple_correlation"></a><a class="headerlink" href="#multiple-correlation-a-id-multiple-correlation-a" title="Permalink to this headline">¶</a></h3>
+<p>When working with just two variables, correlation coefficient is only somewhat useful. Afterall, we can just look at the graph and form a better conclusion than any single number could tell us. However, what about when we want to understand the relationship between three or more variables? For three we could do a 3d plot, such as below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span> <span class="c1"># Used for 3d plotting</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pupil-teacher ratio&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Avg num rooms&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Median home value&#39;</span><span class="p">])</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Pupil-teacher ratio&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Avg num rooms&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Median home value&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_03_31_0.png" src="_images/ch_03_31_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="joining-multiple-dataframes-a-id-joining-a">
+<h2>Joining multiple DataFrames <a id="joining"></a><a class="headerlink" href="#joining-multiple-dataframes-a-id-joining-a" title="Permalink to this headline">¶</a></h2>
+<p>Often times your data will be split across multiple different files. Combining these into one DataFrame is referred to as “joining” your data. While we will be doing this in Pandas, this same idea is extremely common in databases. If you learn how to do it here you will have a great start on joining data in databases as well.</p>
+<p>There are multiple different ways you can join data, however we will focus on two of them: concatenating and merging.</p>
+<div class="section" id="concatenating-data">
+<h3>Concatenating data<a class="headerlink" href="#concatenating-data" title="Permalink to this headline">¶</a></h3>
+<p>Concatenating data refers to simply stacking two DataFrames on top of one another. For example, let’s create some fake data for two different math courses.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">course1_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;students&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;Cathy&#39;</span><span class="p">,</span> <span class="s1">&#39;David&#39;</span><span class="p">],</span> <span class="s1">&#39;final_exam_score&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">50</span><span class="p">]})</span>
+<span class="n">course2_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;students&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Esther&#39;</span><span class="p">,</span> <span class="s1">&#39;Frank&#39;</span><span class="p">,</span> <span class="s1">&#39;George&#39;</span><span class="p">,</span> <span class="s1">&#39;Heather&#39;</span><span class="p">,</span> <span class="s1">&#39;Ingrid&#39;</span><span class="p">],</span> <span class="s1">&#39;final_exam_score&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">52</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">87</span><span class="p">]})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">course1_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>students</th>
+      <th>final_exam_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>84</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cathy</td>
+      <td>79</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>David</td>
+      <td>50</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">course2_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>students</th>
+      <th>final_exam_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Esther</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Frank</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>George</td>
+      <td>91</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Heather</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Ingrid</td>
+      <td>87</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Suppose we want to find the average across <em>all</em> courses. We <em>could</em> compute the average in each course separately, then compute the average of those two averages (being careful to weight them according to the number of students). Rather than doing that, let’s just concatenate these two DataFrames into one new DataFrame, and compute the average there. We can do that using the Pandas command <code class="docutils literal notranslate"><span class="pre">.concat()</span></code>. You simply give it a list of the DataFrames you want to concatenate. We’re doing it with two of them, but you could do it with as many as you like.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_courses</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">course1_df</span><span class="p">,</span> <span class="n">course2_df</span><span class="p">])</span>
+
+<span class="n">all_courses</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>students</th>
+      <th>final_exam_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>84</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cathy</td>
+      <td>79</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>David</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>Esther</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Frank</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>George</td>
+      <td>91</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Heather</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Ingrid</td>
+      <td>87</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_courses</span><span class="p">[</span><span class="s1">&#39;final_exam_score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>77.55555555555556
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="merging">
+<h3>Merging<a class="headerlink" href="#merging" title="Permalink to this headline">¶</a></h3>
+<p>Merging data refers to taking two (or more) DataFrames which have some relationship and joining them together. Let’s continue with our above example of two different courses. Suppose the university tracked your grade across different courses, and wanted to make one new dataset showing every course you have taken. In the above (fake) data there are no students shared across <code class="docutils literal notranslate"><span class="pre">course1</span></code> and <code class="docutils literal notranslate"><span class="pre">course2</span></code>. So let’s make a new course which has some of those students (perhaps <code class="docutils literal notranslate"><span class="pre">course1</span></code> and <code class="docutils literal notranslate"><span class="pre">course2</span></code> are just different sections of the same course, whereas <code class="docutils literal notranslate"><span class="pre">course3</span></code> below is a whole new course).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">course3_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;students&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="s1">&#39;Esther&#39;</span><span class="p">,</span> <span class="s1">&#39;George&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;Jacob&#39;</span><span class="p">],</span> <span class="s1">&#39;final_exam_score&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">87</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">27</span><span class="p">]})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">course3_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>students</th>
+      <th>final_exam_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>87</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Esther</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>George</td>
+      <td>98</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bob</td>
+      <td>55</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Jacob</td>
+      <td>27</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>To merge the data we using the Pandas <code class="docutils literal notranslate"><span class="pre">.merge()</span></code> function. There are actually multiple different ways to use this function. We’ll show two different ones below. Just pick the one you feel makes most sense and stick with it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Method 1</span>
+<span class="n">course13_merge1_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">course1_df</span><span class="p">,</span> <span class="n">course3_df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;students&#39;</span><span class="p">)</span>
+
+<span class="c1"># Method 2</span>
+<span class="n">course13_merge2_df</span> <span class="o">=</span> <span class="n">course1_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">course3_df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;students&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">course13_merge1_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>students</th>
+      <th>final_exam_score_x</th>
+      <th>final_exam_score_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>90</td>
+      <td>87</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>84</td>
+      <td>55</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">course13_merge2_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>students</th>
+      <th>final_exam_score_x</th>
+      <th>final_exam_score_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>90</td>
+      <td>87</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>84</td>
+      <td>55</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>As you can see, these two methods produced the same results. Because of that I will just stick with the first method. Anything we learn for one method applies directly to the other method.</p>
+<p>Looking at the results above, we can see that the merged DataFrame has the grades for both Alice and Bob in their two courses. However, there are a few things to discuss:</p>
+<ol class="simple">
+<li><p>Why does it only have Alice and Bob? What about the other students?</p></li>
+<li><p>Why are the columns called <code class="docutils literal notranslate"><span class="pre">final_exam_score_x/y</span></code>?</p></li>
+</ol>
+<p>There are many types of merges (called “joins” when working with databases, but the ideas are identical), however we will focus on four of them. They are:</p>
+<ul class="simple">
+<li><p><strong>Inner join:</strong> Only take those rows which exist in both DataFrames. This is the default behavior for <code class="docutils literal notranslate"><span class="pre">.merge()</span></code>. So we only took Alice and Bob because those are the only two students that exist in both <code class="docutils literal notranslate"><span class="pre">course1_df</span></code> and <code class="docutils literal notranslate"><span class="pre">course3_df</span></code> (look at the DataFrames to verify this).</p></li>
+<li><p><strong>Left join:</strong> Take all rows from the “left” DataFrame, and only take the rows from the right DataFrame which also exist in the left. See the example below.</p></li>
+<li><p><strong>Right join:</strong> Exactly the same as the “left join”, but replace “left” with “right”.</p></li>
+<li><p><strong>Outer/full join:</strong> Take all rows from both DataFrames.</p></li>
+</ul>
+<p>Here is a diagram showing these:</p>
+<p><img alt="Merges/joins" src="_images/joins.png" /></p>
+<p>You specify each of these by using the parameter <code class="docutils literal notranslate"><span class="pre">how</span></code> in the <code class="docutils literal notranslate"><span class="pre">.merge()</span></code> function. Let’s show the result of each.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">course13_inner_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">course1_df</span><span class="p">,</span> <span class="n">course3_df</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;students&#39;</span><span class="p">)</span> <span class="c1"># As noted above, the default behavior is an inner merge, so you actually don&#39;t need to specify how=&#39;inner&#39;, it will do it by default</span>
+<span class="n">course13_left_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">course1_df</span><span class="p">,</span> <span class="n">course3_df</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;students&#39;</span><span class="p">)</span>
+<span class="n">course13_right_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">course1_df</span><span class="p">,</span> <span class="n">course3_df</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;students&#39;</span><span class="p">)</span>
+<span class="n">course13_full_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">course1_df</span><span class="p">,</span> <span class="n">course3_df</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;students&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>An inner join is exactly what we did above. Just this time we explicitly wrote <code class="docutils literal notranslate"><span class="pre">how='inner'</span></code>, which doesn’t affect anything.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">course13_inner_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>students</th>
+      <th>final_exam_score_x</th>
+      <th>final_exam_score_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>90</td>
+      <td>87</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>84</td>
+      <td>55</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Notice that we have all students from the “left” course <code class="docutils literal notranslate"><span class="pre">course1_df</span></code> (this is the “left” course because it’s literally on the left when you write <code class="docutils literal notranslate"><span class="pre">pd.merge(course1_df,</span> <span class="pre">course3_df,</span> <span class="pre">how='left',</span> <span class="pre">...)</span></code>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">course13_left_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>students</th>
+      <th>final_exam_score_x</th>
+      <th>final_exam_score_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>90</td>
+      <td>87.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>84</td>
+      <td>55.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cathy</td>
+      <td>79</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>David</td>
+      <td>50</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The right join is just the opposite of the left join. It takes all students in the “right” course <code class="docutils literal notranslate"><span class="pre">course3_df</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">course13_right_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>students</th>
+      <th>final_exam_score_x</th>
+      <th>final_exam_score_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>90.0</td>
+      <td>87</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>84.0</td>
+      <td>55</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Esther</td>
+      <td>NaN</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>George</td>
+      <td>NaN</td>
+      <td>98</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Jacob</td>
+      <td>NaN</td>
+      <td>27</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Finally, the outer join. This shows all students from each class.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">course13_full_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>students</th>
+      <th>final_exam_score_x</th>
+      <th>final_exam_score_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>90.0</td>
+      <td>87.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>84.0</td>
+      <td>55.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cathy</td>
+      <td>79.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>David</td>
+      <td>50.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Esther</td>
+      <td>NaN</td>
+      <td>45.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>George</td>
+      <td>NaN</td>
+      <td>98.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Jacob</td>
+      <td>NaN</td>
+      <td>27.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Note that for everything except the inner join, there are students which appear in only one of the two classes. In that case, there is no grade to put for them in the other course, because they weren’t in it!</p>
+<p>Let’s now turn to the next question, which is the column name. If Pandas sees two columns with the same name (such as how <code class="docutils literal notranslate"><span class="pre">final_exam_score</span></code> is a column in both <code class="docutils literal notranslate"><span class="pre">course1_df</span></code> and <code class="docutils literal notranslate"><span class="pre">course3_df</span></code>) it has to rename them (since Pandas won’t allow a DataFrame to have two columns with the same name). Therefore it appends <code class="docutils literal notranslate"><span class="pre">_x</span></code> or <code class="docutils literal notranslate"><span class="pre">_y</span></code> to the end of the name. If you don’t like those names, just rename them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">course13_full_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;students&#39;</span><span class="p">,</span> <span class="s1">&#39;course1_final_exam_score&#39;</span><span class="p">,</span> <span class="s1">&#39;course3_final_exam_score&#39;</span><span class="p">]</span>
+
+<span class="n">course13_full_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>students</th>
+      <th>course1_final_exam_score</th>
+      <th>course3_final_exam_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alice</td>
+      <td>90.0</td>
+      <td>87.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>84.0</td>
+      <td>55.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Cathy</td>
+      <td>79.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>David</td>
+      <td>50.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Esther</td>
+      <td>NaN</td>
+      <td>45.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>George</td>
+      <td>NaN</td>
+      <td>98.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Jacob</td>
+      <td>NaN</td>
+      <td>27.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>These examples give you a good idea about how you can join DataFrames. However, they are also simplified examples. For example, consider the following more complicated example of students, a course and a club.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">students_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;student_id&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> 
+                            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;Cathy&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;Derek&#39;</span><span class="p">,</span> <span class="s1">&#39;Esther&#39;</span><span class="p">]})</span>
+<span class="n">course_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;student_id_number&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> 
+                          <span class="s1">&#39;grade&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">52</span><span class="p">]})</span>
+<span class="n">club_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;club_name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Math&#39;</span><span class="p">,</span> <span class="s1">&#39;Chess&#39;</span><span class="p">,</span> <span class="s1">&#39;Waffle&#39;</span><span class="p">],</span>
+                       <span class="s1">&#39;club_officer_student_id&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">19</span><span class="p">]})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">students_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>student_id</th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Alice</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Bob</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Cathy</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Bob</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Derek</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>Esther</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">course_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>student_id_number</th>
+      <th>grade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5</td>
+      <td>74</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>8</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>13</td>
+      <td>74</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>59</td>
+      <td>86</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>4</td>
+      <td>52</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">club_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>club_name</th>
+      <th>club_officer_student_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Math</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Chess</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Waffle</td>
+      <td>19</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>What we want is to make a single DataFrame with <em>all students</em>, along with their grade in the course (or <code class="docutils literal notranslate"><span class="pre">None</span></code>/<code class="docutils literal notranslate"><span class="pre">NaN</span></code> if they were not in the course). Finally, if they’re a club officer we want to indicate which club it’s for (or <code class="docutils literal notranslate"><span class="pre">None</span></code>/<code class="docutils literal notranslate"><span class="pre">NaN</span></code> if they were not an officer).</p>
+<p>Since we want all students, we could do something like <code class="docutils literal notranslate"><span class="pre">pd.merge(students_df,</span> <span class="pre">some_other_df,</span> <span class="pre">how='left')</span></code>. Since <code class="docutils literal notranslate"><span class="pre">students_df</span></code> is on the left and we are doing <code class="docutils literal notranslate"><span class="pre">how='left'</span></code> (a left join), this will take all students. Let’s start by merging the students with the course. Both columns have a column with the student id, but the columns are named differently (<code class="docutils literal notranslate"><span class="pre">student_id</span></code> vs <code class="docutils literal notranslate"><span class="pre">student_id_number</span></code>). While we <em>could</em> rename them to match, that messes with our data and is unnecessary. Instead, Pandas has <code class="docutils literal notranslate"><span class="pre">left_on=...</span></code> and <code class="docutils literal notranslate"><span class="pre">right_on=...</span></code> options which let you specify the column for the left and right DataFrames separately (for exactly this situation where the left and right column names are different).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">merged_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">students_df</span><span class="p">,</span> <span class="n">course_df</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;student_id&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;student_id_number&#39;</span><span class="p">)</span>
+
+<span class="n">merged_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>student_id</th>
+      <th>name</th>
+      <th>student_id_number</th>
+      <th>grade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Alice</td>
+      <td>1.0</td>
+      <td>100.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Bob</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Cathy</td>
+      <td>3.0</td>
+      <td>65.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Bob</td>
+      <td>4.0</td>
+      <td>52.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Derek</td>
+      <td>5.0</td>
+      <td>74.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>Esther</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can see that all students are included (since we did a left join and <code class="docutils literal notranslate"><span class="pre">students_df</span></code> was on the left). We can also see that if the student was in the course then their grade shows up, and <code class="docutils literal notranslate"><span class="pre">NaN</span></code> shows up otherwise. Before we work on merging the club as well, let’s clean up some things. First, we don’t need both <code class="docutils literal notranslate"><span class="pre">student_id</span></code> and <code class="docutils literal notranslate"><span class="pre">student_id_number</span></code>, so let’s drop the <code class="docutils literal notranslate"><span class="pre">student_id_number</span></code> column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">merged_df</span> <span class="o">=</span> <span class="n">merged_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;student_id_number&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+
+<span class="n">merged_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>student_id</th>
+      <th>name</th>
+      <th>grade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Alice</td>
+      <td>100.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Bob</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Cathy</td>
+      <td>65.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Bob</td>
+      <td>52.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Derek</td>
+      <td>74.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>Esther</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s now turn to merging the club. Again, we want to keep all students, but just merge in any club data we have for that student. So we’ll do a left join with <code class="docutils literal notranslate"><span class="pre">merged_df</span></code> on the left so that we keep everything we already did. Again, both DataFrames have a student id column, but they have different names. So we’ll specify that using <code class="docutils literal notranslate"><span class="pre">left_on</span></code> and <code class="docutils literal notranslate"><span class="pre">right_on</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">merged_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">merged_df</span><span class="p">,</span> <span class="n">club_df</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;student_id&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;club_officer_student_id&#39;</span><span class="p">)</span>
+
+<span class="n">merged_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>student_id</th>
+      <th>name</th>
+      <th>grade</th>
+      <th>club_name</th>
+      <th>club_officer_student_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Alice</td>
+      <td>100.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Bob</td>
+      <td>NaN</td>
+      <td>Math</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Cathy</td>
+      <td>65.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Bob</td>
+      <td>52.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Derek</td>
+      <td>74.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>Esther</td>
+      <td>NaN</td>
+      <td>Chess</td>
+      <td>6.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Again, we don’t need the duplicate student id’s, so let’s drop the one coming from <code class="docutils literal notranslate"><span class="pre">club_df</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">merged_df</span> <span class="o">=</span> <span class="n">merged_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;club_officer_student_id&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+
+<span class="n">merged_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>student_id</th>
+      <th>name</th>
+      <th>grade</th>
+      <th>club_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Alice</td>
+      <td>100.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Bob</td>
+      <td>NaN</td>
+      <td>Math</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Cathy</td>
+      <td>65.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Bob</td>
+      <td>52.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Derek</td>
+      <td>74.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>Esther</td>
+      <td>NaN</td>
+      <td>Chess</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>And we’re done! We have all students along with their id number, grade in the course (if they took it), and club they are an officer of (if they are one). These examples should give you a great starting point for joining together data.</p>
+</div>
+<div class="section" id="exercises">
+<h3>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h3>
+<p>In the data folder is a file <code class="docutils literal notranslate"><span class="pre">texas_house_2018.csv</span></code>, which shows the results of the 2018 Texas House of Representatives elections. It shows the district, number of votes the candidate, money raised, and more. The <code class="docutils literal notranslate"><span class="pre">Total_Votes</span></code> column is the total number of votes <em>any candidate</em> for that position received. So for instance, 60,279 votes were case for District 4, of which 44,669 went to Gregory Keith Bell. The <code class="docutils literal notranslate"><span class="pre">Total_$</span></code> column is the amount of money that candidate raised. Use this dataset to explore the following questions:</p>
+<ol class="simple">
+<li><p>How many rows have a missing value? Drop any rows with a missing value.</p></li>
+<li><p>What is the data type for each column once you load the data using Pandas? Fix any data types that are incorrectly loaded.</p></li>
+<li><p>Change all column names so that they are lower-cased (no upper case letters).</p></li>
+<li><p>Check the columns and see if the min and max values make sense. Did anyone get negative votes? 120% of the votes?</p></li>
+<li><p>How well does the total amount of money raised correlate with <em>how many</em> votes they got?</p></li>
+<li><p>How well does the total amount of money raised correlate with the <em>percentage</em> of votes they got?</p></li>
+<li><p>Which one of these is the “better” comparison? Should we be comparing money raised against number of votes or percentage of votes? Or something else? Why?</p></li>
+<li><p>Make graphs trying to understand what factors are important. How important is it being a Republican vs a Democrat vs Third-Party? What about incumbent vs challenger?</p></li>
+<li><p>Which districts seem to have the most money? That is, which districts have candidates raising the most money? The least?</p></li>
+<li><p>Can you find any strange correlations? What about the number of letters in a person’s name? Incumbents who did terribly?</p></li>
+</ol>
+<p>In the data folder is another folder <code class="docutils literal notranslate"><span class="pre">retail_sales</span></code>. It contains three different datasets, all with a <code class="docutils literal notranslate"><span class="pre">store</span></code> column. Try merging them various ways (left, right, outer, inner) along the store column and see what you get.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="ch_02.html" title="previous page">Plotting and grouping data</a>
+    <a class='right-next' id="next-link" href="ch_04.html" title="next page">Linear regression</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

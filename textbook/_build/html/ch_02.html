@@ -1,0 +1,2120 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plotting and grouping data &#8212; Introduction to Data Science</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Correlation" href="ch_03.html" />
+    <link rel="prev" title="First steps with Pandas and Jupyter notebooks" href="ch_01.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_01.html">
+   First steps with Pandas and Jupyter notebooks
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Plotting and grouping data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_03.html">
+   Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_04.html">
+   Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_05.html">
+   Training models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_06.html">
+   Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_07.html">
+   Nearest neighbors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_08.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_09.html">
+   Improving your model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_10.html">
+   Ensemble tree models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_11.html">
+   Working with large datasets
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/ch_02.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/ch_02.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-loading">
+   Data loading
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-the-data-a-id-plotting-a">
+   Plotting the data
+   <a id="plotting">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#styling-your-graphs-a-id-styling-graphs-a">
+   Styling your graphs
+   <a id="styling_graphs">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting-with-matplotlib">
+     Plotting with matplotlib
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-dates-a-id-dates-a">
+   Working with dates
+   <a id="dates">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grouping-the-data-a-id-groupby-a">
+   Grouping the data
+   <a id="groupby">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#titanic-dataset">
+     Titanic dataset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#boston-housing-prices-dataset">
+     Boston housing prices dataset
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="plotting-and-grouping-data">
+<h1>Plotting and grouping data<a class="headerlink" href="#plotting-and-grouping-data" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">datetime</span> <span class="c1"># We&#39;ll use this in the &quot;Working with dates&quot; section</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-loading">
+<h2>Data loading<a class="headerlink" href="#data-loading" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/titanic.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="plotting-the-data-a-id-plotting-a">
+<h2>Plotting the data <a id="plotting"></a><a class="headerlink" href="#plotting-the-data-a-id-plotting-a" title="Permalink to this headline">¶</a></h2>
+<p>Plotting is largely done through a package called <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>. <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> is the package, but really what we want is one particular part from it called <code class="docutils literal notranslate"><span class="pre">pyplot</span></code>. So we’ll just import that part. To do that, we type <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">matplotlib</span> <span class="pre">import</span> <span class="pre">pyplot</span></code>. Again, it’s a hassle to type <code class="docutils literal notranslate"><span class="pre">pyplot</span></code> over and over, so we’ll alias it as <code class="docutils literal notranslate"><span class="pre">plt</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">pyplot</span></code> supports several ways to plot data. If you have your data in a Pandas DataFrame (as we do), one thing you can do is to directly plot the DataFrame. This is as simple as adding <code class="docutils literal notranslate"><span class="pre">.plot()</span></code> to the end of your DataFrame. Let’s try it below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x119cdf1c0&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_02_9_1.png" src="_images/ch_02_9_1.png" />
+</div>
+</div>
+<p>That <em>works</em>, but it plots <em>all</em> of the columns at once. That’s probably not what we really want. Instead, let’s just plot the “Age” variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x119e5d760&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_02_11_1.png" src="_images/ch_02_11_1.png" />
+</div>
+</div>
+<p>That’s an improvement, but it’s plotting “Age” as a line plot. Probably what we really want is a histogram. To tell <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> we want a histogram, just add <code class="docutils literal notranslate"><span class="pre">kind=&quot;hist&quot;</span></code> to the <code class="docutils literal notranslate"><span class="pre">plot</span></code> command.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;hist&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x107cb09a0&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_02_13_1.png" src="_images/ch_02_13_1.png" />
+</div>
+</div>
+<p>If you want more or less bins, you can tell it that as well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;hist&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x107d1bb20&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_02_15_1.png" src="_images/ch_02_15_1.png" />
+</div>
+</div>
+<p>To see the full list of “kinds” of plots you can make, check out <a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/0.23.4/generated/pandas.DataFrame.plot.html">this link</a>.</p>
+<p>So far we’ve stuck to histograms. Another highly useful graph is a scatter plot, as it allows us to see the interaction between two variables. Similar to above, specify <code class="docutils literal notranslate"><span class="pre">kind='scatter'</span></code>, along with the desired <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Fare&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x118b610d0&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_02_17_1.png" src="_images/ch_02_17_1.png" />
+</div>
+</div>
+<p>Let’s combine what we’ve learned, and plot two histograms, one for ticket fare based who passengers who survived, and one for passengers who didn’t survive. I’ve added some extra arguments to make the graphs easier to read. See if you can figure out what they do. One way to do that is to make the graph, then remove items one-by-one, or change the values, and see how the graph changes. If you still can’t figure it out, Google it!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;Fare&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;hist&quot;</span><span class="p">,</span> 
+                                   <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> 
+                                   <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> 
+                                   <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                   <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Survived&#39;</span><span class="p">,</span> 
+                                   <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x118c21dc0&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_02_19_1.png" src="_images/ch_02_19_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;Fare&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;hist&quot;</span><span class="p">,</span> 
+                                   <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> 
+                                   <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> 
+                                   <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                   <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Died&#39;</span><span class="p">,</span> 
+                                   <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11a012f70&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_02_20_1.png" src="_images/ch_02_20_1.png" />
+</div>
+</div>
+<p>So this quick-and-dirty analysis shows that ticket fares were generally higher for those who survived than for those who died.</p>
+</div>
+<div class="section" id="styling-your-graphs-a-id-styling-graphs-a">
+<h2>Styling your graphs <a id="styling_graphs"></a><a class="headerlink" href="#styling-your-graphs-a-id-styling-graphs-a" title="Permalink to this headline">¶</a></h2>
+<p>One thing that would be nice is to plot these two histograms on top of one another so that we can get a better comparison between the two groups (rather than having to look at two separate graphs). This <em>is</em> possible with how we’re plotting, but it’s quite ugly. In fact, we’ll learn a better way to do graphing later this semester. For now, you can hack around it by just putting both <code class="docutils literal notranslate"><span class="pre">plot</span></code> commands in the same code cell. Again, I have some extra parameters to make the graphs easier to read. You can probaby guess what most of them mean, and <a class="reference external" href="https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.hist.html">read about the rest</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;Fare&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;hist&quot;</span><span class="p">,</span> 
+                                   <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">])],</span> 
+                                   <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> 
+                                   <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                   <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                   <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                   <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Survived&#39;</span><span class="p">,</span> 
+                                   <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> 
+                                   <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span> 
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;Fare&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;hist&quot;</span><span class="p">,</span> 
+                                   <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">])],</span> 
+                                   <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> 
+                                   <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                   <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                   <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                   <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Died&#39;</span><span class="p">,</span> 
+                                   <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> 
+                                   <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11a121910&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_02_23_1.png" src="_images/ch_02_23_1.png" />
+</div>
+</div>
+<div class="section" id="plotting-with-matplotlib">
+<h3>Plotting with matplotlib<a class="headerlink" href="#plotting-with-matplotlib" title="Permalink to this headline">¶</a></h3>
+<p>While we imported <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> earlier, we did all of our plotting just by calling <code class="docutils literal notranslate"><span class="pre">df.plot(...)</span></code>. This is very limiting, and doesn’t allow you to customize a plot exactly how you like. To do that you’ll need to work with matplotlib directly. This can be a little confusing at first, but once you start to get familiar with it you will realize how powerful it is.</p>
+<p>Matplotlib works with “figures” and “axes”. An axes is a plot. This is probably a little different from how you use “axes” in other classes, where you think of them as the x and y axes. But in matplotlib is the graph itself. A “figure” is just a collection of axes. If you only have one plot (thus one axes) we just work with “figure”.</p>
+<p>In order to create a new figure, call <code class="docutils literal notranslate"><span class="pre">.figure()</span></code>. Then to draw on this figure (i.e. make graphs), simply call <code class="docutils literal notranslate"><span class="pre">plt.my_graph(my_data,</span> <span class="pre">my_options,</span> <span class="pre">...)</span></code>. The notation will look very similar to what you did above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_02_25_0.png" src="_images/ch_02_25_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_02_26_0.png" src="_images/ch_02_26_0.png" />
+</div>
+</div>
+<p>Next, let’s try to add some options like we did above with grids, x limits, etc.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;Fare&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;hist&quot;</span><span class="p">,</span> 
+                                   <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> 
+                                   <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> 
+                                   <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                   <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Died&#39;</span><span class="p">,</span> 
+                                   <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_02_28_0.png" src="_images/ch_02_28_0.png" />
+</div>
+</div>
+<p>At this point you may be wondering why we even bother with matplotlib. It seems like all we’re really doing is just saving it to <code class="docutils literal notranslate"><span class="pre">ax</span></code>. But doing it this way gives you a lot more flexibility over what you graph. Below I have made a graph with lots of small styling changes to make it look nicer. You don’t need to try and memorize everything below. I just want to demonstrate how powerful matplotlib can be. I found out how to do each of these things by Googling, so you can do it too!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span> <span class="c1"># 12 inches by 8 inches</span>
+
+<span class="c1"># Prepare my data</span>
+<span class="n">survived_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">died_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Plot the fare of the people who survived</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">survived_df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;hist&quot;</span><span class="p">,</span> 
+                         <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">])],</span> 
+                         <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>  
+                         <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                         <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Survived&#39;</span><span class="p">,</span> 
+                         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> 
+                         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span> 
+
+<span class="c1"># Plot the fare of the people who died</span>
+<span class="c1"># We already saved ax as the previous plot, we don&#39;t need to do it again for this one. We just want ax to be _something_ so that we can style it below.</span>
+<span class="n">died_df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;hist&quot;</span><span class="p">,</span> 
+                         <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">])],</span> 
+                         <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>  
+                         <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                         <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Died&#39;</span><span class="p">,</span> 
+                         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> 
+                         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span> 
+
+<span class="c1"># Add grid lines just on the y-axis and make them dashed</span>
+<span class="c1"># Google query: &quot;matplotlib horizontal grid lines&quot;, &quot;matplotlib dashed grid lines&quot;</span>
+<span class="c1"># Source: https://stackoverflow.com/questions/16074392/getting-vertical-gridlines-to-appear-in-line-plot-in-matplotlib</span>
+<span class="c1"># Source: https://stackoverflow.com/questions/1726391/matplotlib-draw-grid-lines-behind-other-graph-elements</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set the title and axes labels, and make them bigger</span>
+<span class="c1"># Google query: &quot;matplotlib set title and axes labels&quot;</span>
+<span class="c1"># Source: https://stackoverflow.com/questions/12444716/how-do-i-set-the-figure-title-and-axes-labels-font-size-in-matplotlib</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Fare comparison&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Fare&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Survived&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+<span class="c1"># Make the numbers on the x and y axes bigger</span>
+<span class="c1"># Google query: &quot;matplotlib make axes numbers bigger&quot;</span>
+<span class="c1"># Source: https://stackoverflow.com/questions/34001751/python-how-to-increase-reduce-the-fontsize-of-x-and-y-tick-labels</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="c1"># Make the y-axis numbers appear as percentages, not decimal</span>
+<span class="c1"># Google query: &quot;matplotlib axes as percentages&quot;</span>
+<span class="c1"># Source: https://stackoverflow.com/questions/31357611/format-y-axis-as-percent</span>
+<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">PercentFormatter</span> <span class="c1"># This important should really be done at the top of the notebook for cleanliness, but leaving it here so you can see where this comes from</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">PercentFormatter</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span> <span class="c1"># The 1.0 is telling the PercentFormatter that the maximum value is 1.0. That is, that my numbers are represented as decimals between 0 and 1 (as opposed to 0 to 100)</span>
+
+<span class="c1"># Rotate the x-label labels 45 degrees</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_02_30_0.png" src="_images/ch_02_30_0.png" />
+</div>
+</div>
+<p>While this is a lot of code, it allowed us to format the graph exactly the way we wanted, included rotated labels and everything. This is impossible to do only using <code class="docutils literal notranslate"><span class="pre">df.plot(...)</span></code>. You <em>do not</em> need to use matplotlib for everything. But it’s good to get some practice with it so that when you’re making your presentations your graphs look good. Points will absolutely be docked for small, ugly graphs.</p>
+<p>What if you want to plot multiple graphs next/on top of each other? You can do this using <code class="docutils literal notranslate"><span class="pre">plt.subplots(nrows=number_of_rows,</span> <span class="pre">ncols=number_of_cols)</span></code>. By specifying <code class="docutils literal notranslate"><span class="pre">nrows</span></code> and <code class="docutils literal notranslate"><span class="pre">ncols</span></code> you are essentialy making a table (matrix) of graphs. How do you plot on each of these graphs? <code class="docutils literal notranslate"><span class="pre">plt.subplots()</span></code> returns both the figure (<code class="docutils literal notranslate"><span class="pre">fig</span></code>) and the axes (<code class="docutils literal notranslate"><span class="pre">ax</span></code>). It returns an axes for each graph. Below is an example using two graphs next to each other. After that is an example with four graphs in a square.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">survived_df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Fare of those who survived&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">])</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">died_df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Fare of those who died&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_02_32_0.png" src="_images/ch_02_32_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note that we group the axes by the rows. So (ax1, ax2) are the graphs (axes) on the first row, and (ax3, ax4) are the axes on the second row.</span>
+<span class="c1"># sharex=True tells the graphs to all use the same range for the x-axes.</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">((</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">),</span> <span class="p">(</span><span class="n">ax3</span><span class="p">,</span> <span class="n">ax4</span><span class="p">))</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Fare of those who survived</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">survived_df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Fare of those who survived&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">])</span>
+
+<span class="c1"># Fare of those who died</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">died_df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Fare of those who died&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">])</span>
+
+<span class="c1"># Fare of those who survived</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">survived_df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Fare of those who survived&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">])</span>
+
+<span class="c1"># Preparing data by &quot;class&quot;</span>
+<span class="n">first_class_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">second_third_class_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])]</span>
+
+<span class="c1"># Fare for first class</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">first_class_df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Fare of those in first class&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">])</span>
+
+<span class="c1"># Fare for second and third class</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">second_third_class_df</span><span class="p">[</span><span class="s1">&#39;Fare&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Fare of those in second and third class&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0, 500)
+</pre></div>
+</div>
+<img alt="_images/ch_02_33_1.png" src="_images/ch_02_33_1.png" />
+</div>
+</div>
+<p>A great way to get an idea of what sort of graphs you can make is just to go through the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html">Pandas plotting gallery</a>. Then click into the example. Often the examples are fairly complex. But you want to just dive in and find the actual graphing part. Try to guess what each part is doing, then modify it for your purposes. Here are a couple simple graphs taken from there and modified to fit our data.</p>
+<p><strong>Simple scatter plot</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Fare&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Ticket price&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_02_36_0.png" src="_images/ch_02_36_0.png" />
+</div>
+</div>
+<p><strong>Horizontal box plot</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="s1">&#39;Fare&#39;</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s1">&#39;Survived&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">vert</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_02_38_0.png" src="_images/ch_02_38_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="working-with-dates-a-id-dates-a">
+<h2>Working with dates <a id="dates"></a><a class="headerlink" href="#working-with-dates-a-id-dates-a" title="Permalink to this headline">¶</a></h2>
+<p>Working with dates is an incredibly important skill to have. It can be a little tricky at first, but once you get the hang of it you can accomplish so much more.</p>
+<p>In the data folder for this week is a file called <code class="docutils literal notranslate"><span class="pre">coronavirus.csv</span></code>. It contains the number of coronavirus cases and deaths in each state in the US.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/coronavirus.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>state</th>
+      <th>cases</th>
+      <th>deaths</th>
+      <th>population</th>
+      <th>overall_deaths</th>
+      <th>migration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-01-21</td>
+      <td>Washington</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7614893.0</td>
+      <td>58587.0</td>
+      <td>24103.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-01-22</td>
+      <td>Washington</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7614893.0</td>
+      <td>58587.0</td>
+      <td>24103.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-01-23</td>
+      <td>Washington</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7614893.0</td>
+      <td>58587.0</td>
+      <td>24103.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-01-24</td>
+      <td>Illinois</td>
+      <td>1</td>
+      <td>0</td>
+      <td>12671821.0</td>
+      <td>110004.0</td>
+      <td>19209.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020-01-24</td>
+      <td>Washington</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7614893.0</td>
+      <td>58587.0</td>
+      <td>24103.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2020-01-25</td>
+      <td>California</td>
+      <td>1</td>
+      <td>0</td>
+      <td>39512223.0</td>
+      <td>282520.0</td>
+      <td>74028.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2020-01-25</td>
+      <td>Illinois</td>
+      <td>1</td>
+      <td>0</td>
+      <td>12671821.0</td>
+      <td>110004.0</td>
+      <td>19209.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2020-01-25</td>
+      <td>Washington</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7614893.0</td>
+      <td>58587.0</td>
+      <td>24103.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2020-01-26</td>
+      <td>Arizona</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7278717.0</td>
+      <td>60523.0</td>
+      <td>7782.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2020-01-26</td>
+      <td>California</td>
+      <td>2</td>
+      <td>0</td>
+      <td>39512223.0</td>
+      <td>282520.0</td>
+      <td>74028.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can see that each state appears multiple times, because the data measures the number of cases every day. So for instance, Washington has a measurement for January 21st, then January 22nd, etc. Some states don’t have measurements on certain days. Before we get into grouping, let’s explore our data a little. The questions I want to answer are:</p>
+<ol class="simple">
+<li><p>Is the data good quality? Do we have missing values? Are all columns the appropriate data types?</p></li>
+<li><p>Are all states represented?</p></li>
+<li><p>How many measurements do each state have?</p></li>
+<li><p>What is the date range?</p></li>
+</ol>
+<p><strong>1. Is the data good quality?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>date               object
+state              object
+cases               int64
+deaths              int64
+population        float64
+overall_deaths    float64
+migration         float64
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>So <code class="docutils literal notranslate"><span class="pre">date</span></code> is a string (object), and so is <code class="docutils literal notranslate"><span class="pre">state</span></code>. Obviously <code class="docutils literal notranslate"><span class="pre">state</span></code> should be a string (it’s text), but I would really like <code class="docutils literal notranslate"><span class="pre">date</span></code> to be a, well, date. Python represents dates as a <code class="docutils literal notranslate"><span class="pre">datetime</span></code>, which is exactly what it sounds like, a date together with a time. Pandas has a simple helper function to convert strings (objects) to datetimes, called <code class="docutils literal notranslate"><span class="pre">pd.to_datetime()</span></code>. Even if your data doesn’t have a time (like ours doesn’t, it’s just the date of the measurement) there’s nothing wrong with having a datetime. It will just use a time of midnight.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s look at the data types again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>date              datetime64[ns]
+state                     object
+cases                      int64
+deaths                     int64
+population               float64
+overall_deaths           float64
+migration                float64
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now the dates are represented as datetimes. Let’s look at the data again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>state</th>
+      <th>cases</th>
+      <th>deaths</th>
+      <th>population</th>
+      <th>overall_deaths</th>
+      <th>migration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-01-21</td>
+      <td>Washington</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7614893.0</td>
+      <td>58587.0</td>
+      <td>24103.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-01-22</td>
+      <td>Washington</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7614893.0</td>
+      <td>58587.0</td>
+      <td>24103.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-01-23</td>
+      <td>Washington</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7614893.0</td>
+      <td>58587.0</td>
+      <td>24103.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-01-24</td>
+      <td>Illinois</td>
+      <td>1</td>
+      <td>0</td>
+      <td>12671821.0</td>
+      <td>110004.0</td>
+      <td>19209.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020-01-24</td>
+      <td>Washington</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7614893.0</td>
+      <td>58587.0</td>
+      <td>24103.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Hmm, it doesn’t look any different. The <code class="docutils literal notranslate"><span class="pre">date</span></code> column still looks exactly like it did before. So what did we really accomplish? Lot’s, actually! Here are some great things we can do now:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the year, month and day of a measurement</span>
+<span class="n">tenth_measurement</span> <span class="o">=</span> <span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The tenth measurement occurred in </span><span class="si">{</span><span class="n">tenth_measurement</span><span class="o">.</span><span class="n">year</span><span class="si">}</span><span class="s1"> in month </span><span class="si">{</span><span class="n">tenth_measurement</span><span class="o">.</span><span class="n">month</span><span class="si">}</span><span class="s1"> and day </span><span class="si">{</span><span class="n">tenth_measurement</span><span class="o">.</span><span class="n">day</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The tenth measurement occurred in 2020 in month 1 and day 26
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find the difference in time between two measurements</span>
+<span class="n">hundredth_measurement</span> <span class="o">=</span> <span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span>
+
+<span class="n">time_diff</span> <span class="o">=</span> <span class="n">hundredth_measurement</span> <span class="o">-</span> <span class="n">tenth_measurement</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The time difference between the first and tenth measurement is </span><span class="si">{</span><span class="n">time_diff</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The time difference between the first and tenth measurement is 17 days 00:00:00
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add time together</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The tenth measurement occurred on </span><span class="si">{</span><span class="n">tenth_measurement</span><span class="si">}</span><span class="s1">. One week after that was </span><span class="si">{</span><span class="n">tenth_measurement</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">weeks</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The tenth measurement occurred on 2020-01-26 00:00:00. One week after that was 2020-02-02 00:00:00
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get days of the week</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The tenth measurement occured on a </span><span class="si">{</span><span class="n">tenth_measurement</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># Hmm, that&#39;s a litle annoying, what day of the week is &quot;6&quot;?</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The tenth measurement occured on a </span><span class="si">{</span><span class="n">tenth_measurement</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%A&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The tenth measurement occured on a 6
+The tenth measurement occured on a Sunday
+</pre></div>
+</div>
+</div>
+</div>
+<p>We used <code class="docutils literal notranslate"><span class="pre">.strftime()</span></code> in that last example. That is a way to convert dates to strings. <a class="reference external" href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes">Here</a> is all the ways you can change dates to strings.</p>
+<p>Do we have missing values?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>date               0
+state              0
+cases              0
+deaths             0
+population        25
+overall_deaths    25
+migration         25
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yes! The fact that there are 25 of each is funny, let’s look at them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_df</span><span class="p">[</span><span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>state</th>
+      <th>cases</th>
+      <th>deaths</th>
+      <th>population</th>
+      <th>overall_deaths</th>
+      <th>migration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>684</th>
+      <td>2020-03-14</td>
+      <td>Virgin Islands</td>
+      <td>1</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>700</th>
+      <td>2020-03-15</td>
+      <td>Guam</td>
+      <td>3</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>737</th>
+      <td>2020-03-15</td>
+      <td>Virgin Islands</td>
+      <td>1</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>753</th>
+      <td>2020-03-16</td>
+      <td>Guam</td>
+      <td>3</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>790</th>
+      <td>2020-03-16</td>
+      <td>Virgin Islands</td>
+      <td>2</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>806</th>
+      <td>2020-03-17</td>
+      <td>Guam</td>
+      <td>3</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>843</th>
+      <td>2020-03-17</td>
+      <td>Virgin Islands</td>
+      <td>2</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>860</th>
+      <td>2020-03-18</td>
+      <td>Guam</td>
+      <td>8</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>897</th>
+      <td>2020-03-18</td>
+      <td>Virgin Islands</td>
+      <td>3</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>914</th>
+      <td>2020-03-19</td>
+      <td>Guam</td>
+      <td>12</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>951</th>
+      <td>2020-03-19</td>
+      <td>Virgin Islands</td>
+      <td>3</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>968</th>
+      <td>2020-03-20</td>
+      <td>Guam</td>
+      <td>14</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1005</th>
+      <td>2020-03-20</td>
+      <td>Virgin Islands</td>
+      <td>6</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1022</th>
+      <td>2020-03-21</td>
+      <td>Guam</td>
+      <td>15</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1059</th>
+      <td>2020-03-21</td>
+      <td>Virgin Islands</td>
+      <td>6</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1076</th>
+      <td>2020-03-22</td>
+      <td>Guam</td>
+      <td>27</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1113</th>
+      <td>2020-03-22</td>
+      <td>Virgin Islands</td>
+      <td>17</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1130</th>
+      <td>2020-03-23</td>
+      <td>Guam</td>
+      <td>29</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1167</th>
+      <td>2020-03-23</td>
+      <td>Virgin Islands</td>
+      <td>17</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1184</th>
+      <td>2020-03-24</td>
+      <td>Guam</td>
+      <td>32</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1221</th>
+      <td>2020-03-24</td>
+      <td>Virgin Islands</td>
+      <td>17</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1238</th>
+      <td>2020-03-25</td>
+      <td>Guam</td>
+      <td>32</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1275</th>
+      <td>2020-03-25</td>
+      <td>Virgin Islands</td>
+      <td>17</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1292</th>
+      <td>2020-03-26</td>
+      <td>Guam</td>
+      <td>49</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1329</th>
+      <td>2020-03-26</td>
+      <td>Virgin Islands</td>
+      <td>17</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>It seems like perhaps the problem is that the Virgin Islands and Guam don’t have much data. So let’s just drop those (sorry Virgin Islands and Guam…) and then check again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_df</span> <span class="o">=</span> <span class="n">covid_df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>date              0
+state             0
+cases             0
+deaths            0
+population        0
+overall_deaths    0
+migration         0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Great, we can move on. The columns “population”, “overall_deaths” and “migration” probably don’t need to be decimals, so let’s just make them all integers. We’ll also check that there’s no negatives or crazy values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+<span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;overall_deaths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;overall_deaths&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+<span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;migration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;migration&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-133-3c34e4f278f3&gt;:1: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  covid_df[&#39;population&#39;] = covid_df[&#39;population&#39;].astype(&#39;int&#39;)
+&lt;ipython-input-133-3c34e4f278f3&gt;:2: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  covid_df[&#39;overall_deaths&#39;] = covid_df[&#39;overall_deaths&#39;].astype(&#39;int&#39;)
+&lt;ipython-input-133-3c34e4f278f3&gt;:3: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  covid_df[&#39;migration&#39;] = covid_df[&#39;migration&#39;].astype(&#39;int&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pandas is picky about how you access data, so it’s throwing a warning (not an error) here. You can fix that by using <code class="docutils literal notranslate"><span class="pre">covid_df.loc['my_col',</span> <span class="pre">].astype('int')</span></code> instead. But to be honest I never bother with it and just ignore the warning.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>date              datetime64[ns]
+state                     object
+cases                      int64
+deaths                     int64
+population                 int64
+overall_deaths             int64
+migration                  int64
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Okay, data types look good now. Let’s move on to the second question:</p>
+<p><strong>2. Are all states represented?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>52
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are 52 because of DC and Puerto Rico.</p>
+<p><strong>3. How many measurements does each state have?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Washington              67
+Illinois                64
+California              63
+Arizona                 62
+Massachusetts           56
+Wisconsin               52
+Texas                   45
+Nebraska                40
+Utah                    32
+Oregon                  29
+Rhode Island            27
+Florida                 27
+New York                27
+Georgia                 26
+New Hampshire           26
+North Carolina          25
+New Jersey              24
+Tennessee               23
+Nevada                  23
+Colorado                23
+Maryland                23
+Oklahoma                22
+Pennsylvania            22
+Minnesota               22
+Hawaii                  22
+Indiana                 22
+Kentucky                22
+South Carolina          22
+Missouri                21
+Vermont                 21
+Kansas                  21
+Virginia                21
+District of Columbia    21
+Connecticut             20
+Iowa                    20
+Ohio                    19
+Louisiana               19
+Michigan                18
+South Dakota            18
+North Dakota            17
+New Mexico              17
+Wyoming                 17
+Mississippi             17
+Delaware                17
+Arkansas                17
+Maine                   16
+Alaska                  16
+Montana                 15
+Alabama                 15
+Idaho                   15
+Puerto Rico             14
+West Virginia           11
+Name: state, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>4. What is the date range?</strong></p>
+<p>This is where it will be helpful that I converted the date column into actual dates. If it were just strings then Python has no way of knowing that ‘2020-01-02’ &gt; ‘2020-01-01’ (for instance).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>An error is coming!</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># An error is coming...</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Earliest date: </span><span class="si">{</span><span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s1">, latest date: </span><span class="si">{</span><span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-140-a544337c2bea&gt;&quot;</span><span class="gt">, line </span><span class="mi">2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Earliest date: </span><span class="si">{</span><span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s1">, latest date: </span><span class="si">{</span><span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                                      <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+<p>What happened here? The problem is that we’re using single quotes <code class="docutils literal notranslate"><span class="pre">'</span></code> for two different things: One is for the <code class="docutils literal notranslate"><span class="pre">print</span></code> statement, and another is to access the column inside covid_df. So Python gets confused and doesn’t know that they’re different. The way to fix this is to just use two different kinds of quotes. One can be single quotes <code class="docutils literal notranslate"><span class="pre">'</span></code>, and one can be double quotes <code class="docutils literal notranslate"><span class="pre">&quot;</span></code>. These mean exactly the same thing to Python, but by putting different ones it understands that you’re using them for two different purposes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Notice that I used double quotes &quot; to access the date column, and single quotes &#39; for the print statement. It would also work just fine if you switched those two.</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Earliest date: </span><span class="si">{</span><span class="n">covid_df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s1">, latest date: </span><span class="si">{</span><span class="n">covid_df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Earliest date: 2020-01-21 00:00:00, latest date: 2020-03-27 00:00:00
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="grouping-the-data-a-id-groupby-a">
+<h2>Grouping the data <a id="groupby"></a><a class="headerlink" href="#grouping-the-data-a-id-groupby-a" title="Permalink to this headline">¶</a></h2>
+<p>What would happen if we tried to plot how many cases are in each state?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;cases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_02_78_0.png" src="_images/ch_02_78_0.png" />
+</div>
+</div>
+<p>What is this? I have no idea what the x-axis is (presumably the y-axis is the number of cases). The problem is that each state appears many times in my dataset. As we saw above, Washington appears 67 times (for instance), and West Virginia appears 11 times. So each appearance is getting its own bar. We could (sort of) fix this by selecting one state and working with it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">was_df</span> <span class="o">=</span> <span class="n">covid_df</span><span class="p">[</span><span class="n">covid_df</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Alabama&#39;</span><span class="p">]</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">was_df</span><span class="p">[</span><span class="s1">&#39;cases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_02_80_0.png" src="_images/ch_02_80_0.png" />
+</div>
+</div>
+<p>That’s better, but do I really want to do that for all 50 states + DC and Puerto Rico? What I need is to <em>group</em> the states together. That way I can see <em>summaries</em> for each state, such as the total number of cases, total number of deaths, etc. To do that I need to use the <code class="docutils literal notranslate"><span class="pre">groupby</span></code> Python function. This function can be a little tricky. Let’s start with some simple examples before we jump into graphing.</p>
+<p>To use <code class="docutils literal notranslate"><span class="pre">groupby</span></code>, you need to supply your dataframe, and also tell Pandas what column(s) you want to group by.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covid_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x11bd71fa0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that it doesn’t really return anything immediately useful. It returns a <code class="docutils literal notranslate"><span class="pre">DataFrameGroupBy</span></code> object, whatever that is. Well, what it is something you can iterate over using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop (for instance). Let’s do just one loop then use <code class="docutils literal notranslate"><span class="pre">break</span></code> to stop the loop. That way we don’t need to have 52 things printed out.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">covid_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;This group is name </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">. Below is the group.&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This group is name Alabama. Below is the group.
+           date    state  cases  deaths  population  overall_deaths  migration
+586  2020-03-13  Alabama      6       0     4903185           53879       2772
+637  2020-03-14  Alabama     12       0     4903185           53879       2772
+689  2020-03-15  Alabama     23       0     4903185           53879       2772
+742  2020-03-16  Alabama     29       0     4903185           53879       2772
+795  2020-03-17  Alabama     39       0     4903185           53879       2772
+849  2020-03-18  Alabama     51       0     4903185           53879       2772
+903  2020-03-19  Alabama     78       0     4903185           53879       2772
+957  2020-03-20  Alabama    106       0     4903185           53879       2772
+1011 2020-03-21  Alabama    131       0     4903185           53879       2772
+1065 2020-03-22  Alabama    157       0     4903185           53879       2772
+1119 2020-03-23  Alabama    196       0     4903185           53879       2772
+1173 2020-03-24  Alabama    242       0     4903185           53879       2772
+1227 2020-03-25  Alabama    386       1     4903185           53879       2772
+1281 2020-03-26  Alabama    538       3     4903185           53879       2772
+1335 2020-03-27  Alabama    639       4     4903185           53879       2772
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that <code class="docutils literal notranslate"><span class="pre">groupby</span></code> returns two things: The name of the group, which is just the value in the column you provided. Since we provided “state”, it’s returning the state, which in this case in Alabama. Then it provides a DataFrame with only that value. So here, the DataFrame returned is all measurements for Alabama. This is exactly the same thing as we got above! Except now, rather than telling Pandas “give us all measurements for Alabama”, it just does it on its own.</p>
+<p>Why is this useful? Because we can compute some summary statistics for each individual group (state). Let’s compute the number of measurements for each state.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">covid_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> has </span><span class="si">{</span><span class="n">group</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> measurements&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Alabama has 15 measurements
+Alaska has 16 measurements
+Arizona has 62 measurements
+Arkansas has 17 measurements
+California has 63 measurements
+Colorado has 23 measurements
+Connecticut has 20 measurements
+Delaware has 17 measurements
+District of Columbia has 21 measurements
+Florida has 27 measurements
+Georgia has 26 measurements
+Hawaii has 22 measurements
+Idaho has 15 measurements
+Illinois has 64 measurements
+Indiana has 22 measurements
+Iowa has 20 measurements
+Kansas has 21 measurements
+Kentucky has 22 measurements
+Louisiana has 19 measurements
+Maine has 16 measurements
+Maryland has 23 measurements
+Massachusetts has 56 measurements
+Michigan has 18 measurements
+Minnesota has 22 measurements
+Mississippi has 17 measurements
+Missouri has 21 measurements
+Montana has 15 measurements
+Nebraska has 40 measurements
+Nevada has 23 measurements
+New Hampshire has 26 measurements
+New Jersey has 24 measurements
+New Mexico has 17 measurements
+New York has 27 measurements
+North Carolina has 25 measurements
+North Dakota has 17 measurements
+Ohio has 19 measurements
+Oklahoma has 22 measurements
+Oregon has 29 measurements
+Pennsylvania has 22 measurements
+Puerto Rico has 14 measurements
+Rhode Island has 27 measurements
+South Carolina has 22 measurements
+South Dakota has 18 measurements
+Tennessee has 23 measurements
+Texas has 45 measurements
+Utah has 32 measurements
+Vermont has 21 measurements
+Virginia has 21 measurements
+Washington has 67 measurements
+West Virginia has 11 measurements
+Wisconsin has 52 measurements
+Wyoming has 17 measurements
+</pre></div>
+</div>
+</div>
+</div>
+<p>So easy! With just two lines of code we were able to compute things about all 52 states + territories. Let’s add up the number of cases each day. Rather than printing them out let’s save them as a dictionary.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cases_by_state</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">covid_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">):</span>
+    <span class="n">cases_by_state</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="s1">&#39;cases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cases_by_state</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Alabama&#39;: 2633,
+ &#39;Alaska&#39;: 382,
+ &#39;Arizona&#39;: 2695,
+ &#39;Arkansas&#39;: 2039,
+ &#39;California&#39;: 27813,
+ &#39;Colorado&#39;: 8609,
+ &#39;Connecticut&#39;: 5390,
+ &#39;Delaware&#39;: 858,
+ &#39;District of Columbia&#39;: 1644,
+ &#39;Florida&#39;: 14172,
+ &#39;Georgia&#39;: 9847,
+ &#39;Hawaii&#39;: 720,
+ &#39;Idaho&#39;: 845,
+ &#39;Illinois&#39;: 14013,
+ &#39;Indiana&#39;: 3380,
+ &#39;Iowa&#39;: 1235,
+ &#39;Kansas&#39;: 986,
+ &#39;Kentucky&#39;: 1495,
+ &#39;Louisiana&#39;: 12798,
+ &#39;Maine&#39;: 1068,
+ &#39;Maryland&#39;: 3429,
+ &#39;Massachusetts&#39;: 12863,
+ &#39;Michigan&#39;: 14972,
+ &#39;Minnesota&#39;: 2325,
+ &#39;Mississippi&#39;: 2580,
+ &#39;Missouri&#39;: 2391,
+ &#39;Montana&#39;: 517,
+ &#39;Nebraska&#39;: 1188,
+ &#39;Nevada&#39;: 3044,
+ &#39;New Hampshire&#39;: 1079,
+ &#39;New Jersey&#39;: 32692,
+ &#39;New Mexico&#39;: 944,
+ &#39;New York&#39;: 207609,
+ &#39;North Carolina&#39;: 3651,
+ &#39;North Dakota&#39;: 361,
+ &#39;Ohio&#39;: 4910,
+ &#39;Oklahoma&#39;: 1216,
+ &#39;Oregon&#39;: 2296,
+ &#39;Pennsylvania&#39;: 8451,
+ &#39;Puerto Rico&#39;: 276,
+ &#39;Rhode Island&#39;: 1141,
+ &#39;South Carolina&#39;: 2881,
+ &#39;South Dakota&#39;: 346,
+ &#39;Tennessee&#39;: 5519,
+ &#39;Texas&#39;: 8901,
+ &#39;Utah&#39;: 2546,
+ &#39;Vermont&#39;: 855,
+ &#39;Virginia&#39;: 3081,
+ &#39;Washington&#39;: 26604,
+ &#39;West Virginia&#39;: 323,
+ &#39;Wisconsin&#39;: 4596,
+ &#39;Wyoming&#39;: 385}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can easily make this into a Pandas Series. It’s a Series and not a DataFrame because there’s only one column. DataFrames are for when you have multiple columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cases_by_state_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">cases_by_state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cases_by_state_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Alabama        2633
+Alaska          382
+Arizona        2695
+Arkansas       2039
+California    27813
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s plot this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">cases_by_state_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_02_94_0.png" src="_images/ch_02_94_0.png" />
+</div>
+</div>
+<p>Awesome! To make it nicer, let’s order the states so that the cases are increasing from left to right. We can do this using the Pandas helper function <code class="docutils literal notranslate"><span class="pre">sort_values</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cases_by_state_df</span> <span class="o">=</span> <span class="n">cases_by_state_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">cases_by_state_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_02_97_0.png" src="_images/ch_02_97_0.png" />
+</div>
+</div>
+<p>Let’s use <code class="docutils literal notranslate"><span class="pre">groupby</span></code> to make a dataframe summarizing all the states. We’ll include the total number of cases, deaths, and also both as a percentage of the population. To get the total number we’ll just use <code class="docutils literal notranslate"><span class="pre">.sum()</span></code> on each group, which will sum up the number of cases/deaths each day. To make it into a percentage we’ll divide by the population. The population is the same every day, so we’ll just take the first time the population shows up (<code class="docutils literal notranslate"><span class="pre">.iloc[0]</span></code>) and use that value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_summaries</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">state</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">covid_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">):</span>
+    <span class="n">state_summaries</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">state</span><span class="p">,</span> <span class="n">group</span><span class="p">[</span><span class="s1">&#39;cases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">group</span><span class="p">[</span><span class="s1">&#39;deaths&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">group</span><span class="p">[</span><span class="s1">&#39;cases&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">group</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">group</span><span class="p">[</span><span class="s1">&#39;deaths&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">group</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_summaries_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">state_summaries</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="s1">&#39;total_cases&#39;</span><span class="p">,</span> <span class="s1">&#39;total_deaths&#39;</span><span class="p">,</span> <span class="s1">&#39;cases_pct_of_population&#39;</span> <span class="p">,</span> <span class="s1">&#39;deaths_pct_of_population&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_summaries_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>total_cases</th>
+      <th>total_deaths</th>
+      <th>cases_pct_of_population</th>
+      <th>deaths_pct_of_population</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alabama</td>
+      <td>2633</td>
+      <td>8</td>
+      <td>0.000537</td>
+      <td>0.000002</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>382</td>
+      <td>1</td>
+      <td>0.000522</td>
+      <td>0.000001</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>2695</td>
+      <td>41</td>
+      <td>0.000370</td>
+      <td>0.000006</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arkansas</td>
+      <td>2039</td>
+      <td>10</td>
+      <td>0.000676</td>
+      <td>0.000003</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>California</td>
+      <td>27813</td>
+      <td>524</td>
+      <td>0.000704</td>
+      <td>0.000013</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s also plot the deaths by state in a similar way.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_summaries_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;total_deaths&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11f430be0&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_02_103_1.png" src="_images/ch_02_103_1.png" />
+</div>
+</div>
+<p>There are many, many more things you can do with grouping and plotting, this is just scratching the surface. But hopefully you now have a roadmap for how to start. As you’ll continue to learn throughout this class, Google is your friend. When you want to try something new, or something you thought would work doesn’t and you can’t fix it, Google it! With that, let’s get to the exercises.</p>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="titanic-dataset">
+<h3>Titanic dataset<a class="headerlink" href="#titanic-dataset" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Is there any relationship between the <code class="docutils literal notranslate"><span class="pre">Embarked</span></code> variable and anything else?</p></li>
+<li><p>What is the relationship between <code class="docutils literal notranslate"><span class="pre">Age</span></code> and <code class="docutils literal notranslate"><span class="pre">Survived</span></code>?</p></li>
+<li><p>So far we’ve been asking about the relationship between just two variables: <code class="docutils literal notranslate"><span class="pre">Age</span></code> and <code class="docutils literal notranslate"><span class="pre">Survived</span></code>, <code class="docutils literal notranslate"><span class="pre">Embarked</span></code> and something else, etc. How would you go about exploring the relationship between <em>three or more</em> variables? Perhaps <code class="docutils literal notranslate"><span class="pre">Survived</span></code> is dependent on <code class="docutils literal notranslate"><span class="pre">Age</span></code>, <code class="docutils literal notranslate"><span class="pre">Fare</span></code>, <code class="docutils literal notranslate"><span class="pre">Sex</span></code>, <code class="docutils literal notranslate"><span class="pre">SibSp</span></code> and <code class="docutils literal notranslate"><span class="pre">Parch</span></code>. How could you explore this? Try using various graphs to see.</p></li>
+</ol>
+</div>
+<div class="section" id="boston-housing-prices-dataset">
+<h3>Boston housing prices dataset<a class="headerlink" href="#boston-housing-prices-dataset" title="Permalink to this headline">¶</a></h3>
+<p>In the data folder for this homework is another dataset called <code class="docutils literal notranslate"><span class="pre">boston.csv</span></code>. This dataset contains info on neighborhoods in Boston, measures in the 1980’s. Open up that data and go through similar steps to what you’ve done in this homework and homework 1. Then, answer the following questions:</p>
+<ol class="simple">
+<li><p>How many rows have a missing value? Drop any rows with a missing value.</p></li>
+<li><p>What is the data type for each column once you load the data using Pandas? Fix any data types that are incorrectly loaded.</p></li>
+<li><p>What is the minimum, median, mean and maximum house prices?</p></li>
+<li><p>Make three histograms for three different columns that you find interesting. Make sure your histogram has a title, looks nice, etc.</p></li>
+<li><p>Make three scatter plots, each with the house price being the y-value. Pick three columns you think might have a relationship with the house price, and put those on the x-axis.</p></li>
+<li><p>What factors seem to have the strongest influence on the house price? Why do you say that?</p></li>
+<li><p>Write several paragraphs describing what you have learned. This should be something that you could present to your boss if (s)he said “go look into this for me and give me a summary of what I should know.”</p></li>
+</ol>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="ch_01.html" title="previous page">First steps with Pandas and Jupyter notebooks</a>
+    <a class='right-next' id="next-link" href="ch_03.html" title="next page">Correlation</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

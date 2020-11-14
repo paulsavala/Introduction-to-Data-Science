@@ -1,0 +1,1996 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Training models &#8212; Introduction to Data Science</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Classification" href="ch_06.html" />
+    <link rel="prev" title="Linear regression" href="ch_04.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Introduction to Data Science</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_01.html">
+   First steps with Pandas and Jupyter notebooks
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_02.html">
+   Plotting and grouping data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_03.html">
+   Correlation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_04.html">
+   Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Training models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_06.html">
+   Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_07.html">
+   Nearest neighbors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_08.html">
+   Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_09.html">
+   Improving your model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_10.html">
+   Ensemble tree models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch_11.html">
+   Working with large datasets
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/ch_05.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/ch_05.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-loading">
+   Data loading
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-cleaning">
+   Data cleaning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-models-a-id-training-a">
+   Training models
+   <a id="training">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-data-to-train-your-model-on">
+     Finding data to train your model on
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#picking-a-model">
+     Picking a model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gradient-descent">
+     Gradient descent
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#putting-it-all-together">
+     Putting it all together
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluating-your-model-a-id-model-evaluation-a">
+   Evaluating your model
+   <a id="model_evaluation">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-vs-testing-a-id-train-test-a">
+   Training vs testing
+   <a id="train_test">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-test-split-a-id-train-test-split-a">
+   Train-test split
+   <a id="train_test_split">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examining-your-predictions-a-id-examining-predictions-a">
+   Examining your predictions
+   <a id="examining_predictions">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="training-models">
+<h1>Training models<a class="headerlink" href="#training-models" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-loading">
+<h2>Data loading<a class="headerlink" href="#data-loading" title="Permalink to this headline">¶</a></h2>
+<p>We’ll start by using the Boston housing dataset again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/boston.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-cleaning">
+<h2>Data cleaning<a class="headerlink" href="#data-cleaning" title="Permalink to this headline">¶</a></h2>
+<p>Change all column names to lowercase, convert spaces to underscores, replace “%” with “pct”, replace “-” with an underscore, check for missing values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;%&#39;</span><span class="p">,</span> <span class="s1">&#39;pct&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>median_home_value</th>
+      <th>crime_rate</th>
+      <th>pct_industrial</th>
+      <th>nitrous_oxide_concentration</th>
+      <th>avg_num_rooms</th>
+      <th>pct_built_before_1940</th>
+      <th>distance_to_downtown</th>
+      <th>pupil_teacher_ratio</th>
+      <th>pct_below_poverty_line</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>24000.0</td>
+      <td>0.00632</td>
+      <td>2.31</td>
+      <td>0.538</td>
+      <td>6.575</td>
+      <td>65.2</td>
+      <td>4.0900</td>
+      <td>15.3</td>
+      <td>4.98</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>21600.0</td>
+      <td>0.02731</td>
+      <td>7.07</td>
+      <td>0.469</td>
+      <td>6.421</td>
+      <td>78.9</td>
+      <td>4.9671</td>
+      <td>17.8</td>
+      <td>9.14</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>34700.0</td>
+      <td>0.02729</td>
+      <td>7.07</td>
+      <td>0.469</td>
+      <td>7.185</td>
+      <td>61.1</td>
+      <td>4.9671</td>
+      <td>17.8</td>
+      <td>4.03</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>33400.0</td>
+      <td>0.03237</td>
+      <td>2.18</td>
+      <td>0.458</td>
+      <td>6.998</td>
+      <td>45.8</td>
+      <td>6.0622</td>
+      <td>18.7</td>
+      <td>2.94</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>36200.0</td>
+      <td>0.06905</td>
+      <td>2.18</td>
+      <td>0.458</td>
+      <td>7.147</td>
+      <td>54.2</td>
+      <td>6.0622</td>
+      <td>18.7</td>
+      <td>5.33</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="training-models-a-id-training-a">
+<h2>Training models <a id="training"></a><a class="headerlink" href="#training-models-a-id-training-a" title="Permalink to this headline">¶</a></h2>
+<p>As we learned last week, linear regression is the process of fitting a line to data in the “best” way possible. We measured “best” in terms of mean squared error (MSE), given specifically by
+$<span class="math notranslate nohighlight">\(
+\displaystyle\sum_i (y_i - (mx_i + b))^2
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>y_i<span class="math notranslate nohighlight">\( are the values to be predicted (median home value in our example last week) and \)</span>x_i<span class="math notranslate nohighlight">\( are the data being used to make predictions (things like poverty rate, distance to downtown, etc). We then showed that you could simply take derivatives and find critical points to solve for what values of \)</span>m<span class="math notranslate nohighlight">\( and \)</span>b$ will make this “error” as small as possible, i.e. minimize it.</p>
+<p>None of this is common in machine learning. In fact, linear regression is largely the only case of machine learning where we can actually <em>solve</em> for what value of the <strong>model parameters</strong>, the variables used in the model, will give the smallest error. Instead, we do what is called “model training”.</p>
+<p>Model training works like this:</p>
+<ol class="simple">
+<li><p>Find data which you want your model to predict.</p></li>
+<li><p>Pick a model. Last week this was linear regression. As the semester goes on you’ll learn about several other models.</p></li>
+<li><p>Do gradient descent (covered last week) to optimize your parameters.</p></li>
+</ol>
+<p>Let’s do a brief overview of each step.</p>
+<div class="section" id="finding-data-to-train-your-model-on">
+<h3>Finding data to train your model on<a class="headerlink" href="#finding-data-to-train-your-model-on" title="Permalink to this headline">¶</a></h3>
+<p>The first step is to find data. Normally you’ve got a general problem in mind that you want to answer. Your first step should be looking for data related to that problem. If you don’t have data then you can’t do anything else either.</p>
+<p>Let’s define a few terms that we will be using throughout the rest of this semester:</p>
+<ul class="simple">
+<li><p><strong>features:</strong> Features are simply the “inputs” in your data. So in the Titanic example, this would be things like age, fare, sex, etc.</p></li>
+<li><p><strong>labels:</strong> Labels are the values you want to predict. The term “label” comes from when you are trying to predict a categorical variable, such as the breed of a dog, or the survival or death of a passenger. However we also use it for numerical variables, such as home value.</p></li>
+<li><p><strong>ground truth:</strong> This refers to the “correct” values of the labels. For instance, suppose we collected data on passengers on the Titanic. We could build a machine learning model to predict whether or not each person survived, and the model would predict a label (“survived” or “died”). However, these are just <em>predictions</em>. By “ground truth” we mean the actual correct labels. That is, for each person described in the data, did they <em>actually</em> survive or die? Whatever the answer to this is is called the ground truth.</p></li>
+</ul>
+<p>So we want data with features and ground truth. Once we have that, we can move on to step 3.</p>
+</div>
+<div class="section" id="picking-a-model">
+<h3>Picking a model<a class="headerlink" href="#picking-a-model" title="Permalink to this headline">¶</a></h3>
+<p>Machine learning “models” are simply functions. Linear regression is an especially simple function represented by a simple equation (<span class="math notranslate nohighlight">\(y=mx+b\)</span>). When dealing with inputs with many features then <span class="math notranslate nohighlight">\(m\)</span>, <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are all vectors, which makes things seem complicated. But in reality it’s just a line. Another model we will deal with extensively this semester is called a “decision tree”. We will hold off on the details for now, but a decision tree is simply a function that repeated asks “yes/no” questions of the data. For instance, suppose we want to use a decision tree to determine whether or not a passenger on the titanic survives. Below is a possible decision tree:</p>
+<p><img alt="Titanic decision tree" src="_images/titanic_decision_tree.png" /></p>
+<p>You can see that the first question is about the person’s gender, then if they are a female the model predicts they will survive. If they are a male, the model then asks about their age, and so forth. This may not <em>look</em> like a function, but it is. Recall that a function is simply something that takes in input and returns a single output (think about the “vertical line test”). We could write this as an <em>equation</em> (which is probably how you typically think about functions) as follows:
+$<span class="math notranslate nohighlight">\(
+f(\text{sex}, \text{age}, \text{sibsp}) = \text{piecewise function}
+\)</span>$
+In this decision tree we have the following model parameters:</p>
+<ul class="simple">
+<li><p>Which columns should we ask questions about?</p></li>
+<li><p>What order should we ask these questions? Do we start with sex, age, or sibsp?</p></li>
+<li><p>When we ask about a numerical column (such as “is age &gt; 9.5” or “is sibsp &gt; 2.5”), what value should be our cutoff? That is why aren’t we asking “is age &gt; 14”, or “is sibsp &lt; 5”?</p></li>
+<li><p>After each question, what should we do next? Should we predict a value or go to another question?</p></li>
+<li><p>Whenever we decide to predict a value, what value should we predict?</p></li>
+</ul>
+<p>As you can see, model parameters can be quite complicated. It is impossible to setup an equation and “solve” for each of these like we did for linear regression. So instead, we train the model. That leads us to step 3.</p>
+</div>
+<div class="section" id="gradient-descent">
+<h3>Gradient descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline">¶</a></h3>
+<p>We saw last class that gradient descent allows us to find values of the model parameters which make the loss function (mean squared error) as small as possible. By doing gradient descent we are able to find model parameters that make our model “fit” our data very well. By “fit”, we mean that the loss function is very small.</p>
+</div>
+<div class="section" id="putting-it-all-together">
+<h3>Putting it all together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this headline">¶</a></h3>
+<p>In practice, the first two steps are done by you, and the final step is done automatically using sklearn. Let’s do a couple examples. You may remember from last week that when doing linear regression there were a few options, in particular <code class="docutils literal notranslate"><span class="pre">fit_intercept</span></code> and <code class="docutils literal notranslate"><span class="pre">normalize</span></code>. How do these affect our model? Let’s try doing one of each of the four possibilities (True/False for each of the two options) and see what we get.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr1</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">lr2</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">lr3</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">lr4</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;crime_rate&#39;</span><span class="p">,</span> <span class="s1">&#39;avg_num_rooms&#39;</span><span class="p">,</span> <span class="s1">&#39;pct_below_poverty_line&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;median_home_value&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">lr2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">lr3</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">lr4</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=True)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ve now trained four models. That’s great (and simple!), but how do we know which one is best? That is, which one makes the best predictions? Or, said more formally, how do we <em>evaluate</em> our models?</p>
+</div>
+</div>
+<div class="section" id="evaluating-your-model-a-id-model-evaluation-a">
+<h2>Evaluating your model <a id="model_evaluation"></a><a class="headerlink" href="#evaluating-your-model-a-id-model-evaluation-a" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have trained our model and used it to make predictions, how can we tell if it’s making “good” predictions? Let’s start with the simplest way, which is just comparing the predicted values to the actual values, which were stored in <code class="docutils literal notranslate"><span class="pre">y</span></code>. We’ll loop through the first ten predictions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr1_pred</span> <span class="o">=</span> <span class="n">lr1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Actual = </span><span class="si">{</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">, Predicted = </span><span class="si">{</span><span class="n">lr1_pred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Actual = 24000.0, Predicted = 28964.93
+Actual = 21600.0, Predicted = 25695.85
+Actual = 34700.0, Predicted = 32504.80
+Actual = 33400.0, Predicted = 32254.51
+Actual = 36200.0, Predicted = 31528.95
+Actual = 28700.0, Predicted = 28118.11
+Actual = 22900.0, Predicted = 21709.07
+Actual = 27100.0, Predicted = 18414.20
+Actual = 16500.0, Predicted = 9251.30
+Actual = 18900.0, Predicted = 18835.35
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that most predictions seem reasonable, though definitely not perfect. It’s a little annoying to look through the predictions this way. Let’s plot both the predicted and actual values and see what we get. The problem is, how can we do this? To plot we put the <code class="docutils literal notranslate"><span class="pre">X</span></code> on the x-axis and the <code class="docutils literal notranslate"><span class="pre">y</span></code> on the y-axis. The problem is that our <code class="docutils literal notranslate"><span class="pre">X</span></code> is three dimensional, which means we’re plotting in four dimensions! That won’t work. Instead, what we’ll do is just plot our y’s (both <code class="docutils literal notranslate"><span class="pre">y</span></code> and <code class="docutils literal notranslate"><span class="pre">y_pred</span></code>) against each other. Let’s do it then discuss it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">lr1_pred</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual home prices&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted home prices&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Actual vs predicted using linear regression&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_05_21_0.png" src="_images/ch_05_21_0.png" />
+</div>
+</div>
+<p>What are we looking at? Each point represents a home. The x value is the actual home price, and the y value is the predicted home price using our linear regression model. Let’s look at a single point to make this clear. I’ll do this by plotting twice: once for all except the first prediction, and once for the first prediction (in a different color to make it easy to see). I’ll also make the size bigger using <code class="docutils literal notranslate"><span class="pre">s</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">lr1_pred</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">lr1_pred</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual home prices&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted home prices&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Actual vs predicted using linear regression&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_05_23_0.png" src="_images/ch_05_23_0.png" />
+</div>
+</div>
+<p>What is this red point?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Actual home value = </span><span class="si">{</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">, Predicted home value = </span><span class="si">{</span><span class="n">lr1_pred</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Actual home value = 24000.0, Predicted home value = 28964.93256553912
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is a home which cost \<span class="math notranslate nohighlight">\(24,000 and had a predicted home price of a little over \\\)</span>28,857. We can see the information on it by looking at the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>crime_rate                0.00632
+avg_num_rooms             6.57500
+pct_below_poverty_line    4.98000
+Name: 0, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>So how should we make sense of the scatter plot above? Think about the following: suppose the regression line made perfect predictions. That is, suppose that for every single home, the regression line could predict exactly the correct value. Here is a simple example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;median_home_value&#39;</span><span class="p">]</span>
+<span class="n">y_pred_fake</span> <span class="o">=</span> <span class="n">y</span> <span class="c1"># The (fake) predicted values are exactly the real values.</span>
+
+<span class="c1"># Make the scatterplot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred_fake</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual home prices&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;(Fake) Predicted home prices&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Actual vs (fake) predicted using linear regression&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_05_29_0.png" src="_images/ch_05_29_0.png" />
+</div>
+</div>
+<p>A perfect line! that is because both the x and y values are identical. So a model which returned perfect predictions would have this scatter plot being a perfect line.</p>
+<p>Because of this, a common way to measure how strong a model’s predictions are is by making this scatter plot and computing the correlation coefficient <span class="math notranslate nohighlight">\(R^2\)</span>. Let’s do that now using what we learned last homework.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">lr1_pred</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual home prices&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted home prices&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Actual vs predicted using linear regression: R^2 = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">lr1_pred</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_05_31_0.png" src="_images/ch_05_31_0.png" />
+</div>
+</div>
+<p>Not bad! That is a high correlation coefficient, as reflected by the fact that the scatterplot is quite linear. This means that our predictions are generally pretty good.</p>
+<p>At this point you don’t really have a grasp on what’s “good” and “not good”. We’ll do one more example below, but I highly encourage you to play with all of this on your own. Use both this dataset and others to try it all out.</p>
+<p>Let’s pick some columns that probably <em>aren’t</em> that useful in predicting home value and see what we get.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_weak</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="n">X_weak</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;pct_industrial&#39;</span><span class="p">,</span> <span class="s1">&#39;distance_to_downtown&#39;</span><span class="p">,</span> <span class="s1">&#39;pupil_teacher_ratio&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;median_home_value&#39;</span><span class="p">]</span> <span class="c1"># y is the same regardless, it&#39;s just the home prices</span>
+
+<span class="n">lr_weak</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_weak</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">y_weak_pred</span> <span class="o">=</span> <span class="n">lr_weak</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_weak</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_weak_pred</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual home prices&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted home prices&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Actual vs predicted using linear regression: R^2 = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_weak_pred</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_05_34_0.png" src="_images/ch_05_34_0.png" />
+</div>
+</div>
+<p>A much lower <span class="math notranslate nohighlight">\(R^2\)</span> value, and a much less linear graph. We can see that generally higher actual home prices seem to match with higher predicted home prices, and similarly for lower-priced homes. But the correlation is pretty weak.</p>
+<p>Since computing the correlation coefficient between the actual and predicted y values is so common and important, sklearn has it built-in. You can access the <span class="math notranslate nohighlight">\(R^2\)</span> value using the <code class="docutils literal notranslate"><span class="pre">.score(...)</span></code> method. Go look at the documentation on it now on the sklearn page. At this point you should be comfortable enough reading that documentation to try it on your own.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr1</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.645389993799838
+</pre></div>
+</div>
+</div>
+</div>
+<p>This shows one particular way to compare how “good” different models’ predictions are. That is, we can compare their <span class="math notranslate nohighlight">\(R^2\)</span> value by using <code class="docutils literal notranslate"><span class="pre">.score()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Score for lr1 (fit_intercept=False, normalize=False): </span><span class="si">{</span><span class="n">lr1</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Score for lr2 (fit_intercept=True, normalize=False): </span><span class="si">{</span><span class="n">lr2</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Score for lr3 (fit_intercept=False, normalize=True): </span><span class="si">{</span><span class="n">lr3</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Score for lr4 (fit_intercept=True, normalize=True): </span><span class="si">{</span><span class="n">lr4</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Score for lr1 (fit_intercept=False, normalize=False): 0.645389993799838
+Score for lr2 (fit_intercept=True, normalize=False): 0.645852051578113
+Score for lr3 (fit_intercept=False, normalize=True): 0.645389993799838
+Score for lr4 (fit_intercept=True, normalize=True): 0.6458520515781131
+</pre></div>
+</div>
+</div>
+</div>
+<p>It ends up that all three have very similar scores! In other words, it seens like those changes are making only very minor differences. Perhaps normalizing (<em>without</em> fitting the intercept) is very slightly the worst, but the difference is so small it likely isn’t statistically significant.</p>
+</div>
+<div class="section" id="training-vs-testing-a-id-train-test-a">
+<h2>Training vs testing <a id="train_test"></a><a class="headerlink" href="#training-vs-testing-a-id-train-test-a" title="Permalink to this headline">¶</a></h2>
+<p>Now that you know how model training works, let’s do some more examples. Suppose you go back through your old exams and you find what score you got. You then estimate how many hours you studied alone, how many hours you studied with a group, and how many hours you were studying for other courses that week. You then decide to build a linear model that will predict your score on your next exam, given how many hours you studied each way.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hours studied</span>
+<span class="n">exam_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">56</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">84</span><span class="p">],</span> <span class="s1">&#39;hours_alone&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="s1">&#39;hours_group&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="s1">&#39;hours_other&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]})</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">exam_df</span><span class="p">[[</span><span class="s1">&#39;hours_alone&#39;</span><span class="p">,</span> <span class="s1">&#39;hours_group&#39;</span><span class="p">,</span> <span class="s1">&#39;hours_other&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">exam_df</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span>
+
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now look at the <span class="math notranslate nohighlight">\(R^2\)</span> value (the score) to see how well this model fits the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>My god, it’s perfect! We have a perfect model that can determine exactly what score we will get based on knowing this study info! Let’s confirm that.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exam_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>score</th>
+      <th>hours_alone</th>
+      <th>hours_group</th>
+      <th>hours_other</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>56</td>
+      <td>3</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>86</td>
+      <td>8</td>
+      <td>6</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>84</td>
+      <td>4</td>
+      <td>10</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Actual score for first exam: </span><span class="si">{</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">, Predicted score for first exam: </span><span class="si">{</span><span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Actual score for second exam: </span><span class="si">{</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">, Predicted score for first exam: </span><span class="si">{</span><span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Actual score for third exam: </span><span class="si">{</span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s1">, Predicted score for first exam: </span><span class="si">{</span><span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Actual score for first exam: 56, Predicted score for first exam: 56.00
+Actual score for second exam: 86, Predicted score for first exam: 86.00
+Actual score for third exam: 84, Predicted score for first exam: 84.00
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ve done it! Let’s go publish our results and become heroes to every student who wants to know how long they need to study!</p>
+<p>Okay, enough sarcasm, obviously something is wrong here. The numbers above are just made up (go ahead, try tweaking them and see that your model is essentially always perfect), and yet it can perfectly predict our scores? That doesn’t make sense. What’s happening is that <em>we are testing our model and the same data that we are training it with</em>. To understand this, consider the following real-world situation: Suppose your professor tells you your next exam is in a week. She gives you a practice exam, but you’re too busy to really spend much time with it. However, just because you’ve seen it, you memorized the answers. You don’t know how to do the problems, but you remember that the answer to the first problem is 42, the second is <span class="math notranslate nohighlight">\(x^2+y\)</span>, and so forth. Finally, the day of the test arrives. You sit down nervous about how much your grade is going to tank after this exam. She passes out the exams and you flip it over only to find…it’s exactly the same as the practice test! Thrilled, you write down the correct answers and turn in the test after just 30 seconds. You come back next week to see that you got a perfect score!</p>
+<p>Does this mean that you <em>understand</em> the material? Of course not! You simply memorized the answers. More importantly, you don’t know how to <em>generalize</em> to other topics. For example, perhaps you memorized that if <span class="math notranslate nohighlight">\(f(x)=2x^3\)</span> then <span class="math notranslate nohighlight">\(f'(1) = 6\)</span>. However, if you got a new question “<span class="math notranslate nohighlight">\(f(x)=2x^4\)</span>, compute <span class="math notranslate nohighlight">\(f'(1)\)</span>” you would have no idea how to do it. This is exactly what happened with our model above. We trained it using some data for which it “memorized” the answers by choosing values of <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(b\)</span> which would produce perfect results. It then simply spit those back out when asked for predictions. Let’s illustrate this by putting in the data for another exam you studied for.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a DataFrame for this single exam</span>
+<span class="n">next_exam_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">76</span><span class="p">],</span> <span class="s1">&#39;hours_alone&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="s1">&#39;hours_group&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="s1">&#39;hours_other&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">19</span><span class="p">]})</span>
+
+<span class="c1"># Concatenate it to the already existing DataFrame</span>
+<span class="n">exam_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">exam_df</span><span class="p">,</span> <span class="n">next_exam_df</span><span class="p">])</span>
+<span class="n">exam_df</span> <span class="o">=</span> <span class="n">exam_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">exam_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>score</th>
+      <th>hours_alone</th>
+      <th>hours_group</th>
+      <th>hours_other</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>56</td>
+      <td>3</td>
+      <td>3</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>86</td>
+      <td>8</td>
+      <td>6</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>84</td>
+      <td>4</td>
+      <td>10</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>76</td>
+      <td>7</td>
+      <td>4</td>
+      <td>19</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">exam_df</span><span class="p">[[</span><span class="s1">&#39;hours_alone&#39;</span><span class="p">,</span> <span class="s1">&#39;hours_group&#39;</span><span class="p">,</span> <span class="s1">&#39;hours_other&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">exam_df</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Actual score for fourth exam: </span><span class="si">{</span><span class="n">y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s1">, Predicted score for fourth exam: </span><span class="si">{</span><span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">3</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Actual score for fourth exam: 76, Predicted score for fourth exam: 40.08
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not even close! The reason is that our model did not learn to <em>generalize</em> what it learned. In reality, there’s a bit more going on here. This is a linear system with three columns (variables) and three rows (exams). So it just solved the system and found a solution. However, in general models are <em>underdetermined</em>, meaning there are more rows than columns. Thus they cannot solve for a solution, they always have to approximate it. Regardless, the idea is the same: it is a mistake to <em>test</em> a model on the same data that you <em>trained</em> it on. Said in simple terms, the professor should have given you a real exam which was different (but similar) to the practice exam.</p>
+</div>
+<div class="section" id="train-test-split-a-id-train-test-split-a">
+<h2>Train-test split <a id="train_test_split"></a><a class="headerlink" href="#train-test-split-a-id-train-test-split-a" title="Permalink to this headline">¶</a></h2>
+<p>The fix to this is to take your data and <strong>split</strong> it into training and testing sets. The idea is that you will <em>train</em> your model on the <strong>training set</strong>, and <em>test</em> (or <em>evaluate</em>) your model on the <strong>test set</strong>.</p>
+<p>Splitting is very simple–it just consists of randomly putting some rows aside as the test set, and leaving the rest as the training set. Let’s use some data on avocado sales to do this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">drive_dir</span> <span class="o">+</span> <span class="s1">&#39;data/avocado.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>Date</th>
+      <th>AveragePrice</th>
+      <th>Total Volume</th>
+      <th>4046</th>
+      <th>4225</th>
+      <th>4770</th>
+      <th>Total Bags</th>
+      <th>Small Bags</th>
+      <th>Large Bags</th>
+      <th>XLarge Bags</th>
+      <th>type</th>
+      <th>year</th>
+      <th>region</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>2015-12-27</td>
+      <td>1.33</td>
+      <td>64236.62</td>
+      <td>1036.74</td>
+      <td>54454.85</td>
+      <td>48.16</td>
+      <td>8696.87</td>
+      <td>8603.62</td>
+      <td>93.25</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2015-12-20</td>
+      <td>1.35</td>
+      <td>54876.98</td>
+      <td>674.28</td>
+      <td>44638.81</td>
+      <td>58.33</td>
+      <td>9505.56</td>
+      <td>9408.07</td>
+      <td>97.49</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>2015-12-13</td>
+      <td>0.93</td>
+      <td>118220.22</td>
+      <td>794.70</td>
+      <td>109149.67</td>
+      <td>130.50</td>
+      <td>8145.35</td>
+      <td>8042.21</td>
+      <td>103.14</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>2015-12-06</td>
+      <td>1.08</td>
+      <td>78992.15</td>
+      <td>1132.00</td>
+      <td>71976.41</td>
+      <td>72.58</td>
+      <td>5811.16</td>
+      <td>5677.40</td>
+      <td>133.76</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>2015-11-29</td>
+      <td>1.28</td>
+      <td>51039.60</td>
+      <td>941.48</td>
+      <td>43838.39</td>
+      <td>75.78</td>
+      <td>6183.95</td>
+      <td>5986.26</td>
+      <td>197.69</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>Albany</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Here is a brief rundown of the columns:</p>
+<ul class="simple">
+<li><p><strong>Date:</strong> The week when sales were measured</p></li>
+<li><p><strong>AveragePrice:</strong> The average price of a single avocado</p></li>
+<li><p><strong>Total Volume:</strong> The total number of avocado’s sold in that week</p></li>
+<li><p><strong>4046:</strong> The number of small avocados sold (4046 is the PLU code)</p></li>
+<li><p><strong>4225:</strong> The number of large avocados sold</p></li>
+<li><p><strong>4770:</strong> The number of extra-large avocados sold</p></li>
+<li><p><strong>Total Bags:</strong> The total number of bags of avocados sold</p></li>
+<li><p><strong>Small Bags/Large Bags/XLarge Bags:</strong> The total number of small/large/xlarge bags sold</p></li>
+<li><p><strong>type:</strong> Whether the avocados were conventional or organic</p></li>
+<li><p><strong>year:</strong> The year</p></li>
+<li><p><strong>region:</strong> The region of sales</p></li>
+</ul>
+<p>We’ll start by quickly cleaning and checking the data, and renaming some columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;avg_price&#39;</span><span class="p">,</span> <span class="s1">&#39;total_volume&#39;</span><span class="p">,</span> <span class="s1">&#39;small&#39;</span><span class="p">,</span> <span class="s1">&#39;large&#39;</span><span class="p">,</span> <span class="s1">&#39;xlarge&#39;</span><span class="p">,</span> <span class="s1">&#39;total_bags&#39;</span><span class="p">,</span> <span class="s1">&#39;small_bags&#39;</span><span class="p">,</span> <span class="s1">&#39;large_bags&#39;</span><span class="p">,</span> <span class="s1">&#39;xlarge_bags&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;region&#39;</span><span class="p">]</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>avg_price</th>
+      <th>total_volume</th>
+      <th>small</th>
+      <th>large</th>
+      <th>xlarge</th>
+      <th>total_bags</th>
+      <th>small_bags</th>
+      <th>large_bags</th>
+      <th>xlarge_bags</th>
+      <th>type</th>
+      <th>year</th>
+      <th>region</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2015-12-27</td>
+      <td>1.33</td>
+      <td>64236.62</td>
+      <td>1036.74</td>
+      <td>54454.85</td>
+      <td>48.16</td>
+      <td>8696.87</td>
+      <td>8603.62</td>
+      <td>93.25</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2015-12-20</td>
+      <td>1.35</td>
+      <td>54876.98</td>
+      <td>674.28</td>
+      <td>44638.81</td>
+      <td>58.33</td>
+      <td>9505.56</td>
+      <td>9408.07</td>
+      <td>97.49</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2015-12-13</td>
+      <td>0.93</td>
+      <td>118220.22</td>
+      <td>794.70</td>
+      <td>109149.67</td>
+      <td>130.50</td>
+      <td>8145.35</td>
+      <td>8042.21</td>
+      <td>103.14</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2015-12-06</td>
+      <td>1.08</td>
+      <td>78992.15</td>
+      <td>1132.00</td>
+      <td>71976.41</td>
+      <td>72.58</td>
+      <td>5811.16</td>
+      <td>5677.40</td>
+      <td>133.76</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2015-11-29</td>
+      <td>1.28</td>
+      <td>51039.60</td>
+      <td>941.48</td>
+      <td>43838.39</td>
+      <td>75.78</td>
+      <td>6183.95</td>
+      <td>5986.26</td>
+      <td>197.69</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>Albany</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>date            0
+avg_price       0
+total_volume    0
+small           0
+large           0
+xlarge          0
+total_bags      0
+small_bags      0
+large_bags      0
+xlarge_bags     0
+type            0
+year            0
+region          0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>date            datetime64[ns]
+avg_price              float64
+total_volume           float64
+small                  float64
+large                  float64
+xlarge                 float64
+total_bags             float64
+small_bags             float64
+large_bags             float64
+xlarge_bags            float64
+type                    object
+year                     int64
+region                  object
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now split into training and testing sets. One way would be to just take the first rows and set them aside.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_rows</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;# rows = </span><span class="si">{</span><span class="n">num_rows</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># rows = 18249
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Keep 30% of the data for testing</span>
+<span class="n">first_30_pct</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.3</span> <span class="o">*</span> <span class="n">num_rows</span><span class="p">)</span>
+
+<span class="c1"># Make the test set be the first 30%...</span>
+<span class="n">test_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">first_30_pct</span><span class="p">]</span>
+
+<span class="c1"># ... and the training set the last 70%</span>
+<span class="n">train_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">first_30_pct</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5474, 13)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(12775, 13)
+</pre></div>
+</div>
+</div>
+</div>
+<p>While this may seem reasonable, there are potential problems here. For example, what if your data was sorted by date? Or by neighborhood? Or by home value? By taking the first 30% we’re potentially taking the first 30% of the dates or lowest 30% of home values, or only certain neighborhoods. We always want our samples to be representative of the population, so this could be a problem.</p>
+<p>The simplest fix is just to take a random sample. If you happen to know that your data has some other structure that you want to preserve (like neighborhoods), perhaps you could sample from those neighborhoods instead and be fancier. But 99% of the time the best idea is just to take a random sample.</p>
+<p>The simplest way to take a random sample is by using sklearn. They have a helper function called <code class="docutils literal notranslate"><span class="pre">train_test_split()</span></code>. You just need to supply your data, and what percentage of the data you want to be in the training set. The function will handle the rest.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5475, 13)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(12774, 13)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have our data split into a training and testing set let’s train on that train set and test on the test set. We’ll try to predict the number of large avocados sold based on information about the small avocados.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split into training and testing data (30% test)</span>
+<span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Grab the columns we want for X and y for both train and test</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[[</span><span class="s1">&#39;small&#39;</span><span class="p">,</span> <span class="s1">&#39;small_bags&#39;</span><span class="p">,</span> <span class="s1">&#39;avg_price&#39;</span><span class="p">]]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;large&#39;</span><span class="p">]</span>
+
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[[</span><span class="s1">&#39;small&#39;</span><span class="p">,</span> <span class="s1">&#39;small_bags&#39;</span><span class="p">,</span> <span class="s1">&#39;avg_price&#39;</span><span class="p">]]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s1">&#39;large&#39;</span><span class="p">]</span>
+
+<span class="c1"># Create the linear regression object</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="c1"># Fit (i.e. train) the model on the training data</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># See how well it did (R^2 score) by looking at the test data</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8779421117852404
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="examining-your-predictions-a-id-examining-predictions-a">
+<h2>Examining your predictions <a id="examining_predictions"></a><a class="headerlink" href="#examining-your-predictions-a-id-examining-predictions-a" title="Permalink to this headline">¶</a></h2>
+<p>That’s a really strong score! Let’s look at the prediction vs ground truth scatterplot to see how it lines up.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="c1"># Note that we look at the predictions on the _test_ set</span>
+<span class="n">test_pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">test_pred</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual large avocado sales&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted large avocado sales&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Actual vs predicted using linear regression: R^2 = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">test_pred</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_05_72_0.png" src="_images/ch_05_72_0.png" />
+</div>
+</div>
+<p>Hmm, that’s interesting. It looks like the majority of the actual large avocado sales are fairly low (the bottom-left). There’s also a small set of outliers with large sales.</p>
+<p>This example shows why you always need to actually <em>look at</em> what your model is predicting. While it returns a very high <span class="math notranslate nohighlight">\(R^2\)</span> value, the actual scatterplot of predictions doesn’t look great. It seems like the majority of the avocados are in the clump in the lower-left, and it doesn’t look like the predictions are great there.</p>
+<p>Let’s dive into this further. First we want to see how “large” prices are distributed. A boxplot seems like a good choice for this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="s1">&#39;large&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">vert</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Large avocado sales&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_05_74_0.png" src="_images/ch_05_74_0.png" />
+</div>
+</div>
+<p>So the avocado sales are almost entirely in the smaller side, with a bunch of outliers. Let’s try grouping by a few different factors, and see if we can figure out if some partial factor (organic vs conventional, a certain region, a certain year) is where all of those high sales are located.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Group by type</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)[</span><span class="s1">&#39;large&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>type
+conventional    574805.318859
+organic          15411.857724
+Name: large, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Yes, organic are sold in far lower numbers, but the “conventional” sales of 574805 is in scientific notation <span class="math notranslate nohighlight">\(5.7 \cdot 10^5\)</span>, which is still way, way on the left of the boxplot. So that’s not the issue. Let’s try regions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Group by region</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)[</span><span class="s1">&#39;large&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>region
+Albany                 3.762121e+04
+Atlanta                3.121851e+04
+BaltimoreWashington    2.459829e+05
+Boise                  3.461682e+03
+Boston                 2.142199e+05
+BuffaloRochester       3.166395e+04
+California             1.039915e+06
+Charlotte              3.662802e+04
+Chicago                2.545190e+05
+CincinnatiDayton       6.105890e+04
+Columbus               1.691030e+04
+DallasFtWorth          1.395577e+05
+Denver                 1.503270e+05
+Detroit                3.479935e+04
+GrandRapids            5.101043e+04
+GreatLakes             7.907033e+05
+HarrisburgScranton     6.121225e+04
+HartfordSpringfield    1.119752e+05
+Houston                1.411965e+05
+Indianapolis           4.279241e+04
+Jacksonville           1.043414e+04
+LasVegas               4.545688e+04
+LosAngeles             3.021715e+05
+Louisville             2.488955e+04
+MiamiFtLauderdale      4.411622e+04
+Midsouth               6.579085e+05
+Nashville              1.127370e+04
+NewOrleansMobile       1.305686e+04
+NewYork                4.832954e+05
+Northeast              1.403801e+06
+NorthernNewEngland     1.586073e+05
+Orlando                2.473253e+04
+Philadelphia           1.264747e+05
+PhoenixTucson          1.158520e+05
+Pittsburgh             2.160202e+04
+Plains                 2.583886e+05
+Portland               1.035079e+05
+RaleighGreensboro      4.934356e+04
+RichmondNorfolk        4.756319e+04
+Roanoke                2.358443e+04
+Sacramento             1.218252e+05
+SanDiego               8.656350e+04
+SanFrancisco           2.460150e+05
+Seattle                1.066295e+05
+SouthCarolina          3.737238e+04
+SouthCentral           6.522190e+05
+Southeast              2.688179e+05
+Spokane                1.457577e+04
+StLouis                1.124101e+04
+Syracuse               1.890633e+04
+Tampa                  3.171925e+04
+TotalUS                5.961573e+06
+West                   8.898193e+05
+WestTexNewMexico       6.620437e+04
+Name: large, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Skimming through the regions, the sales seem to be reasonably similar across the board. In the boxplot the outlier sales are on the order of <span class="math notranslate nohighlight">\(2 \cdot 10^7\)</span>, and we’re not seeing anything like that here. California is about <span class="math notranslate nohighlight">\(10^6\)</span>, which is <span class="math notranslate nohighlight">\(0.1 \cdot 10^7\)</span>, so also not an outlier. Let’s try year.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Group by year</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)[</span><span class="s1">&#39;large&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year
+2015    313633.844367
+2016    297850.478632
+2017    269964.124350
+2018    314628.606698
+Name: large, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nope, still nothing jumping out. Let’s try just directly grabbing those outliers and looking at them, maybe something will jump out.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outlier_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;large&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outlier_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>avg_price</th>
+      <th>total_volume</th>
+      <th>small</th>
+      <th>large</th>
+      <th>xlarge</th>
+      <th>total_bags</th>
+      <th>small_bags</th>
+      <th>large_bags</th>
+      <th>xlarge_bags</th>
+      <th>type</th>
+      <th>year</th>
+      <th>region</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2652</th>
+      <td>2015-12-27</td>
+      <td>0.95</td>
+      <td>27297983.67</td>
+      <td>9626901.09</td>
+      <td>10197890.05</td>
+      <td>1184340.09</td>
+      <td>6288852.44</td>
+      <td>4850404.09</td>
+      <td>1252626.31</td>
+      <td>185822.04</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>TotalUS</td>
+    </tr>
+    <tr>
+      <th>2653</th>
+      <td>2015-12-20</td>
+      <td>0.98</td>
+      <td>25083647.17</td>
+      <td>8710021.76</td>
+      <td>9329861.85</td>
+      <td>1201020.01</td>
+      <td>5842743.55</td>
+      <td>4618389.66</td>
+      <td>1025048.77</td>
+      <td>199305.12</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>TotalUS</td>
+    </tr>
+    <tr>
+      <th>2654</th>
+      <td>2015-12-13</td>
+      <td>0.93</td>
+      <td>28041335.38</td>
+      <td>9855053.66</td>
+      <td>10805838.91</td>
+      <td>1016163.17</td>
+      <td>6364279.64</td>
+      <td>4964462.13</td>
+      <td>1371440.28</td>
+      <td>28377.23</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>TotalUS</td>
+    </tr>
+    <tr>
+      <th>2655</th>
+      <td>2015-12-06</td>
+      <td>0.89</td>
+      <td>28800396.57</td>
+      <td>9405464.36</td>
+      <td>12160838.62</td>
+      <td>931830.63</td>
+      <td>6302262.96</td>
+      <td>5005077.36</td>
+      <td>1233956.21</td>
+      <td>63229.39</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>TotalUS</td>
+    </tr>
+    <tr>
+      <th>2656</th>
+      <td>2015-11-29</td>
+      <td>0.99</td>
+      <td>22617999.38</td>
+      <td>8094803.56</td>
+      <td>9003178.41</td>
+      <td>731008.41</td>
+      <td>4789009.00</td>
+      <td>3901953.04</td>
+      <td>856560.34</td>
+      <td>30495.62</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>TotalUS</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>avg_price</th>
+      <th>total_volume</th>
+      <th>small</th>
+      <th>large</th>
+      <th>xlarge</th>
+      <th>total_bags</th>
+      <th>small_bags</th>
+      <th>large_bags</th>
+      <th>xlarge_bags</th>
+      <th>type</th>
+      <th>year</th>
+      <th>region</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2015-12-27</td>
+      <td>1.33</td>
+      <td>64236.62</td>
+      <td>1036.74</td>
+      <td>54454.85</td>
+      <td>48.16</td>
+      <td>8696.87</td>
+      <td>8603.62</td>
+      <td>93.25</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2015-12-20</td>
+      <td>1.35</td>
+      <td>54876.98</td>
+      <td>674.28</td>
+      <td>44638.81</td>
+      <td>58.33</td>
+      <td>9505.56</td>
+      <td>9408.07</td>
+      <td>97.49</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2015-12-13</td>
+      <td>0.93</td>
+      <td>118220.22</td>
+      <td>794.70</td>
+      <td>109149.67</td>
+      <td>130.50</td>
+      <td>8145.35</td>
+      <td>8042.21</td>
+      <td>103.14</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2015-12-06</td>
+      <td>1.08</td>
+      <td>78992.15</td>
+      <td>1132.00</td>
+      <td>71976.41</td>
+      <td>72.58</td>
+      <td>5811.16</td>
+      <td>5677.40</td>
+      <td>133.76</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2015-11-29</td>
+      <td>1.28</td>
+      <td>51039.60</td>
+      <td>941.48</td>
+      <td>43838.39</td>
+      <td>75.78</td>
+      <td>6183.95</td>
+      <td>5986.26</td>
+      <td>197.69</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015</td>
+      <td>Albany</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>That’s interesting, the first few in <code class="docutils literal notranslate"><span class="pre">outlier_df</span></code> all have a region of <code class="docutils literal notranslate"><span class="pre">TotalUS</span></code>. Is that a coincidence?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outlier_df</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TotalUS      169
+Northeast      2
+Name: region, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Doesn’t look like it! Let’s see how many <code class="docutils literal notranslate"><span class="pre">TotalUS</span></code> rows there are all together in the original data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;TotalUS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>338
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s directly look at those.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;TotalUS&#39;</span><span class="p">][</span><span class="s1">&#39;large&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;hist&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11e1a3280&gt;
+</pre></div>
+</div>
+<img alt="_images/ch_05_90_1.png" src="_images/ch_05_90_1.png" />
+</div>
+</div>
+<p>So that’s why, when we grouped by region, <code class="docutils literal notranslate"><span class="pre">TotalUS</span></code> didn’t jump out. Yes, there are plenty of outliers, but there are also plenty on the low range which “cancel out” the outliers.</p>
+<p>Regardless, it seems silly to compare individual regions (Albany, Boise, etc.) to the entire US. Let’s remove those and just work with actual regions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;TotalUS&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region_lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="c1"># Split into training and testing data (30% test)</span>
+<span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">region_df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wait a second, we’re duplicating code from above! That means we should make a function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lr_train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">X_cols</span><span class="p">,</span> <span class="n">y_col</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">):</span>
+    <span class="c1"># Split into training and testing data (30% test)</span>
+    <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+    <span class="c1"># Grab the columns we want for X and y for both train and test</span>
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">X_cols</span><span class="p">]</span>
+    <span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">]</span>
+
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="n">X_cols</span><span class="p">]</span>
+    <span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="n">y_col</span><span class="p">]</span>
+
+    <span class="c1"># Create the linear regression object</span>
+    <span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+    <span class="c1"># Fit (i.e. train) the model on the training data</span>
+    <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">lr</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region_lr</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">lr_train_test_split</span><span class="p">(</span><span class="n">region_df</span><span class="p">,</span> <span class="n">X_cols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;small&#39;</span><span class="p">,</span> <span class="s1">&#39;small_bags&#39;</span><span class="p">,</span> <span class="s1">&#39;avg_price&#39;</span><span class="p">],</span> <span class="n">y_col</span><span class="o">=</span><span class="s1">&#39;large&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region_lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.651555153955232
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have a lower, but still strong <span class="math notranslate nohighlight">\(R^2\)</span> value. Let’s look at the scatterplot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lr_scatterplot</span><span class="p">(</span><span class="n">lr</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    
+    <span class="n">test_pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">test_pred</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual sales&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted sales&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Actual vs predicted using linear regression: R^2 = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">test_pred</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_scatterplot</span><span class="p">(</span><span class="n">region_lr</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch_05_100_0.png" src="_images/ch_05_100_0.png" />
+</div>
+</div>
+<p>That looks decent. The cone shape is not great, as it means that there is a range of predicted values corresponding to any actual value. But regardless, we have a model that does decently well.</p>
+<p>This sort of “inspecting your model” is absolutely necessary. If you ever train a model and then stop, you are doing data science wrong. What makes a good data scientist is <em>not</em> how many models you know or how quickly you write code, it’s how well you understand your model and data. Someone who is able to dive into and understand their model and data is far more useful as a data scientist than someone who simply knows commands. Make it a habit to spent several multiples more time <em>analyzing</em> your model and data than <em>modeling</em> your data.</p>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Repeat the models comparing small sales to large sales, but with different columns. For instance, use medium to predict large. Try to not just copy-paste the code above. First, do as much as you can from memory. Then, when you get stuck, go up and see how to proceed. Type that part, and then again try to do the next step on your own. Repeat.</p></li>
+<li><p>Do exercise 1 again, but with new columns. This sort of “try on your own, look for help when you’re stuck” process is the best way to learn these things, so do it over and over.</p></li>
+<li><p>Use more or less columns.</p></li>
+<li><p>Get another dataset and do linear regression on it. As you may have guessed from these exercises, linear regression is incredibly important, and the best thing you can do right now is to practice it.</p></li>
+</ol>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="ch_04.html" title="previous page">Linear regression</a>
+    <a class='right-next' id="next-link" href="ch_06.html" title="next page">Classification</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
