@@ -2,7 +2,7 @@
 
 These are materials for an introductory course in data science using Python, Pandas and Scikit-learn. Materials include a textbook written completely in Jupyter notebook (and also hosted as a Jupyter Book).
 
-[Explore the textbook online](https://paulsavala.github.io/Introduction-to-Data-Science/ch_01.html)
+[![Explore the textbook online](textbook_button.png)](https://paulsavala.github.io/Introduction-to-Data-Science/ch_01.html)
 
 [![Textbook image](textbook_example.png)](https://paulsavala.github.io/Introduction-to-Data-Science/ch_01.html)
 
