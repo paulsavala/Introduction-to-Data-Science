@@ -21,7 +21,7 @@ The [textbook](https://github.com/paulsavala/Introduction-to-Data-Science/tree/m
 10. Ensemble tree models
 11. Working with large datasets
 
-The textbook is open source and you are free to modify it as needed. If you find errors or have suggestions or changes or improvements, please contact me at psavala@stedwards.edu.
+The textbook is open source and you are free to modify it as needed. If you find errors or have suggestions or changes or improvements, please contact me at psavala@stedwards.edu. 
 
 ### Building the textbook
 
